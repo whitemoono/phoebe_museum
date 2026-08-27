@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>创作者档案 · CREATORS | PHOEBE MUSEUM</title>
+<style>
+:root{--bg:#07131e;--panel:#0b1b28;--panel2:#102536;--gold:#d9a846;--gold2:#f4c35d;--paper:#e9e5dc;--muted:#8f9ba2;--line:rgba(233,229,220,.14);--dark:#06111a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--paper);font-family:Inter,"Noto Sans SC","Microsoft YaHei",sans-serif}
+body:before{content:"";pointer-events:none;position:fixed;inset:0;opacity:.035;z-index:50;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:4px 4px}
+a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}
+/* Nav styles moved to phoebe_nav.css */
+/* Logo styles moved to phoebe_nav.css */.logo small{display:block;color:var(--gold);font-family:Inter,sans-serif;font-size:8px;letter-spacing:.25em;margin-top:4px}
+.links{display:flex;gap:20px;font-size:9px;letter-spacing:.12em;color:#b9c1c4;align-items:center}.links a:hover{color:var(--gold2)}.links a.on{color:var(--gold2)}
+.submit{border:1px solid var(--gold);background:transparent;color:var(--paper);padding:10px 14px;font-size:9px;letter-spacing:.14em;cursor:pointer}.submit:hover{background:var(--gold);color:#07131e}
+.hero{padding:9vw 5vw 4vw;border-bottom:1px solid var(--line);background:radial-gradient(circle at 80% 10%,rgba(217,168,70,.14),transparent 34%),linear-gradient(180deg,#0b1d2a,var(--bg))}
+.crumb{font-size:9px;letter-spacing:.2em;color:var(--gold);margin-bottom:22px}
+.hero h1{font-family:Georgia,serif;font-size:clamp(52px,10vw,150px);font-weight:400;letter-spacing:-.06em;line-height:.84;margin:0}.hero h1 em{font-style:italic;color:var(--gold2);display:block;font-size:.5em}
+.hero p{max-width:620px;color:var(--muted);font-size:14px;line-height:2.1;margin:30px 0 0}
+.section{padding:60px 5vw 30px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ccard{background:var(--panel);border:1px solid var(--line);padding:32px 26px;transition:.3s;display:flex;flex-direction:column}.ccard:hover{border-color:rgba(217,168,70,.65);transform:translateY(-3px)}
+.avatar{width:68px;height:68px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;font-family:Georgia,serif;font-size:22px;color:var(--gold);background:linear-gradient(145deg,var(--c1),var(--c2));margin-bottom:22px}
+.ccard h3{font-family:Georgia,serif;font-size:26px;font-weight:400;margin:0 0 4px}
+.ccard .at{font-size:9px;letter-spacing:.14em;color:var(--gold);margin-bottom:18px}
+.ccard .stats{display:flex;gap:0;border-top:1px solid var(--line);padding-top:18px;margin-top:auto}.stat{flex:1}.stat b{display:block;font-family:Georgia,serif;font-size:22px;font-weight:400;color:var(--gold2)}.stat span{font-size:7px;letter-spacing:.1em;color:var(--muted)}
+.ccard .go{margin-top:20px;font-size:9px;letter-spacing:.16em;color:var(--paper);border:1px solid var(--gold);padding:11px;text-align:center;display:block}.ccard .go:hover{background:var(--gold);color:#07131e}
+.empty-card{border:1px dashed var(--line);display:grid;place-items:center;text-align:center;padding:40px 26px;color:var(--muted)}.empty-card .plus{font-family:Georgia,serif;font-size:44px;color:var(--gold)}.empty-card p{font-size:11px;line-height:1.9;margin:12px 0 0;letter-spacing:.06em}
+.footer{border-top:1px solid var(--line);padding:70px 5vw 50px}
+.foot-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px}
+.foot-brand{font-family:Georgia,serif;font-size:22px;letter-spacing:.12em}.foot-brand small{display:block;color:var(--gold);font-size:9px;letter-spacing:.25em;margin-top:6px}
+.foot-inner p{color:var(--muted);font-size:12px;line-height:2;margin:0}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:9px;letter-spacing:.14em;color:var(--muted);align-content:start}.foot-links a:hover{color:var(--gold2)}
+.foot-meta{grid-column:1/-1;font-size:9px;letter-spacing:.18em;color:#5d6a70;border-top:1px solid var(--line);padding-top:25px;margin-top:15px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.links a{display:none}.hero{padding:90px 20px 50px}.section{padding:40px 20px 20px}.footer{padding:50px 20px 40px}.foot-inner{grid-template-columns:1fr}}
+</style>
+
+<link rel="stylesheet" href="phoebe_nav.css">
+<style>
+[data-lang-zh],[data-lang-en],[data-lang-ja]{display:none!important}
+html[lang="zh-CN"] [data-lang-zh]{display:block!important}
+html[lang="zh-CN"] small[data-lang-zh],html[lang="zh-CN"] span[data-lang-zh],html[lang="zh-CN"] a[data-lang-zh]{display:inline!important}
+html[lang="en"] [data-lang-en]{display:block!important}
+html[lang="en"] small[data-lang-en],html[lang="en"] span[data-lang-en],html[lang="en"] a[data-lang-en]{display:inline!important}
+html[lang="ja"] [data-lang-ja]{display:block!important}
+html[lang="ja"] small[data-lang-ja],html[lang="ja"] span[data-lang-ja],html[lang="ja"] a[data-lang-ja]{display:inline!important}
+</style>
+</head>
+<body>
+<header class="nav" id="nav" data-page="creators">
+<a href="phoebe_museum_v1.html" class="logo">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>PHOEBE MUSEUM</small><small data-lang-ja>フィービー博物館</small></a>
+<nav class="navlinks">
+<a href="phoebe_museum_v1.html" data-lang-zh>首页</a><a href="phoebe_museum_v1.html" data-lang-en>HOME</a><a href="phoebe_museum_v1.html" data-lang-ja>ホーム</a><a href="phoebe_museum_collection_v1.html" data-lang-zh>馆藏</a><a href="phoebe_museum_collection_v1.html" data-lang-en>COLLECTION</a><a href="phoebe_museum_collection_v1.html" data-lang-ja>コレクション</a><a href="phoebe_museum_timeline_human.html" data-lang-zh>人类时间线</a><a href="phoebe_museum_timeline_human.html" data-lang-en>HUMAN TIMELINE</a><a href="phoebe_museum_timeline_human.html" data-lang-ja>ヒューマンタイムライン</a><a href="phoebe_museum_timeline_community.html" data-lang-zh>社区世界线</a><a href="phoebe_museum_timeline_community.html" data-lang-en>COMMUNITY</a><a href="phoebe_museum_timeline_community.html" data-lang-ja>コミュニティ</a><a href="phoebe_museum_creators.html" class="active" data-lang-zh>创作者</a><a href="phoebe_museum_creators.html" class="active" data-lang-en>CREATORS</a><a href="phoebe_museum_creators.html" class="active" data-lang-ja>クリエイター</a><a href="phoebe_museum_my.html" data-lang-zh>我的博物馆</a><a href="phoebe_museum_my.html" data-lang-en>MY MUSEUM</a><a href="phoebe_museum_my.html" data-lang-ja>マイミュージアム</a><a href="phoebe_museum_admin.html" data-lang-zh>管理后台</a><a href="phoebe_museum_admin.html" data-lang-en>ADMIN</a><a href="phoebe_museum_admin.html" data-lang-ja>管理画面</a>
+</nav>
+<div class="nav-right">
+  <a class="submit-btn" href="phoebe_museum_submit.html" data-lang-zh>投稿作品 ↗</a>
+  <a class="submit-btn" href="phoebe_museum_submit.html" data-lang-en>SUBMIT ↗</a>
+  <a class="submit-btn" href="phoebe_museum_submit.html" data-lang-ja>投稿 ↗</a>
+  <div class="lang-switcher">
+    <button data-lang="zh" class="active">中</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="ja">日</button>
+  </div>
+</div>
+<button class="menu" aria-label="菜单">&#9776;</button>
+</header>
+
+<section class="hero">
+ <div class="crumb">PHOEBE MUSEUM / CREATORS</div>
+ <h1>CREATORS<em>ARCHIVE.</em></h1>
+ <p>每一位作品被收录的创作者，都将拥有属于自己的菲比博物馆数字档案页。这里是记录「谁创造了菲比」的地方。</p>
+</section>
+
+<section class="section">
+ <div class="grid">
+  <a class="ccard" href="phoebe_museum_creator_detail.html"><div class="avatar" style="--c1:#172d42;--c2:#31587b">01</div><h3>Museum Opening</h3><div class="at">@founder</div><div class="meds"><i class="fd" style="background:#d8a447"></i><span>插画</span><i class="fd" style="background:#c96f5a"></i><span>漫画</span></div><div class="stats"><div class="stat"><b>12</b><span>WORKS COLLECTED</span></div><div class="stat"><b>3</b><span>TIMELINES CREATED</span></div></div><span class="go">VIEW ARCHIVE →</span></a>
+  <a class="ccard" href="phoebe_museum_creator_detail.html"><div class="avatar" style="--c1:#221735;--c2:#8e5575">02</div><h3>Neon Lab</h3><div class="at">@cyberlab</div><div class="meds"><i class="fd" style="background:#d8a447"></i><span>插画</span><i class="fd" style="background:#9b7ede"></i><span>AI 创作</span></div><div class="stats"><div class="stat"><b>15</b><span>WORKS COLLECTED</span></div><div class="stat"><b>2</b><span>TIMELINES CREATED</span></div></div><span class="go">VIEW ARCHIVE →</span></a>
+  <a class="ccard" href="phoebe_museum_creator_detail.html"><div class="avatar" style="--c1:#3a2d1c;--c2:#7a5a2e">03</div><h3>Fabled Atelier</h3><div class="at">@fabled</div><div class="meds"><i class="fd" style="background:#d8a447"></i><span>插画</span><i class="fd" style="background:#4fa3b8"></i><span>3D</span></div><div class="stats"><div class="stat"><b>16</b><span>WORKS COLLECTED</span></div><div class="stat"><b>4</b><span>TIMELINES CREATED</span></div></div><span class="go">VIEW ARCHIVE →</span></a>
+  <a class="ccard" href="phoebe_museum_creator_detail.html"><div class="avatar" style="--c1:#2a4a3a;--c2:#6b8a5a">04</div><h3>Strange Archive</h3><div class="at">@strange</div><div class="meds"><i class="fd" style="background:#c96f5a"></i><span>漫画</span><i class="fd" style="background:#d98ba3"></i><span>表情包</span></div><div class="stats"><div class="stat"><b>14</b><span>WORKS COLLECTED</span></div><div class="stat"><b>1</b><span>TIMELINES CREATED</span></div></div><span class="go">VIEW ARCHIVE →</span></a>
+  <a class="ccard" href="phoebe_museum_creator_detail.html"><div class="avatar" style="--c1:#0f2027;--c2:#00c9a7">05</div><h3>Orbit Station</h3><div class="at">@orbit</div><div class="meds"><i class="fd" style="background:#e08a3c"></i><span>视频</span><i class="fd" style="background:#4fa3b8"></i><span>3D</span></div><div class="stats"><div class="stat"><b>11</b><span>WORKS COLLECTED</span></div><div class="stat"><b>1</b><span>TIMELINES CREATED</span></div></div><span class="go">VIEW ARCHIVE →</span></a>
+  <a class="ccard" href="phoebe_museum_creator_detail.html"><div class="avatar" style="--c1:#4a1c2a;--c2:#c94b4b">06</div><h3>Night Archivist</h3><div class="at">@nightarch</div><div class="meds"><i class="fd" style="background:#d8a447"></i><span>插画</span><i class="fd" style="background:#c96f5a"></i><span>漫画</span></div><div class="stats"><div class="stat"><b>09</b><span>WORKS COLLECTED</span></div><div class="stat"><b>2</b><span>TIMELINES CREATED</span></div></div><span class="go">VIEW ARCHIVE →</span></a>
+  <a class="ccard" href="phoebe_museum_creator_detail.html"><div class="avatar" style="--c1:#2a1c3a;--c2:#3a6b8a">07</div><h3>Mech Works</h3><div class="at">@mechworks</div><div class="meds"><i class="fd" style="background:#4fa3b8"></i><span>3D</span><i class="fd" style="background:#e08a3c"></i><span>视频</span></div><div class="stats"><div class="stat"><b>18</b><span>WORKS COLLECTED</span></div><div class="stat"><b>1</b><span>TIMELINES CREATED</span></div></div><span class="go">VIEW ARCHIVE →</span></a>
+  <div class="empty-card"><div><div class="plus">+</div><p>YOUR NAME<br>COULD BE HERE</p><a class="go" href="phoebe_museum_submit.html" style="display:inline-block;margin-top:16px">SUBMIT ARTWORK →</a></div></div>
+ </div>
+</section>
+
+<footer class="footer">
+ <div class="foot-inner">
+  <div class="foot-brand">PHOEBE MUSEUM<small>菲比博物馆 · DIGITAL ARCHIVE</small></div>
+  <p>从 PM-000001 开始，永远不会结束。<br>Every Phoebe deserves to be remembered.</p>
+  <div class="foot-links">
+   <a href="phoebe_museum_v1.html">HOME</a><a href="phoebe_museum_collection_v1.html">COLLECTION</a><a href="phoebe_museum_timeline_human.html">HUMAN TIMELINE</a><a href="phoebe_museum_timeline_community.html">COMMUNITY</a><a href="phoebe_museum_creators.html">CREATORS</a><a href="phoebe_museum_submit.html">SUBMIT</a><a href="phoebe_museum_my.html">MY MUSEUM</a><a href="phoebe_museum_admin.html">ADMIN</a>
+  </div>
+  <div class="foot-meta">© 2026 PHOEBE MUSEUM · DESIGN PROTOTYPE · HUMAN TIMELINE × COMMUNITY MULTIVERSE</div>
+ </div>
+</footer>
+<!-- ==== PM DESIGN SYSTEM v2 (per dev doc sec.37) : fonts + shared interactions ==== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d8a447;--gold2:#f2bf58;--paper:#e9e3d8;--muted:#94a2aa}
+body{font-family:Inter,"Noto Serif SC","Microsoft YaHei",sans-serif}
+h1,h2,h3,h4,h5,.logo,.stat b,.tile b,.art strong,.tcover strong,.cover strong,.title,.name,.foot-brand,.sub-item .t,.world-no,.year,.aside h3{font-family:"Cormorant Garamond","Noto Serif SC",Georgia,"Times New Roman",serif}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:1px solid var(--gold2);outline-offset:2px}
+::selection{background:var(--gold);color:#07131e}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#1d3648;border:2px solid #07131e;border-radius:5px}
+::-webkit-scrollbar-track{background:transparent}
+.rv{transition:opacity .8s cubic-bezier(.22,.61,.21,1),transform .8s cubic-bezier(.22,.61,.21,1)}
+.rv:not(.in){opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){.rv{transition:none}.rv:not(.in){opacity:1;transform:none}}
+.to-top{position:fixed;right:24px;bottom:24px;width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;background:rgba(7,19,30,.88);color:var(--gold2);font-size:17px;line-height:1;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s,background-color .3s,color .3s;z-index:60;display:grid;place-items:center;backdrop-filter:blur(8px);padding:0}
+.to-top:hover{background:var(--gold);color:#07131e;transform:translateY(-3px)}
+.to-top.show{opacity:1;pointer-events:auto}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--paper);width:40px;height:40px;font-size:15px;line-height:1;cursor:pointer;border-radius:2px;padding:0}
+.menu-btn:hover{border-color:var(--gold);color:var(--gold2)}
+@media(max-width:900px){
+.menu-btn{display:grid;place-items:center}
+.links{position:fixed;top:76px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(6,17,26,.98);backdrop-filter:blur(18px);padding:10px 6vw 22px;border-bottom:1px solid var(--line);display:none;z-index:19}
+.links.open{display:flex}
+.links a{display:block!important;padding:13px 0!important;font-size:11px;letter-spacing:.16em;border-bottom:1px solid rgba(233,227,216,.08)}
+.links .submit{margin-top:14px;text-align:center;border-bottom:0}
+}
+/*NAVX*/
+.ccard .meds{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:2px 0 12px;font-size:9px;letter-spacing:.1em;color:var(--muted)}
+.ccard .meds i.fd{width:6px;height:6px;border-radius:50%;display:inline-block}
+.ccard .meds span{color:var(--muted);letter-spacing:.14em}
+</style>
+<script>
+(function(){
+var d=document;
+var links=d.querySelector('.navlinks');
+if(links){
+var btn=d.querySelector('.menu-btn')||d.querySelector('.menu');
+if(!btn){btn=d.createElement('button');btn.type='button';btn.className='menu-btn';btn.setAttribute('aria-label','menu');btn.innerHTML='&#9776;';var nav=d.querySelector('.nav');if(nav)nav.appendChild(btn);}
+btn.addEventListener('click',function(e){e.stopPropagation();var o=links.classList.toggle('open');btn.innerHTML=o?'&#10005;':'&#9776;'});
+d.addEventListener('click',function(e){if(links.classList.contains('open')&&!links.contains(e.target)&&e.target!==btn){links.classList.remove('open');btn.innerHTML='&#9776;'}});
+}
+[].forEach.call(d.querySelectorAll('.btn'),function(b){if(!b.onclick)b.addEventListener('click',function(){if(typeof flash==='function')flash('\u5df2\u8bb0\u5f55\uff1a\u539f\u578b\u6f14\u793a\u64cd\u4f5c')})});
+var sel='.hero,.crumb,.section,.zone,.gallery,.wrap,.view-head,.tiles,.panel,.list-row,.sub-item,.random,.cta-banner,.empty-card,.pager,.timeline-item,.grid,.timeline,.world-list,.creator-grid,.collection-grid,.masonry,.tree,.gallery-meta';
+var els=[].slice.call(d.querySelectorAll(sel));
+els.forEach(function(el){el.classList.add('rv')});
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
+els.forEach(function(el){io.observe(el)});
+}else{els.forEach(function(el){el.classList.add('in')})}
+var top=d.createElement('button');top.type='button';top.className='to-top';top.setAttribute('aria-label','back to top');top.innerHTML='&#8593;';
+d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+})();
+</script>
+<!-- ==== /PM DESIGN SYSTEM v2 ==== -->
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+var lang=localStorage.getItem("phoebe-lang")||"zh";
+document.documentElement.lang=lang==="zh"?"zh-CN":lang;
+document.querySelectorAll(".lang-switcher button").forEach(function(btn){
+btn.classList.toggle("active",btn.dataset.lang===lang);
+btn.addEventListener("click",function(){
+var l=this.dataset.lang;
+localStorage.setItem("phoebe-lang",l);
+document.documentElement.lang=l==="zh"?"zh-CN":l;
+document.querySelectorAll(".lang-switcher button").forEach(function(b){b.classList.remove("active")});
+this.classList.add("active");
+});
+});
+});
+</script>
+</body></html>

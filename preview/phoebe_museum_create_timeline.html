@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>创建世界线 · CREATE TIMELINE | PHOEBE MUSEUM</title>
+<style>
+:root{--bg:#07131e;--panel:#0b1b28;--panel2:#102536;--gold:#d9a846;--gold2:#f4c35d;--paper:#e9e5dc;--muted:#8f9ba2;--line:rgba(233,229,220,.14);--dark:#06111a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--paper);font-family:Inter,"Noto Sans SC","Microsoft YaHei",sans-serif}
+body:before{content:"";pointer-events:none;position:fixed;inset:0;opacity:.035;z-index:50;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:4px 4px}
+a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}
+/* Nav styles moved to phoebe_nav.css */
+/* Logo styles moved to phoebe_nav.css */.logo small{display:block;color:var(--gold);font-family:Inter,sans-serif;font-size:8px;letter-spacing:.25em;margin-top:4px}
+.links{display:flex;gap:20px;font-size:9px;letter-spacing:.12em;color:#b9c1c4;align-items:center}.links a:hover{color:var(--gold2)}.links a.on{color:var(--gold2)}
+.submit{border:1px solid var(--gold);background:transparent;color:var(--paper);padding:10px 14px;font-size:9px;letter-spacing:.14em;cursor:pointer}.submit:hover{background:var(--gold);color:#07131e}
+.hero{padding:8vw 5vw 3vw;border-bottom:1px solid var(--line);background:radial-gradient(circle at 20% 0,rgba(48,91,119,.3),transparent 34%),radial-gradient(circle at 85% 20%,rgba(217,168,70,.14),transparent 30%),linear-gradient(180deg,#0b1d2a,var(--bg))}
+.crumb{font-size:9px;letter-spacing:.2em;color:var(--gold);margin-bottom:20px}
+.hero h1{font-family:Georgia,serif;font-size:clamp(48px,9vw,130px);font-weight:400;letter-spacing:-.05em;line-height:.84;margin:0}.hero h1 em{font-style:italic;color:var(--gold2);display:block;font-size:.5em}
+.hero p{max-width:600px;color:var(--muted);font-size:13px;line-height:2.1;margin:28px 0 0}
+.wrap{padding:50px 5vw 40px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:44px;align-items:start}
+form{display:flex;flex-direction:column;gap:22px}
+.field label{display:block;font-size:9px;letter-spacing:.16em;color:var(--gold);margin-bottom:9px}.field label .req{color:#d9844b}
+.field input,.field select,.field textarea{width:100%;background:#0a1823;border:1px solid var(--line);color:var(--paper);padding:14px 16px;font-size:13px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{min-height:120px;resize:vertical;line-height:1.8}
+.field .hint{font-size:10px;color:var(--muted);margin-top:7px;letter-spacing:.05em}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.upload{border:1px dashed var(--line);background:var(--panel);padding:40px 24px;text-align:center;cursor:pointer;transition:.2s}.upload:hover{border-color:var(--gold)}.upload .ic{font-family:Georgia,serif;font-size:40px;color:var(--gold)}.upload p{font-size:11px;color:var(--muted);margin:12px 0 0;line-height:1.9}
+.vis{display:flex;gap:10px}.vis label{flex:1;display:block;border:1px solid var(--line);padding:16px;cursor:pointer;text-align:center;font-size:9px;letter-spacing:.12em;color:var(--muted)}.vis input{display:none}.vis label.on{border-color:var(--gold);color:var(--gold2);background:rgba(217,168,70,.08)}
+.actions{display:flex;gap:14px;align-items:center}.primary{background:var(--gold);border:0;color:#07131e;padding:16px 32px;font-size:10px;letter-spacing:.2em;cursor:pointer}.primary:hover{background:var(--gold2)}.ghost{background:transparent;border:1px solid var(--line);color:var(--muted);padding:16px 26px;font-size:10px;letter-spacing:.16em;cursor:pointer}
+.aside{position:sticky;top:100px;background:var(--panel);border:1px solid var(--line);padding:26px}
+.aside h3{font-family:Georgia,serif;font-size:22px;font-weight:400;margin:0 0 6px}.aside .cn{font-size:10px;color:var(--muted);margin-bottom:18px}
+.lc{list-style:none;padding:0;margin:0}.lc li{position:relative;padding:0 0 16px 24px;font-size:11px;line-height:1.7;color:#b7c0c2}.lc li:before{content:"";position:absolute;left:0;top:4px;width:12px;height:12px;border:1px solid var(--gold);border-radius:50%}.lc li:after{content:"";position:absolute;left:5px;top:18px;bottom:0;width:1px;background:var(--line)}.lc li:last-child:after{display:none}.lc li b{display:block;color:var(--paper);font-weight:400;font-size:12px;margin-bottom:2px}.lc li.now b{color:var(--gold2)}
+.footer{border-top:1px solid var(--line);padding:70px 5vw 50px}
+.foot-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px}
+.foot-brand{font-family:Georgia,serif;font-size:22px;letter-spacing:.12em}.foot-brand small{display:block;color:var(--gold);font-size:9px;letter-spacing:.25em;margin-top:6px}
+.foot-inner p{color:var(--muted);font-size:12px;line-height:2;margin:0}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:9px;letter-spacing:.14em;color:var(--muted);align-content:start}.foot-links a:hover{color:var(--gold2)}
+.foot-meta{grid-column:1/-1;font-size:9px;letter-spacing:.18em;color:#5d6a70;border-top:1px solid var(--line);padding-top:25px;margin-top:15px}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--gold);color:#07131e;padding:14px 18px;font-size:10px;letter-spacing:.08em;transform:translateY(100px);opacity:0;transition:.3s;z-index:150}.toast.show{transform:none;opacity:1}
+@media(max-width:900px){.wrap{grid-template-columns:1fr;padding:40px 20px 30px}.row{grid-template-columns:1fr}.aside{position:static}.links a{display:none}.hero{padding:90px 20px 50px}.footer{padding:50px 20px 40px}.foot-inner{grid-template-columns:1fr}}
+</style>
+
+<link rel="stylesheet" href="phoebe_nav.css">
+<style>
+[data-lang-zh],[data-lang-en],[data-lang-ja]{display:none!important}
+html[lang="zh-CN"] [data-lang-zh]{display:block!important}
+html[lang="zh-CN"] small[data-lang-zh],html[lang="zh-CN"] span[data-lang-zh],html[lang="zh-CN"] a[data-lang-zh]{display:inline!important}
+html[lang="en"] [data-lang-en]{display:block!important}
+html[lang="en"] small[data-lang-en],html[lang="en"] span[data-lang-en],html[lang="en"] a[data-lang-en]{display:inline!important}
+html[lang="ja"] [data-lang-ja]{display:block!important}
+html[lang="ja"] small[data-lang-ja],html[lang="ja"] span[data-lang-ja],html[lang="ja"] a[data-lang-ja]{display:inline!important}
+</style>
+</head>
+<body>
+<header class="nav" id="nav" data-page="create">
+<a href="phoebe_museum_v1.html" class="logo">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>PHOEBE MUSEUM</small><small data-lang-ja>フィービー博物館</small></a>
+<nav class="navlinks">
+<a href="phoebe_museum_v1.html" data-lang-zh>首页</a><a href="phoebe_museum_v1.html" data-lang-en>HOME</a><a href="phoebe_museum_v1.html" data-lang-ja>ホーム</a><a href="phoebe_museum_collection_v1.html" data-lang-zh>馆藏</a><a href="phoebe_museum_collection_v1.html" data-lang-en>COLLECTION</a><a href="phoebe_museum_collection_v1.html" data-lang-ja>コレクション</a><a href="phoebe_museum_timeline_human.html" data-lang-zh>人类时间线</a><a href="phoebe_museum_timeline_human.html" data-lang-en>HUMAN TIMELINE</a><a href="phoebe_museum_timeline_human.html" data-lang-ja>ヒューマンタイムライン</a><a href="phoebe_museum_timeline_community.html" data-lang-zh>社区世界线</a><a href="phoebe_museum_timeline_community.html" data-lang-en>COMMUNITY</a><a href="phoebe_museum_timeline_community.html" data-lang-ja>コミュニティ</a><a href="phoebe_museum_creators.html" data-lang-zh>创作者</a><a href="phoebe_museum_creators.html" data-lang-en>CREATORS</a><a href="phoebe_museum_creators.html" data-lang-ja>クリエイター</a><a href="phoebe_museum_my.html" data-lang-zh>我的博物馆</a><a href="phoebe_museum_my.html" data-lang-en>MY MUSEUM</a><a href="phoebe_museum_my.html" data-lang-ja>マイミュージアム</a><a href="phoebe_museum_admin.html" data-lang-zh>管理后台</a><a href="phoebe_museum_admin.html" data-lang-en>ADMIN</a><a href="phoebe_museum_admin.html" data-lang-ja>管理画面</a>
+</nav>
+<div class="nav-right">
+  <a class="submit-btn" href="phoebe_museum_submit.html" data-lang-zh>投稿作品 ↗</a>
+  <a class="submit-btn" href="phoebe_museum_submit.html" data-lang-en>SUBMIT ↗</a>
+  <a class="submit-btn" href="phoebe_museum_submit.html" data-lang-ja>投稿 ↗</a>
+  <div class="lang-switcher">
+    <button data-lang="zh" class="active">中</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="ja">日</button>
+  </div>
+</div>
+<button class="menu" aria-label="菜单">&#9776;</button>
+</header>
+
+<section class="hero">
+ <div class="crumb">PHOEBE MUSEUM / COMMUNITY / CREATE TIMELINE</div>
+ <h1>CREATE A<em>TIMELINE.</em></h1>
+ <p>创建一条属于你的菲比世界线。它可以是一场冒险、一个时代，或者只是「菲比拥有一家便利店」这样的小小世界。</p>
+</section>
+
+<div class="wrap">
+ <form id="tlForm" novalidate>
+  <div class="field"><label><span data-lang-zh>时间线名称</span><span data-lang-en>TIMELINE NAME</span><span data-lang-ja>タイムライン名</span> / 世界线名称 <span class="req">*</span></label><input id="name" placeholder="e.g. GHOST SHIP PHOEBE"><div class="hint">用于生成唯一 slug（如 ghost-ship-phoebe），不可重复。</div></div>
+  <div class="field"><label>中文名称</label><input id="nameCn" placeholder="例如：幽灵船菲比"></div>
+  <div class="field"><label>DESCRIPTION / 世界线介绍 <span class="req">*</span></label><textarea id="desc" placeholder="在这个世界里，所有菲比都生活在一艘永远无法靠岸的幽灵船上……"></textarea></div>
+  <div class="field"><label>COVER ART / 封面</label><div class="upload" id="upload"><div class="ic">＋</div><p>点击上传世界线封面<br>JPG · PNG · WEBP · 建议 16:9</p></div></div>
+  <div class="field"><label>TAGS / 标签</label><input id="tags" placeholder="OCEAN  GHOST  SHIP  DARK FANTASY（用空格分隔）"></div>
+  <div class="field"><label>VISIBILITY / 可见性</label><div class="vis"><label class="on" data-v="draft"><input type="radio" name="vis" checked>草稿 DRAFT<small style="display:block;margin-top:4px;color:#8f9ba2">仅自己可见</small></label><label data-v="public"><input type="radio" name="vis">申请公开 PENDING<small style="display:block;margin-top:4px;color:#8f9ba2">等待审核</small></label></div></div>
+  <div class="actions"><button type="submit" class="primary">CREATE TIMELINE →</button><button type="reset" class="ghost">清空</button></div>
+ </form>
+
+ <aside class="aside">
+  <h3>世界线生命周期</h3><div class="cn">TIMELINE LIFECYCLE</div>
+  <ul class="lc">
+   <li><b>DRAFT</b>私人草稿，只有创建者可见</li>
+   <li><b>PENDING</b>申请公开，等待管理员审核</li>
+   <li><b>COMMUNITY</b>正式公开，所有用户可投稿</li>
+   <li><b>FEATURED</b>精选世界线，在首页重点展示</li>
+   <li><b>OFFICIAL</b>成为博物馆官方认可的世界线</li>
+  </ul>
+ </aside>
+</div>
+
+<footer class="footer">
+ <div class="foot-inner">
+  <div class="foot-brand">PHOEBE MUSEUM<small>菲比博物馆 · DIGITAL ARCHIVE</small></div>
+  <p>COMMUNITY MULTIVERSE 记录人们还能创造出多少种新的菲比。<br>从 PM-000001 开始，永远不会结束。</p>
+  <div class="foot-links">
+   <a href="phoebe_museum_v1.html">HOME</a><a href="phoebe_museum_collection_v1.html">COLLECTION</a><a href="phoebe_museum_timeline_human.html">HUMAN TIMELINE</a><a href="phoebe_museum_timeline_community.html">COMMUNITY</a><a href="phoebe_museum_creators.html">CREATORS</a><a href="phoebe_museum_submit.html">SUBMIT</a><a href="phoebe_museum_my.html">MY MUSEUM</a><a href="phoebe_museum_admin.html">ADMIN</a>
+  </div>
+  <div class="foot-meta">© 2026 PHOEBE MUSEUM · DESIGN PROTOTYPE · HUMAN TIMELINE × COMMUNITY MULTIVERSE</div>
+ </div>
+</footer>
+<div class="toast" id="toast"></div>
+<script>
+const toast=document.getElementById('toast');
+function flash(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}
+document.getElementById('upload').onclick=()=>flash('设计稿预览：此处将打开文件选择器（Supabase Storage 上传）');
+document.querySelectorAll('.vis label').forEach(l=>l.onclick=()=>{document.querySelectorAll('.vis label').forEach(x=>x.classList.toggle('on',x===l))});
+document.getElementById('tlForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const missing=[];
+ if(!document.getElementById('name').value.trim())missing.push('世界线名称');
+ if(!document.getElementById('desc').value.trim())missing.push('世界线介绍');
+ if(missing.length){flash('请填写：'+missing.join('、'));return;}
+ const vis=document.querySelector('.vis label.on').dataset.v;
+ flash(vis==='draft'?'世界线已保存为草稿（DRAFT）':'世界线已提交，进入 PENDING 待审核');
+ e.target.reset();
+});
+</script>
+<!-- ==== PM DESIGN SYSTEM v2 (per dev doc sec.37) : fonts + shared interactions ==== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d8a447;--gold2:#f2bf58;--paper:#e9e3d8;--muted:#94a2aa}
+body{font-family:Inter,"Noto Serif SC","Microsoft YaHei",sans-serif}
+h1,h2,h3,h4,h5,.logo,.stat b,.tile b,.art strong,.tcover strong,.cover strong,.title,.name,.foot-brand,.sub-item .t,.world-no,.year,.aside h3{font-family:"Cormorant Garamond","Noto Serif SC",Georgia,"Times New Roman",serif}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:1px solid var(--gold2);outline-offset:2px}
+::selection{background:var(--gold);color:#07131e}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:#1d3648;border:2px solid #07131e;border-radius:5px}
+::-webkit-scrollbar-track{background:transparent}
+.rv{transition:opacity .8s cubic-bezier(.22,.61,.21,1),transform .8s cubic-bezier(.22,.61,.21,1)}
+.rv:not(.in){opacity:0;transform:translateY(28px)}
+@media(prefers-reduced-motion:reduce){.rv{transition:none}.rv:not(.in){opacity:1;transform:none}}
+.to-top{position:fixed;right:24px;bottom:24px;width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;background:rgba(7,19,30,.88);color:var(--gold2);font-size:17px;line-height:1;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s,background-color .3s,color .3s;z-index:60;display:grid;place-items:center;backdrop-filter:blur(8px);padding:0}
+.to-top:hover{background:var(--gold);color:#07131e;transform:translateY(-3px)}
+.to-top.show{opacity:1;pointer-events:auto}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--paper);width:40px;height:40px;font-size:15px;line-height:1;cursor:pointer;border-radius:2px;padding:0}
+.menu-btn:hover{border-color:var(--gold);color:var(--gold2)}
+@media(max-width:900px){
+.menu-btn{display:grid;place-items:center}
+.links{position:fixed;top:76px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(6,17,26,.98);backdrop-filter:blur(18px);padding:10px 6vw 22px;border-bottom:1px solid var(--line);display:none;z-index:19}
+.links.open{display:flex}
+.links a{display:block!important;padding:13px 0!important;font-size:11px;letter-spacing:.16em;border-bottom:1px solid rgba(233,227,216,.08)}
+.links .submit{margin-top:14px;text-align:center;border-bottom:0}
+}
+/*NAVX*/
+</style>
+<script>
+(function(){
+var d=document;
+var links=d.querySelector('.navlinks');
+if(links){
+var btn=d.querySelector('.menu-btn')||d.querySelector('.menu');
+if(!btn){btn=d.createElement('button');btn.type='button';btn.className='menu-btn';btn.setAttribute('aria-label','menu');btn.innerHTML='&#9776;';var nav=d.querySelector('.nav');if(nav)nav.appendChild(btn);}
+btn.addEventListener('click',function(e){e.stopPropagation();var o=links.classList.toggle('open');btn.innerHTML=o?'&#10005;':'&#9776;'});
+d.addEventListener('click',function(e){if(links.classList.contains('open')&&!links.contains(e.target)&&e.target!==btn){links.classList.remove('open');btn.innerHTML='&#9776;'}});
+}
+[].forEach.call(d.querySelectorAll('.btn'),function(b){if(!b.onclick)b.addEventListener('click',function(){if(typeof flash==='function')flash('\u5df2\u8bb0\u5f55\uff1a\u539f\u578b\u6f14\u793a\u64cd\u4f5c')})});
+var sel='.hero,.crumb,.section,.zone,.gallery,.wrap,.view-head,.tiles,.panel,.list-row,.sub-item,.random,.cta-banner,.empty-card,.pager,.timeline-item,.grid,.timeline,.world-list,.creator-grid,.collection-grid,.masonry,.tree,.gallery-meta';
+var els=[].slice.call(d.querySelectorAll(sel));
+els.forEach(function(el){el.classList.add('rv')});
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
+els.forEach(function(el){io.observe(el)});
+}else{els.forEach(function(el){el.classList.add('in')})}
+var top=d.createElement('button');top.type='button';top.className='to-top';top.setAttribute('aria-label','back to top');top.innerHTML='&#8593;';
+d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+})();
+</script>
+<!-- ==== /PM DESIGN SYSTEM v2 ==== -->
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+var lang=localStorage.getItem("phoebe-lang")||"zh";
+document.documentElement.lang=lang==="zh"?"zh-CN":lang;
+document.querySelectorAll(".lang-switcher button").forEach(function(btn){
+btn.classList.toggle("active",btn.dataset.lang===lang);
+btn.addEventListener("click",function(){
+var l=this.dataset.lang;
+localStorage.setItem("phoebe-lang",l);
+document.documentElement.lang=l==="zh"?"zh-CN":l;
+document.querySelectorAll(".lang-switcher button").forEach(function(b){b.classList.remove("active")});
+this.classList.add("active");
+});
+});
+});
+</script>
+</body></html>
