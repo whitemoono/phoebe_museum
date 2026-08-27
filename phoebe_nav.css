@@ -1,0 +1,289 @@
+﻿/* ============================================
+   PHOEBE MUSEUM - Liquid Glass Navigation
+   液态玻璃悬浮导航栏 (优化排版版)
+   ============================================ */
+
+/* 导航栏基础样式 - 悬浮圆角液态玻璃 */
+.nav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1400px;
+  height: 64px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  z-index: 1000;
+  
+  /* 超透明液态玻璃效果 */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  
+  /* 轻盈边框 */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 悬浮效果 */
+.nav:hover {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transform: translateX(-50%) translateY(-1px);
+}
+
+/* 液态玻璃光泽效果 */
+.nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-radius: 20px 20px 0 0;
+  pointer-events: none;
+}
+
+/* Logo 样式 - 优化排版 */
+.logo {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo small {
+  display: inline;
+  font-family: 'Noto Serif SC', 'Microsoft YaHei', serif;
+  font-size: 10px;
+  letter-spacing: .25em;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* 导航链接容器 - 居中 */
+.navlinks {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* 导航链接 */
+.navlinks a {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navlinks a:hover {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 活跃状态 */
+.navlinks a.active {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+/* 右侧区域 */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 200px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* 提交按钮 */
+.submit-btn {
+  background: linear-gradient(135deg, rgba(216, 164, 71, 0.6), rgba(242, 191, 88, 0.7)) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  padding: 8px 16px !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: .08em;
+  border-radius: 10px !important;
+  border: 1px solid rgba(216, 164, 71, 0.3) !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(216, 164, 71, 0.15);
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, rgba(242, 191, 88, 0.8), rgba(216, 164, 71, 0.9)) !important;
+  box-shadow: 0 4px 12px rgba(216, 164, 71, 0.25);
+  transform: translateY(-1px);
+}
+
+/* 语言切换器 */
+.lang-switcher {
+  display: inline-flex;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lang-switcher button {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.lang-switcher button:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.lang-switcher button.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+
+/* 移动端菜单按钮 */
+.menu {
+  display: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.menu:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* 移动端响应式 */
+@media (max-width: 1100px) {
+  .logo {
+    width: 150px;
+    font-size: 18px;
+  }
+  
+  .nav-right {
+    width: 150px;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav {
+    width: calc(100% - 32px);
+    padding: 0 20px;
+    height: 60px;
+    border-radius: 18px;
+    top: 12px;
+  }
+  
+  .logo {
+    width: auto;
+  }
+  
+  .nav-right {
+    display: none;
+  }
+  
+  .navlinks {
+    position: fixed;
+    top: 84px;
+    left: 16px;
+    right: 16px;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(30px) saturate(150%);
+    -webkit-backdrop-filter: blur(30px) saturate(150%);
+    padding: 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    display: none;
+    z-index: 999;
+  }
+  
+  .navlinks.open {
+    display: flex;
+  }
+  
+  .navlinks a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 13px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .menu {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    width: calc(100% - 24px);
+    padding: 0 16px;
+    height: 56px;
+    border-radius: 16px;
+    top: 10px;
+  }
+  
+  .navlinks {
+    top: 78px;
+    left: 12px;
+    right: 12px;
+  }
+}

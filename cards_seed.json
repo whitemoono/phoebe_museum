@@ -1,0 +1,154 @@
+[
+  {
+    "museum_id": "PM-000001",
+    "title": "海上菲比",
+    "title_en": "PHOEBE ON THE WILD SEA",
+    "creator": "Museum Opening Collection",
+    "world": "PIRATE PHOEBE",
+    "year": "2026",
+    "description": "暴风雨来临前，菲比站在破旧的小船上，继续向未知海域前进。作为菲比博物馆的第一件示例馆藏，这件作品也是整个网站的首页入口。",
+    "medium": "illustration",
+    "tags": [
+      "pirate"
+    ]
+  },
+  {
+    "museum_id": "PM-000002",
+    "title": "堕落天使",
+    "title_en": "FALLEN PHOEBE",
+    "creator": "Demo Artist 01",
+    "world": "FANTASY PHOEBE",
+    "year": "2026",
+    "description": "来自奇幻世界线的菲比，使用哥特与堕天使意象构建。",
+    "medium": "ai",
+    "tags": [
+      "fantasy"
+    ]
+  },
+  {
+    "museum_id": "PM-000003",
+    "title": "霓虹航线",
+    "title_en": "NEON ROUTE",
+    "creator": "Demo Artist 02",
+    "world": "CYBER PHOEBE",
+    "year": "2026",
+    "description": "机械都市中的菲比，沿着被霓虹灯照亮的航线前行。",
+    "medium": "illustration",
+    "tags": [
+      "cyber"
+    ]
+  },
+  {
+    "museum_id": "PM-000004",
+    "title": "无法解释的菲比",
+    "title_en": "UNEXPLAINED PHOEBE",
+    "creator": "Strange Archive",
+    "world": "THE STRANGE ARCHIVE",
+    "year": "2026",
+    "description": "一些作品不需要解释。我们决定先收藏下来。",
+    "medium": "comic",
+    "tags": []
+  },
+  {
+    "museum_id": "PM-000005",
+    "title": "金色雕像",
+    "title_en": "GOLDEN RELIC",
+    "creator": "Demo Artist 03",
+    "world": "FANTASY PHOEBE",
+    "year": "2026",
+    "description": "一件假想的菲比博物馆实体馆藏。",
+    "medium": "3d",
+    "tags": [
+      "fantasy"
+    ]
+  },
+  {
+    "museum_id": "PM-000006",
+    "title": "暴风雨之前",
+    "title_en": "BEFORE THE STORM",
+    "creator": "Demo Artist 04",
+    "world": "PIRATE PHOEBE",
+    "year": "2026",
+    "description": "海面还很平静，但远处已经出现风暴。",
+    "medium": "illustration",
+    "tags": [
+      "pirate"
+    ]
+  },
+  {
+    "museum_id": "PM-000007",
+    "title": "数据海岸",
+    "title_en": "DATA COAST",
+    "creator": "Demo Artist 05",
+    "world": "CYBER PHOEBE",
+    "year": "2026",
+    "description": "视频馆藏示例。未来这里可以显示封面、播放时长与视频来源。",
+    "medium": "video",
+    "tags": [
+      "cyber"
+    ]
+  },
+  {
+    "museum_id": "PM-000008",
+    "title": "星之魔女",
+    "title_en": "WITCH OF STARS",
+    "creator": "Demo Artist 06",
+    "world": "FANTASY PHOEBE",
+    "year": "2026",
+    "description": "魔女世界线中的菲比。",
+    "medium": "ai",
+    "tags": [
+      "fantasy"
+    ]
+  },
+  {
+    "museum_id": "PM-000009",
+    "title": "今天也不知道在干嘛",
+    "title_en": "JUST PHOEBE",
+    "creator": "Open Archive",
+    "world": "THE STRANGE ARCHIVE",
+    "year": "2026",
+    "description": "梗图与表情包馆藏示例。",
+    "medium": "sticker",
+    "tags": []
+  },
+  {
+    "museum_id": "PM-000010",
+    "title": "船长的收藏室",
+    "title_en": "CAPTAIN'S CABINET",
+    "creator": "Demo Artist 07",
+    "world": "PIRATE PHOEBE",
+    "year": "2026",
+    "description": "海盗菲比世界线的 3D 概念馆藏。",
+    "medium": "3d",
+    "tags": [
+      "pirate"
+    ]
+  },
+  {
+    "museum_id": "PM-000011",
+    "title": "夜间维护",
+    "title_en": "NIGHT MAINTENANCE",
+    "creator": "Demo Artist 08",
+    "world": "CYBER PHOEBE",
+    "year": "2026",
+    "description": "赛博世界线中的夜景作品。",
+    "medium": "illustration",
+    "tags": [
+      "cyber"
+    ]
+  },
+  {
+    "museum_id": "PM-000012",
+    "title": "最后一片羽毛",
+    "title_en": "THE LAST FEATHER",
+    "creator": "Demo Artist 09",
+    "world": "FANTASY PHOEBE",
+    "year": "2026",
+    "description": "奇幻世界线特别展品。",
+    "medium": "ai",
+    "tags": [
+      "fantasy"
+    ]
+  }
+]
