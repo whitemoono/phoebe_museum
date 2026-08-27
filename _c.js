@@ -1,24 +1,24 @@
 ﻿const fs = require('fs');
-const h = fs.readFileSync('D:\\dev\\Phoebe\\phoebe_museum_v1.html', 'utf8');
 
-// Extract more sections
-const collectionMatch = h.match(/<section class="collection"[\s\S]*?<\/section>/);
-const worldsMatch = h.match(/<section class="worlds"[\s\S]*?<\/section>/);
-const creatorsMatch = h.match(/<section class="creators"[\s\S]*?<\/section>/);
-const archiveMatch = h.match(/<section class="archive"[\s\S]*?<\/section>/);
-const footerMatch = h.match(/<footer[\s\S]*?<\/footer>/);
+// Check all HTML files
+const files = fs.readdirSync('D:\\dev\\Phoebe').filter(f => f.endsWith('.html'));
+process.stdout.write('=== All HTML Files ===\n');
+files.forEach(f => process.stdout.write(f + '\n'));
 
-process.stdout.write('=== COLLECTION ===\n');
-if (collectionMatch) process.stdout.write(collectionMatch[0].substring(0, 1500) + '\n\n');
+// Check detail page
+const detail = fs.readFileSync('D:\\dev\\Phoebe\\phoebe_museum_detail.html', 'utf8');
+process.stdout.write('\n=== Detail Page Structure ===\n');
+const detailSections = detail.match(/<[^>]*class="[^"]*"[^>]*>/g);
+if (detailSections) {
+  const unique = [...new Set(detailSections)].slice(0, 20);
+  unique.forEach(s => process.stdout.write(s + '\n'));
+}
 
-process.stdout.write('=== WORLDS ===\n');
-if (worldsMatch) process.stdout.write(worldsMatch[0].substring(0, 1500) + '\n\n');
-
-process.stdout.write('=== CREATORS ===\n');
-if (creatorsMatch) process.stdout.write(creatorsMatch[0].substring(0, 1500) + '\n\n');
-
-process.stdout.write('=== ARCHIVE ===\n');
-if (archiveMatch) process.stdout.write(archiveMatch[0].substring(0, 1500) + '\n\n');
-
-process.stdout.write('=== FOOTER ===\n');
-if (footerMatch) process.stdout.write(footerMatch[0].substring(0, 1000) + '\n\n');
+// Check creators page
+const creators = fs.readFileSync('D:\\dev\\Phoebe\\phoebe_museum_creators.html', 'utf8');
+process.stdout.write('\n=== Creators Page Structure ===\n');
+const creatorSections = creators.match(/<[^>]*class="[^"]*"[^>]*>/g);
+if (creatorSections) {
+  const unique = [...new Set(creatorSections)].slice(0, 20);
+  unique.forEach(s => process.stdout.write(s + '\n'));
+}
