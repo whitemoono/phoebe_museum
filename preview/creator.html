@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>创作者详情 · PHOEBE MUSEUM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+/* ============ 创作者详情 ============ */
+.cr-hero{position:relative;height:50vh;min-height:360px;overflow:hidden}
+.cr-hero .banner{position:absolute;inset:0;background:linear-gradient(135deg,#1a1814 0%,#2d2a23 50%,#1a1814 100%)}
+.cr-hero .banner::after{content:'';position:absolute;inset:0;background:url(assets/hero-creators.png) center/cover;opacity:.25;mix-blend-mode:luminosity}
+.cr-hero .inner{position:relative;max-width:1400px;margin:0 auto;padding:0 5vw;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:48px}
+.cr-hero .avatar{width:96px;height:96px;border-radius:50%;overflow:hidden;background:var(--bg-soft);margin-bottom:24px;border:3px solid rgba(244,240,230,.2)}
+.cr-hero .avatar img{width:100%;height:100%;object-fit:cover}
+.cr-hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5vw,64px);letter-spacing:-.02em;line-height:1;color:#f4f0e6;margin:0}
+.cr-hero h1 em{font-style:italic;color:var(--gold)}
+.cr-hero .bio{font-size:13px;line-height:2;color:rgba(244,240,230,.6);max-width:520px;margin:20px 0 0}
+.cr-hero .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.cr-hero .tags span{font-size:9px;letter-spacing:.14em;padding:4px 10px;border:1px solid rgba(244,240,230,.2);border-radius:20px;color:rgba(244,240,230,.5)}
+
+.cr-actions{max-width:1400px;margin:0 auto;padding:24px 5vw;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.cr-stats{display:flex;gap:32px}
+.cr-stats .s{}
+.cr-stats .s .n{font-family:var(--serif);font-style:italic;font-size:28px;color:var(--seal);line-height:1}
+.cr-stats .s .l{font-size:9px;letter-spacing:.2em;color:var(--ink-3);margin-top:6px;text-transform:uppercase}
+.cr-actions .btns{display:flex;gap:12px}
+
+.cr-tabs{max-width:1400px;margin:0 auto;padding:0 5vw;display:flex;border-bottom:1px solid var(--line)}
+.cr-tabs button{background:none;border:0;padding:16px 24px;font-size:12px;letter-spacing:.14em;color:var(--ink-2);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .25s,border-color .25s;font-family:var(--sans)}
+.cr-tabs button:hover{color:var(--ink)}
+.cr-tabs button.active{color:var(--seal);border-bottom-color:var(--seal)}
+
+.cr-body{max-width:1400px;margin:0 auto;padding:48px 5vw 0}
+
+.cr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:80px}
+.cr-grid .item{position:relative;overflow:hidden;border-radius:4px;cursor:pointer}
+.cr-grid .item .img{aspect-ratio:3/4;overflow:hidden;background:var(--bg-soft)}
+.cr-grid .item .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .5s}
+.cr-grid .item:hover .img img{transform:scale(1.06);filter:brightness(1.05)}
+.cr-grid .item .info{padding:14px 2px}
+.cr-grid .item .info .no{font-size:9px;letter-spacing:.14em;color:var(--ink-3)}
+.cr-grid .item .info h4{font-family:var(--serif);font-size:15px;font-weight:500;margin:6px 0 4px;line-height:1.3}
+.cr-grid .item .info .meta{font-size:10px;color:var(--ink-2)}
+.cr-grid .item .chip{position:absolute;top:10px;left:10px;font-size:8px;padding:2px 6px;z-index:2}
+
+.cr-section{margin-bottom:80px}
+.cr-section h3{font-family:var(--serif);font-size:22px;font-weight:500;margin:0 0 28px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.cr-section h3 small{font-family:var(--sans);font-size:11px;font-weight:400;color:var(--ink-3);letter-spacing:.1em;margin-left:8px}
+
+.cr-timelines{display:grid;gap:16px}
+.cr-timelines .row{display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:background .25s}
+.cr-timelines .row:hover{background:var(--bg-soft)}
+.cr-timelines .row .thumb{width:120px;height:68px;border-radius:4px;overflow:hidden;background:var(--bg-soft)}
+.cr-timelines .row .thumb img{width:100%;height:100%;object-fit:cover}
+.cr-timelines .row .info h4{font-family:var(--serif);font-size:18px;font-weight:500;margin:0 0 6px}
+.cr-timelines .row .info p{font-size:12px;color:var(--ink-2);margin:0;line-height:1.6}
+.cr-timelines .row .info .meta{font-size:10px;color:var(--ink-3);margin-top:8px;letter-spacing:.06em}
+.cr-timelines .row .act{font-size:10px;color:var(--ink-3);letter-spacing:.14em}
+
+.cr-about{display:grid;grid-template-columns:2fr 1fr;gap:48px;align-items:start}
+.cr-about .bio-text{font-size:14px;line-height:2;color:var(--ink)}
+.cr-about .bio-text p{margin:0 0 20px}
+.cr-about .side h4{font-family:var(--serif);font-size:14px;font-weight:500;margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.cr-about .side dl{margin:0 0 24px}
+.cr-about .side dl dt{font-size:9px;letter-spacing:.24em;color:var(--ink-3);text-transform:uppercase;margin-bottom:6px}
+.cr-about .side dl dd{font-size:13px;color:var(--ink);margin:0 0 16px}
+
+@media(max-width:760px){
+  .cr-grid{grid-template-columns:1fr 1fr;gap:16px}
+  .cr-timelines .row{grid-template-columns:80px 1fr;gap:12px}
+  .cr-timelines .row .act{display:none}
+  .cr-about{grid-template-columns:1fr;gap:24px}
+  .cr-stats{gap:20px}
+  .cr-stats .s .n{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 液态玻璃导航 ================= -->
+<header class="pm-nav" id="nav">
+  <a class="logo" href="index.html">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></a>
+  <nav class="links">
+    <a href="index.html" data-lang-zh>首页</a><a href="index.html" data-lang-en>HOME</a><a href="index.html" data-lang-ja>ホーム</a>
+    <a href="collection.html" data-lang-zh>馆藏</a><a href="collection.html" data-lang-en>COLLECTION</a><a href="collection.html" data-lang-ja>収蔵品</a>
+    <a href="timeline-human.html" data-lang-zh>人类时间线</a><a href="timeline-human.html" data-lang-en>HUMAN TIMELINE</a><a href="timeline-human.html" data-lang-ja>人類の時間線</a>
+    <a href="community.html" data-lang-zh>社区世界线</a><a href="community.html" data-lang-en>COMMUNITY</a><a href="community.html" data-lang-ja>コミュニティ</a>
+    <a href="creators.html" class="active" data-lang-zh>创作者</a><a href="creators.html" class="active" data-lang-en>CREATORS</a><a href="creators.html" class="active" data-lang-ja>クリエイター</a>
+    <a href="archive.html" data-lang-zh>档案馆</a><a href="archive.html" data-lang-en>ARCHIVE</a><a href="archive.html" data-lang-ja>アーカイブ</a>
+    <a href="my.html" data-lang-zh>我的博物馆</a><a href="my.html" data-lang-en>MY MUSEUM</a><a href="my.html" data-lang-ja>マイミュージアム</a>
+  </nav>
+  <div class="right">
+    <div class="lang">
+      <button data-lang="zh" class="active">中</button><button data-lang="en">EN</button><button data-lang="ja">日</button>
+    </div>
+
+    <a class="submit-btn" href="submit.html" data-lang-zh>上交菲比</a><a class="submit-btn" href="submit.html" data-lang-en>SUBMIT</a><a class="submit-btn" href="submit.html" data-lang-ja>投稿する</a>
+    <button class="menu-btn" id="menubtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+<div class="pm-userbar" id="userArea" data-login="false">
+  <a class="login-pill" href="login.html"><span class="dot"></span><span data-lang-zh>登录 / 注册</span><span data-lang-en>LOGIN / SIGN UP</span><span data-lang-ja>ログイン</span></a>
+  <div class="user-trigger" id="userTrigger">
+    <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+    <span class="uname">霓虹笔</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="u-head">
+      <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+      <div class="u-info">
+        <div class="name">霓虹笔</div>
+        <div class="handle">@neon_pen</div>
+      </div>
+    </div>
+    <a href="my.html"><span class="icon">◆</span><span data-lang-zh>我的博物馆</span><span data-lang-en>MY MUSEUM</span><span data-lang-ja>マイミュージアム</span></a>
+    <a href="submit.html"><span class="icon">↑</span><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT</span><span data-lang-ja>投稿する</span></a>
+    <a href="my.html"><span class="icon">♥</span><span data-lang-zh>我的收藏</span><span data-lang-en>COLLECTIONS</span><span data-lang-ja>コレクション</span></a>
+    <div class="u-sep"></div>
+    <button class="u-logout" id="logoutBtn"><span class="icon">⏻</span><span data-lang-zh>退出登录</span><span data-lang-en>SIGN OUT</span><span data-lang-ja>ログアウト</span></button>
+  </div>
+</div>
+<nav class="pm-drawer" id="drawer">
+  <a href="index.html">首页 · HOME</a>
+  <a href="collection.html">馆藏 · COLLECTION</a>
+  <a href="timeline-human.html">人类时间线 · HUMAN TIMELINE</a>
+  <a href="community.html">社区世界线 · COMMUNITY</a>
+  <a href="creators.html" class="active">创作者 · CREATORS</a>
+  <a href="archive.html">档案馆 · ARCHIVE</a>
+  <a href="my.html">我的博物馆 · MY MUSEUM</a>
+</nav>
+
+<!-- ================= Hero ================= -->
+<section class="cr-hero rv">
+  <div class="banner"></div>
+  <div class="inner">
+    <div class="avatar"><img src="assets/avatar-01.png" alt=""></div>
+    <h1>@neon_pen<small style="display:block;font-size:14px;letter-spacing:.14em;color:rgba(244,240,230,.4);margin-top:8px;font-family:var(--sans)">NEON_PEN · 霓虹笔</small></h1>
+    <p class="bio" data-lang-zh>画菲比的。主要画赛博菲比和便利店菲比。偶尔也画画机甲菲比。画画的时候听蒸汽波。不接商稿（除非你也是画菲比的）。</p>
+    <div class="tags">
+      <span>ILLUSTRATION</span><span>AI CREATION</span><span>COMIC</span><span>CYBER PHOEBE</span><span>STORE PHOEBE</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 统计 / 操作 ================= -->
+<section class="cr-actions rv">
+  <div class="cr-stats">
+    <div class="s"><div class="n">47</div><div class="l" data-lang-zh>已上交</div></div>
+    <div class="s"><div class="n">3</div><div class="l" data-lang-zh>世界线</div></div>
+    <div class="s"><div class="n">3,421</div><div class="l" data-lang-zh>总共鸣</div></div>
+    <div class="s"><div class="n">892</div><div class="l" data-lang-zh>被关注</div></div>
+    <div class="s"><div class="n">2024</div><div class="l" data-lang-zh>入馆</div></div>
+  </div>
+  <div class="btns">
+    <button class="btn ghost" style="padding:10px 20px"><span data-lang-zh>+ 关注</span><span data-lang-en>+ FOLLOW</span><span data-lang-ja>+ フォロー</span></button>
+    <a class="btn solid" href="submit.html" style="padding:10px 20px"><span data-lang-zh>送她一张菲比</span><span data-lang-en>SEND A PHOEBE</span></a>
+  </div>
+</section>
+
+<!-- ================= Tabs ================= -->
+<div class="cr-tabs">
+  <button class="active" data-tab="works"><span data-lang-zh>作品</span><span data-lang-en>WORKS</span><span data-lang-ja>作品</span> <span class="cnt">(47)</span></button>
+  <button data-tab="timelines"><span data-lang-zh>世界线</span><span data-lang-en>TIMELINES</span><span data-lang-ja>世界線</span> <span class="cnt">(3)</span></button>
+  <button data-tab="about"><span data-lang-zh>关于</span><span data-lang-en>ABOUT</span><span data-lang-ja>について</span></button>
+</div>
+
+<!-- ================= 作品 ================= -->
+<section class="cr-body">
+  <div class="tab-panel" data-panel="works">
+    <div class="cr-grid">
+      <div class="item rv">
+        <span class="chip illustration">插画</span>
+        <div class="img"><img src="assets/artwork-01.png" alt=""></div>
+        <div class="info"><div class="no">PM-000142</div><h4>便利店夜班</h4><div class="meta">2026 · 124♥</div></div>
+      </div>
+      <div class="item rv">
+        <span class="chip ai">AI</span>
+        <div class="img"><img src="assets/artwork-02.png" alt=""></div>
+        <div class="info"><div class="no">PM-000098</div><h4>雨夜霓虹</h4><div class="meta">2025 · 312♥</div></div>
+      </div>
+      <div class="item rv">
+        <span class="chip illustration">插画</span>
+        <div class="img"><img src="assets/artwork-03.png" alt=""></div>
+        <div class="info"><div class="no">PM-000071</div><h4>菲比在画画</h4><div class="meta">2025 · 56♥</div></div>
+      </div>
+      <div class="item rv">
+        <span class="chip comic">漫画</span>
+        <div class="img"><img src="assets/artwork-04.png" alt=""></div>
+        <div class="info"><div class="no">PM-000045</div><h4>猫耳菲比</h4><div class="meta">2025 · 201♥</div></div>
+      </div>
+      <div class="item rv">
+        <span class="chip ai">AI</span>
+        <div class="img"><img src="assets/artwork-05.png" alt=""></div>
+        <div class="info"><div class="no">PM-000038</div><h4>蒸汽波菲比</h4><div class="meta">2025 · 178♥</div></div>
+      </div>
+      <div class="item rv">
+        <span class="chip illustration">插画</span>
+        <div class="img"><img src="assets/artwork-06.png" alt=""></div>
+        <div class="info"><div class="no">PM-000022</div><h4>雨中奔跑</h4><div class="meta">2024 · 89♥</div></div>
+      </div>
+      <div class="item rv">
+        <span class="chip d3">3D</span>
+        <div class="img"><img src="assets/artwork-07.png" alt=""></div>
+        <div class="info"><div class="no">PM-000015</div><h4>机甲驾驶舱</h4><div class="meta">2024 · 145♥</div></div>
+      </div>
+      <div class="item rv">
+        <span class="chip illustration">插画</span>
+        <div class="img"><img src="assets/artwork-08.png" alt=""></div>
+        <div class="info"><div class="no">PM-000005</div><h4>最早的一张菲比</h4><div class="meta">2024 · 423♥</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:24px">
+      <button class="btn ghost" style="padding:12px 28px"><span data-lang-zh>加载更多</span><span data-lang-en>LOAD MORE</span><span data-lang-ja>もっと見る</span></button>
+    </div>
+  </div>
+
+  <!-- 世界线 -->
+  <div class="tab-panel" data-panel="timelines" style="display:none">
+    <div class="cr-section">
+      <h3><span data-lang-zh>创建的世界线</span><span data-lang-en>CREATED TIMELINES</span> <small>(3)</small></h3>
+      <div class="cr-timelines">
+        <div class="row rv">
+          <div class="thumb"><img src="assets/timeline-01.png" alt=""></div>
+          <div class="info">
+            <h4>CYBER PHOEBE · 赛博菲比</h4>
+            <p>2077年的夜之城，霓虹灯下的便利店夜班菲比。赛博朋克美学，蒸汽波，霓虹。</p>
+            <div class="meta">PUBLIC · 234 ARTWORKS · 47 CREATORS · 1.2K♥</div>
+          </div>
+          <div class="act">VIEW →</div>
+        </div>
+        <div class="row rv">
+          <div class="thumb"><img src="assets/timeline-02.png" alt=""></div>
+          <div class="info">
+            <h4>PHOEBE OWNS A STORE · 便利店菲比</h4>
+            <p>日常向·菲比在便利店打工的琐碎日常。治愈系。</p>
+            <div class="meta">PUBLIC · 412 ARTWORKS · 89 CREATORS · 2.3K♥</div>
+          </div>
+          <div class="act">VIEW →</div>
+        </div>
+        <div class="row rv">
+          <div class="thumb"><img src="assets/timeline-03.png" alt=""></div>
+          <div class="info">
+            <h4>MECHA PHOEBE · 机甲菲比</h4>
+            <p>近未来·菲比驾驶古董机甲在废墟中拾荒。机械控。</p>
+            <div class="meta">PUBLIC · 89 ARTWORKS · 12 CREATORS · 456♥</div>
+          </div>
+          <div class="act">VIEW →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 关于 -->
+  <div class="tab-panel" data-panel="about" style="display:none">
+    <div class="cr-section">
+      <h3><span data-lang-zh>关于创作者</span><span data-lang-en>ABOUT</span><span data-lang-ja>について</span></h3>
+      <div class="cr-about">
+        <div class="bio-text">
+          <p>霓虹笔（@neon_pen）是菲比博物馆的早期入馆创作者之一，自 2024 年起开始上交菲比。她主要创作赛博朋克和日常风格的菲比作品，偶尔也做 AI 辅助创作和条漫。</p>
+          <p>她的画风以蒸汽波色调和大面积留白为特色，笔下的菲比常常带着一种"很困但很认真"的表情。她创造了三条世界线：赛博菲比、便利店菲比和机甲菲比，其中便利店菲比已成为本馆最热门的世界线之一。</p>
+          <p>不接商稿（除非你也是画菲比的）。画画的时候听蒸汽波。最近在学 3D 建模。</p>
+        </div>
+        <div class="side">
+          <h4><span data-lang-zh>档案</span><span data-lang-en>PROFILE</span></h4>
+          <dl>
+            <dt><span data-lang-zh>署名</span></dt><dd>@neon_pen</dd>
+            <dt><span data-lang-zh>昵称</span></dt><dd>霓虹笔</dd>
+            <dt><span data-lang-zh>入馆时间</span></dt><dd>2024.03.14</dd>
+            <dt><span data-lang-zh>创作媒介</span></dt><dd>插画 / AI / 漫画</dd>
+            <dt><span data-lang-zh>擅长风格</span></dt><dd>赛博朋克 / 日常 / 蒸汽波</dd>
+            <dt><span data-lang-zh>主页</span></dt><dd>neon-pen.art</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pm-foot">
+  <div class="inner">
+    <div class="brand">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆 · 大概很严肃</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></div>
+    <div class="meta"><span>© 2026 PHOEBE MUSEUM</span><span data-lang-zh>*本馆的严肃程度以实际情况为准</span><span data-lang-en>*SERIOUSNESS MAY VARY</span><span>PM-000001 → ∞</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document;
+var nav=d.getElementById('nav'),btn=d.getElementById('menubtn'),drawer=d.getElementById('drawer');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
+d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
+
+var els=[].slice.call(d.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+els.forEach(function(el){io.observe(el)});
+}else{els.forEach(function(el){el.classList.add('in')})}
+
+var top=d.createElement('button');top.type='button';top.className='to-top';top.setAttribute('aria-label','back to top');top.textContent='↑';
+d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
+/* ---- 用户菜单 ---- */
+var ua=d.getElementById('userArea'),ut=d.getElementById('userTrigger'),um=d.getElementById('userMenu'),lo=d.getElementById('logoutBtn');
+if(ut){ut.addEventListener('click',function(e){e.stopPropagation();ua.classList.toggle('open')})}
+if(um){um.addEventListener('click',function(e){e.stopPropagation()})}
+d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua.contains(e.target)){ua.classList.remove('open')}});
+if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
+var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
+
+/* Tab */
+d.querySelectorAll('.cr-tabs button').forEach(function(b){
+  b.addEventListener('click',function(){
+    d.querySelectorAll('.cr-tabs button').forEach(function(x){x.classList.remove('active')});
+    this.classList.add('active');
+    var tab=this.dataset.tab;
+    d.querySelectorAll('.tab-panel').forEach(function(p){p.style.display=p.dataset.panel===tab?'':'none'});
+  });
+});
+})();
+</script>
+</body>
+</html>

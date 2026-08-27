@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>档案馆 · PHOEBE MUSEUM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+/* ============ 档案馆 ============ */
+.archive-hero{padding:150px 5vw 40px;max-width:1400px;margin:0 auto}
+.archive-hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,5vw,72px);letter-spacing:-.02em;line-height:1.06;margin:22px 0 0}
+.archive-hero h1 em{font-style:italic;color:var(--seal)}
+.archive-hero .lead{font-size:13px;line-height:2.2;color:var(--ink-2);max-width:520px;margin:26px 0 0}
+
+.archive-tools{max-width:1400px;margin:0 auto;padding:0 5vw 40px;border-bottom:1px solid var(--line)}
+.archive-tools .search-bar{display:flex;gap:0;align-items:stretch;border:1px solid var(--line-dark);border-radius:2px;overflow:hidden;max-width:600px}
+.archive-tools .search-bar input{flex:1;border:0;padding:14px 16px;font-size:14px;font-family:var(--sans);background:transparent}
+.archive-tools .search-bar input:focus{outline:none}
+.archive-tools .search-bar button{border:0;background:var(--ink);color:#f4f0e6;padding:0 24px;font-size:11px;letter-spacing:.14em;cursor:pointer;font-family:var(--sans)}
+
+.archive-filters{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;align-items:center}
+.archive-filters .lbl{font-size:9px;letter-spacing:.24em;color:var(--ink-3);text-transform:uppercase}
+.archive-filters select{border:1px solid var(--line-dark);border-radius:2px;padding:8px 28px 8px 12px;font-size:12px;font-family:var(--sans);background:transparent;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6' fill='%2316150f'/></svg>");background-repeat:no-repeat;background-position:right 10px center}
+.archive-filters .tag{padding:6px 14px;border:1px solid var(--line-dark);border-radius:20px;font-size:11px;cursor:pointer;transition:border-color .25s,color .25s}
+.archive-filters .tag:hover,.archive-filters .tag.active{border-color:var(--seal);color:var(--seal)}
+
+.archive-body{max-width:1400px;margin:0 auto;padding:40px 5vw 0;display:grid;grid-template-columns:240px 1fr;gap:48px}
+
+.archive-side{position:sticky;top:100px;align-self:start}
+.archive-side h4{font-family:var(--serif);font-size:14px;font-weight:500;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.archive-side ul{list-style:none;margin:0 0 24px;padding:0}
+.archive-side ul li{margin:0}
+.archive-side ul li a{display:flex;justify-content:space-between;padding:8px 0;font-size:12px;color:var(--ink-2);transition:color .25s}
+.archive-side ul li a:hover{color:var(--seal)}
+.archive-side ul li a .cnt{font-size:10px;color:var(--ink-3)}
+
+.archive-results .result-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px}
+.archive-results .result-head h3{font-family:var(--serif);font-size:20px;font-weight:500;margin:0}
+.archive-results .result-head .sort{font-size:11px;color:var(--ink-3);letter-spacing:.1em}
+
+.archive-table{width:100%;border-collapse:collapse}
+.archive-table thead th{text-align:left;font-size:9px;letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase;padding:12px 8px;border-bottom:1px solid var(--line-dark)}
+.archive-table tbody tr{cursor:pointer;transition:background .2s}
+.archive-table tbody tr:hover{background:var(--bg-soft)}
+.archive-table tbody td{padding:14px 8px;border-bottom:1px solid var(--line);font-size:12px;vertical-align:top}
+.archive-table .pm-no{font-family:var(--serif);font-style:italic;color:var(--seal);white-space:nowrap}
+.archive-table .title{font-family:var(--serif);font-size:14px;font-weight:500}
+.archive-table .title small{display:block;font-family:var(--sans);font-size:10px;font-weight:400;color:var(--ink-3);margin-top:2px}
+.archive-table .creator{color:var(--ink-2)}
+.archive-table .year{color:var(--ink-2);white-space:nowrap}
+.archive-table .medium .chip{font-size:8px;padding:2px 6px}
+
+.pagination{display:flex;gap:8px;justify-content:center;margin:48px 0}
+.pagination button{border:1px solid var(--line-dark);background:transparent;padding:8px 14px;font-size:11px;cursor:pointer;font-family:var(--sans);transition:border-color .25s}
+.pagination button:hover{border-color:var(--seal)}
+.pagination button.active{background:var(--ink);color:#f4f0e6;border-color:var(--ink)}
+
+@media(max-width:760px){
+  .archive-body{grid-template-columns:1fr;gap:24px}
+  .archive-side{position:static}
+  .archive-table{font-size:11px}
+  .archive-table thead th:nth-child(4),.archive-table tbody td:nth-child(4){display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 液态玻璃导航 ================= -->
+<header class="pm-nav" id="nav">
+  <a class="logo" href="index.html">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></a>
+  <nav class="links">
+    <a href="index.html" data-lang-zh>首页</a><a href="index.html" data-lang-en>HOME</a><a href="index.html" data-lang-ja>ホーム</a>
+    <a href="collection.html" data-lang-zh>馆藏</a><a href="collection.html" data-lang-en>COLLECTION</a><a href="collection.html" data-lang-ja>収蔵品</a>
+    <a href="timeline-human.html" data-lang-zh>人类时间线</a><a href="timeline-human.html" data-lang-en>HUMAN TIMELINE</a><a href="timeline-human.html" data-lang-ja>人類の時間線</a>
+    <a href="community.html" data-lang-zh>社区世界线</a><a href="community.html" data-lang-en>COMMUNITY</a><a href="community.html" data-lang-ja>コミュニティ</a>
+    <a href="creators.html" data-lang-zh>创作者</a><a href="creators.html" data-lang-en>CREATORS</a><a href="creators.html" data-lang-ja>クリエイター</a>
+    <a href="archive.html" class="active" data-lang-zh>档案馆</a><a href="archive.html" class="active" data-lang-en>ARCHIVE</a><a href="archive.html" class="active" data-lang-ja>アーカイブ</a>
+    <a href="my.html" data-lang-zh>我的博物馆</a><a href="my.html" data-lang-en>MY MUSEUM</a><a href="my.html" data-lang-ja>マイミュージアム</a>
+  </nav>
+  <div class="right">
+    <div class="lang">
+      <button data-lang="zh" class="active">中</button><button data-lang="en">EN</button><button data-lang="ja">日</button>
+    </div>
+
+    <a class="submit-btn" href="submit.html" data-lang-zh>上交菲比</a><a class="submit-btn" href="submit.html" data-lang-en>SUBMIT</a><a class="submit-btn" href="submit.html" data-lang-ja>投稿する</a>
+    <button class="menu-btn" id="menubtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+<div class="pm-userbar" id="userArea" data-login="false">
+  <a class="login-pill" href="login.html"><span class="dot"></span><span data-lang-zh>登录 / 注册</span><span data-lang-en>LOGIN / SIGN UP</span><span data-lang-ja>ログイン</span></a>
+  <div class="user-trigger" id="userTrigger">
+    <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+    <span class="uname">霓虹笔</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="u-head">
+      <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+      <div class="u-info">
+        <div class="name">霓虹笔</div>
+        <div class="handle">@neon_pen</div>
+      </div>
+    </div>
+    <a href="my.html"><span class="icon">◆</span><span data-lang-zh>我的博物馆</span><span data-lang-en>MY MUSEUM</span><span data-lang-ja>マイミュージアム</span></a>
+    <a href="submit.html"><span class="icon">↑</span><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT</span><span data-lang-ja>投稿する</span></a>
+    <a href="my.html"><span class="icon">♥</span><span data-lang-zh>我的收藏</span><span data-lang-en>COLLECTIONS</span><span data-lang-ja>コレクション</span></a>
+    <div class="u-sep"></div>
+    <button class="u-logout" id="logoutBtn"><span class="icon">⏻</span><span data-lang-zh>退出登录</span><span data-lang-en>SIGN OUT</span><span data-lang-ja>ログアウト</span></button>
+  </div>
+</div>
+<nav class="pm-drawer" id="drawer">
+  <a href="index.html">首页 · HOME</a>
+  <a href="collection.html">馆藏 · COLLECTION</a>
+  <a href="timeline-human.html">人类时间线 · HUMAN TIMELINE</a>
+  <a href="community.html">社区世界线 · COMMUNITY</a>
+  <a href="creators.html">创作者 · CREATORS</a>
+  <a href="archive.html" class="active">档案馆 · ARCHIVE</a>
+  <a href="my.html">我的博物馆 · MY MUSEUM</a>
+</nav>
+
+<!-- ================= Hero ================= -->
+<section class="archive-hero rv">
+  <div class="kicker"><span class="no">ARCHIVE</span><span data-lang-zh>档案馆</span><span data-lang-en>ARCHIVE</span><span data-lang-ja>アーカイブ</span></div>
+  <h1><span data-lang-zh>所有菲比，</span><span data-lang-en>Every Phoebe,</span><span data-lang-ja>全てのフィービー、</span><br><em data-lang-zh>都在这里。</em><em data-lang-en>ever made.</em><em data-lang-ja>ここに。</em></h1>
+  <p class="lead" data-lang-zh>本馆全部馆藏的完整索引，从 PM-000001 到最新上交的菲比。可按编号、年份、媒介、世界线、创作者检索。这是菲比的全息索引。</p>
+</section>
+
+<!-- ================= 检索工具 ================= -->
+<section class="archive-tools rv">
+  <div class="search-bar">
+    <input type="text" placeholder="搜索编号 PM-0000XX、标题、创作者……">
+    <button><span data-lang-zh>检索</span><span data-lang-en>SEARCH</span><span data-lang-ja>検索</span></button>
+  </div>
+  <div class="archive-filters">
+    <span class="lbl"><span data-lang-zh>媒介</span><span data-lang-en>MEDIUM</span><span data-lang-ja>媒介</span></span>
+    <span class="tag active" data-medium="all">ALL</span>
+    <span class="tag" data-medium="illustration">插画</span>
+    <span class="tag" data-medium="ai">AI</span>
+    <span class="tag" data-medium="comic">漫画</span>
+    <span class="tag" data-medium="d3">3D</span>
+    <span class="tag" data-medium="video">视频</span>
+    <span class="tag" data-medium="sticker">表情包</span>
+  </div>
+  <div class="archive-filters" style="margin-top:12px">
+    <span class="lbl"><span data-lang-zh>年份</span><span data-lang-en>YEAR</span></span>
+    <select><option>全部年份</option><option>2026</option><option>2025</option><option>2024</option><option>更早</option></select>
+    <span class="lbl" style="margin-left:16px"><span data-lang-zh>世界线</span></span>
+    <select><option>所有世界线</option><option>赛博菲比</option><option>海盗菲比</option><option>便利店菲比</option><option>机甲菲比</option><option>散件</option></select>
+    <select><option>排序：最新</option><option>排序：最旧</option><option>排序：最热</option><option>排序：编号</option></select>
+  </div>
+</section>
+
+<!-- ================= 档案主体 ================= -->
+<section class="archive-body">
+  <!-- 侧边 -->
+  <aside class="archive-side">
+    <h4><span data-lang-zh>快速跳转</span><span data-lang-en>QUICK JUMP</span></h4>
+    <ul>
+      <li><a href="#">2026 年 <span class="cnt">1,247</span></a></li>
+      <li><a href="#">2025 年 <span class="cnt">892</span></a></li>
+      <li><a href="#">2024 年 <span class="cnt">431</span></a></li>
+      <li><a href="#">更早 <span class="cnt">23</span></a></li>
+    </ul>
+    <h4><span data-lang-zh>热门世界线</span><span data-lang-en>TOP TIMELINES</span></h4>
+    <ul>
+      <li><a href="timeline-detail.html">CYBER PHOEBE <span class="cnt">234</span></a></li>
+      <li><a href="timeline-detail.html">PIRATE PHOEBE <span class="cnt">156</span></a></li>
+      <li><a href="timeline-detail.html">STORE PHOEBE <span class="cnt">412</span></a></li>
+      <li><a href="timeline-detail.html">MECHA PHOEBE <span class="cnt">89</span></a></li>
+      <li><a href="timeline-detail.html">GHOST SHIP <span class="cnt">67</span></a></li>
+    </ul>
+    <h4><span data-lang-zh>热门标签</span><span data-lang-en>TOP TAGS</span></h4>
+    <ul>
+      <li><a href="#">#赛博朋克 <span class="cnt">423</span></a></li>
+      <li><a href="#">#日常 <span class="cnt">312</span></a></li>
+      <li><a href="#">#猫 <span class="cnt">289</span></a></li>
+      <li><a href="#">#霓虹 <span class="cnt">201</span></a></li>
+      <li><a href="#">#海盗 <span class="cnt">156</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- 结果表格 -->
+  <div class="archive-results">
+    <div class="result-head">
+      <h3><span data-lang-zh>全部馆藏</span><span data-lang-en>FULL CATALOG</span></h3>
+      <span class="sort" data-lang-zh>共 2,593 件 · 按编号降序</span>
+    </div>
+    <table class="archive-table">
+      <thead>
+        <tr>
+          <th>PM NO.</th>
+          <th><span data-lang-zh>标题</span><span data-lang-en>TITLE</span></th>
+          <th><span data-lang-zh>创作者</span><span data-lang-en>CREATOR</span></th>
+          <th><span data-lang-zh>媒介</span><span data-lang-en>MEDIUM</span></th>
+          <th>YEAR</th>
+          <th><span data-lang-zh>世界线</span><span data-lang-en>TIMELINE</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000178</td>
+          <td class="title">机甲驾驶员<small>MECHA PILOT PHOEBE</small></td>
+          <td class="creator">@phoebe_collector</td>
+          <td><span class="chip d3">3D</span></td>
+          <td class="year">2026</td>
+          <td>MECHA PHOEBE</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000156</td>
+          <td class="title">海盗船长菲比<small>PIRATE CAPTAIN PHOEBE</small></td>
+          <td class="creator">@phoebe_collector</td>
+          <td><span class="chip illustration">插画</span></td>
+          <td class="year">2026</td>
+          <td>PIRATE PHOEBE</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000142</td>
+          <td class="title">便利店夜班<small>CONVENIENCE STORE NIGHT SHIFT</small></td>
+          <td class="creator">@phoebe_collector</td>
+          <td><span class="chip illustration">插画</span></td>
+          <td class="year">2026</td>
+          <td>STORE PHOEBE</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000098</td>
+          <td class="title">雨夜霓虹<small>NEON RAINY NIGHT</small></td>
+          <td class="creator">@phoebe_collector</td>
+          <td><span class="chip ai">AI</span></td>
+          <td class="year">2025</td>
+          <td>CYBER PHOEBE</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000071</td>
+          <td class="title">菲比在画画<small>PHOEBE PAINTING</small></td>
+          <td class="creator">@phoebe_collector</td>
+          <td><span class="chip illustration">插画</span></td>
+          <td class="year">2025</td>
+          <td>散件</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000045</td>
+          <td class="title">猫耳菲比<small>CAT EAR PHOEBE</small></td>
+          <td class="creator">@phoebe_collector</td>
+          <td><span class="chip illustration">插画</span></td>
+          <td class="year">2025</td>
+          <td>散件</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000033</td>
+          <td class="title">魔法少女菲比<small>MAGICAL GIRL PHOEBE</small></td>
+          <td class="creator">@magical_art</td>
+          <td><span class="chip illustration">插画</span></td>
+          <td class="year">2025</td>
+          <td>散件</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000029</td>
+          <td class="title">武士菲比<small>SAMURAI PHOEBE</small></td>
+          <td class="creator">@samurai_art</td>
+          <td><span class="chip comic">漫画</span></td>
+          <td class="year">2025</td>
+          <td>散件</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000017</td>
+          <td class="title">蒸汽朋克菲比<small>STEAMPUNK PHOEBE</small></td>
+          <td class="creator">@steampunk</td>
+          <td><span class="chip illustration">插画</span></td>
+          <td class="year">2025</td>
+          <td>散件</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000003</td>
+          <td class="title">初代菲比<small>FIRST EVER PHOEBE</small></td>
+          <td class="creator">@creator_01</td>
+          <td><span class="chip illustration">插画</span></td>
+          <td class="year">2024</td>
+          <td>散件</td>
+        </tr>
+        <tr onclick="location.href='artwork.html'">
+          <td class="pm-no">PM-000001</td>
+          <td class="title">菲比·原型<small>PHOEBE · PROTOTYPE</small></td>
+          <td class="creator">@museum_founder</td>
+          <td><span class="chip illustration">插画</span></td>
+          <td class="year">2024</td>
+          <td>散件</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <button>←</button>
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>…</button>
+      <button>237</button>
+      <button>→</button>
+    </div>
+  </div>
+</section>
+
+<footer class="pm-foot">
+  <div class="inner">
+    <div class="brand">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆 · 大概很严肃</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></div>
+    <div class="meta"><span>© 2026 PHOEBE MUSEUM</span><span data-lang-zh>*本馆的严肃程度以实际情况为准</span><span data-lang-en>*SERIOUSNESS MAY VARY</span><span>PM-000001 → ∞</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document;
+var nav=d.getElementById('nav'),btn=d.getElementById('menubtn'),drawer=d.getElementById('drawer');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
+d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
+
+var els=[].slice.call(d.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+els.forEach(function(el){io.observe(el)});
+}else{els.forEach(function(el){el.classList.add('in')})}
+
+var top=d.createElement('button');top.type='button';top.className='to-top';top.setAttribute('aria-label','back to top');top.textContent='↑';
+d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
+/* ---- 用户菜单 ---- */
+var ua=d.getElementById('userArea'),ut=d.getElementById('userTrigger'),um=d.getElementById('userMenu'),lo=d.getElementById('logoutBtn');
+if(ut){ut.addEventListener('click',function(e){e.stopPropagation();ua.classList.toggle('open')})}
+if(um){um.addEventListener('click',function(e){e.stopPropagation()})}
+d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua.contains(e.target)){ua.classList.remove('open')}});
+if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
+var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
+
+/* 媒介筛选 tag */
+d.querySelectorAll('.archive-filters .tag').forEach(function(t){
+  t.addEventListener('click',function(){
+    d.querySelectorAll('.archive-filters .tag').forEach(function(x){x.classList.remove('active')});
+    this.classList.add('active');
+  });
+});
+})();
+</script>
+</body>
+</html>

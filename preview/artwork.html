@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>站崖边想心事的菲比 | PM-000039 | PHOEBE MUSEUM</title>
+<meta name="description" content="PHOEBE MUSEUM Digital Collection · PM-000039 站崖边想心事的菲比 · 浪漫主义展厅藏。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+.crumb{padding:118px 5vw 0;max-width:1560px;margin:0 auto;font-size:9px;letter-spacing:.26em;color:var(--ink-3)}
+.crumb a:hover{color:var(--seal)}
+.work{padding:34px 5vw 0;max-width:1560px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:4.5vw;align-items:start}
+.work .art{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:var(--bg-soft);box-shadow:0 34px 80px -36px rgba(22,21,15,.4);cursor:zoom-in}
+.work .art img{width:100%;height:100%;object-fit:cover}
+.work .thumbs{display:flex;gap:12px;margin-top:14px}
+.work .thumbs button{width:86px;aspect-ratio:16/9;border:1px solid var(--line);border-radius:4px;overflow:hidden;padding:0;cursor:pointer;background:var(--bg-soft);opacity:.55;transition:opacity .3s,border-color .3s}
+.work .thumbs button.on,.work .thumbs button:hover{opacity:1;border-color:var(--ink)}
+.work .thumbs img{width:100%;height:100%;object-fit:cover}
+.work .stamp{top:18px;left:-14px}
+
+.panel .no{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(30px,3vw,44px);color:var(--seal)}
+.panel h1{font-family:var(--serif);font-weight:300;font-size:clamp(34px,3.6vw,54px);letter-spacing:-.015em;line-height:1.08;margin:16px 0 0}
+.panel h1 .en{display:block;font-size:.42em;font-style:italic;color:var(--ink-2);letter-spacing:.04em;margin-top:12px}
+.panel .chips{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
+.meta{margin-top:30px;border-top:1px solid var(--line)}
+.meta .row{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 2px;border-bottom:1px solid var(--line);font-size:11px;align-items:baseline}
+.meta .k{font-size:8px;letter-spacing:.3em;color:var(--ink-3)}
+.meta .v a{border-bottom:1px solid var(--line-dark)}
+.meta .v a:hover{color:var(--seal);border-color:var(--seal)}
+.about{margin-top:28px}
+.about h4{font-size:9px;letter-spacing:.3em;color:var(--ink-3);margin:0 0 12px;font-weight:400}
+.about p{font-size:12.5px;line-height:2.2;color:var(--ink-2);margin:0}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.tag{border:1px solid var(--line-dark);border-radius:999px;padding:6px 12px;font-size:8px;letter-spacing:.18em;color:var(--ink-2)}
+.favs{display:flex;gap:12px;margin-top:34px}
+.fav-btn{transition:all .3s}
+.fav-btn.on{background:var(--seal);border-color:var(--seal);color:#fff}
+
+.sec{padding:110px 5vw 0;max-width:1560px;margin:0 auto}
+.sec .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.sec h2{font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.4vw,46px);letter-spacing:-.01em;margin:18px 0 0}
+.sec h2 em{font-style:italic}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.prevnext{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin-top:110px}
+.pn{padding:44px 5vw;font-size:10px;letter-spacing:.2em;color:var(--ink-2);transition:background-color .3s}
+.pn:hover{background:var(--bg-soft)}
+.pn b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;color:var(--ink);margin-top:10px;letter-spacing:0}
+.pn.next{text-align:right;border-left:1px solid var(--line)}
+
+.lightbox{position:fixed;inset:0;z-index:120;background:rgba(22,21,15,.72);backdrop-filter:blur(18px);display:none;align-items:center;justify-content:center;cursor:zoom-out;padding:4vw}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(1400px,94vw);max-height:88vh;border-radius:8px}
+
+@media(max-width:1100px){.work{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
+@media(max-width:960px){.crumb{padding:110px 6vw 0}.work,.sec{padding-left:6vw;padding-right:6vw}.prevnext{grid-template-columns:1fr}.pn.next{border-left:0;border-top:1px solid var(--line);text-align:left}}
+</style>
+</head>
+<body>
+
+<header class="pm-nav" id="nav">
+  <a class="logo" href="index.html">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></a>
+  <nav class="links">
+    <a href="index.html" data-lang-zh>首页</a><a href="index.html" data-lang-en>HOME</a><a href="index.html" data-lang-ja>ホーム</a>
+    <a href="collection.html" class="active" data-lang-zh>馆藏</a><a href="collection.html" class="active" data-lang-en>COLLECTION</a><a href="collection.html" class="active" data-lang-ja>収蔵品</a>
+    <a href="timeline-human.html" data-lang-zh>人类时间线</a><a href="timeline-human.html" data-lang-en>HUMAN TIMELINE</a><a href="timeline-human.html" data-lang-ja>人類の時間線</a>
+    <a href="community.html" data-lang-zh>社区世界线</a><a href="community.html" data-lang-en>COMMUNITY</a><a href="community.html" data-lang-ja>コミュニティ</a>
+    <a href="creators.html" data-lang-zh>创作者</a><a href="creators.html" data-lang-en>CREATORS</a><a href="creators.html" data-lang-ja>クリエイター</a>
+    <a href="archive.html" data-lang-zh>档案馆</a><a href="archive.html" data-lang-en>ARCHIVE</a><a href="archive.html" data-lang-ja>アーカイブ</a>
+    <a href="my.html" data-lang-zh>我的博物馆</a><a href="my.html" data-lang-en>MY MUSEUM</a><a href="my.html" data-lang-ja>マイミュージアム</a>
+  </nav>
+  <div class="right">
+    <div class="lang"><button data-lang="zh" class="active">中</button><button data-lang="en">EN</button><button data-lang="ja">日</button></div>
+
+    <a class="submit-btn" href="submit.html" data-lang-zh>上交菲比</a><a class="submit-btn" href="submit.html" data-lang-en>SUBMIT</a><a class="submit-btn" href="submit.html" data-lang-ja>投稿する</a>
+    <button class="menu-btn" id="menubtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+<div class="pm-userbar" id="userArea" data-login="false">
+  <a class="login-pill" href="login.html"><span class="dot"></span><span data-lang-zh>登录 / 注册</span><span data-lang-en>LOGIN / SIGN UP</span><span data-lang-ja>ログイン</span></a>
+  <div class="user-trigger" id="userTrigger">
+    <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+    <span class="uname">霓虹笔</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="u-head">
+      <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+      <div class="u-info">
+        <div class="name">霓虹笔</div>
+        <div class="handle">@neon_pen</div>
+      </div>
+    </div>
+    <a href="my.html"><span class="icon">◆</span><span data-lang-zh>我的博物馆</span><span data-lang-en>MY MUSEUM</span><span data-lang-ja>マイミュージアム</span></a>
+    <a href="submit.html"><span class="icon">↑</span><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT</span><span data-lang-ja>投稿する</span></a>
+    <a href="my.html"><span class="icon">♥</span><span data-lang-zh>我的收藏</span><span data-lang-en>COLLECTIONS</span><span data-lang-ja>コレクション</span></a>
+    <div class="u-sep"></div>
+    <button class="u-logout" id="logoutBtn"><span class="icon">⏻</span><span data-lang-zh>退出登录</span><span data-lang-en>SIGN OUT</span><span data-lang-ja>ログアウト</span></button>
+  </div>
+</div>
+<nav class="pm-drawer" id="drawer">
+  <a href="index.html">首页 · HOME</a>
+  <a href="collection.html" class="active">馆藏 · COLLECTION</a>
+  <a href="timeline-human.html">人类时间线 · HUMAN TIMELINE</a>
+  <a href="community.html">社区世界线 · COMMUNITY</a>
+  <a href="creators.html">创作者 · CREATORS</a>
+  <a href="archive.html">档案馆 · ARCHIVE</a>
+  <a href="my.html">我的博物馆 · MY MUSEUM</a>
+</nav>
+
+<div class="crumb rv"><a href="index.html">HOME</a> / <a href="collection.html">COLLECTION</a> / <span class="pm-no">PM-000039</span></div>
+
+<section class="work rv">
+  <div class="visual">
+    <span class="stamp">浪漫主义指定pose</span>
+    <div class="art tape" id="mainart"><img id="mainimg" src="assets/hero-sea.png" alt="站崖边想心事的菲比"></div>
+    <div class="thumbs">
+      <button class="on" data-src="assets/hero-sea.png"><img src="assets/hero-sea.png" alt=""></button>
+      <button data-src="assets/hero-sea.png" style="filter:hue-rotate(18deg)"><img src="assets/hero-sea.png" alt="" style="filter:hue-rotate(18deg) saturate(1.1)"></button>
+      <button data-src="assets/hero-sea.png"><img src="assets/hero-sea.png" alt="" style="filter:saturate(.3) contrast(1.05)"></button>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="no">PM-000039</div>
+    <h1>站崖边想心事的菲比<span class="en">PHOEBE ON THE CLIFF, THINKING</span></h1>
+    <div class="chips"><span class="chip illustration">插画 ILLUSTRATION</span><span class="chip" style="background:var(--ink-3)">手工创作</span></div>
+    <div class="meta">
+      <div class="row"><span class="k" data-lang-zh>创作者</span><span class="k" data-lang-en>CREATOR</span><span class="k" data-lang-ja>作者</span><span class="v"><a href="creator.html">@tempest</a></span></div>
+      <div class="row"><span class="k" data-lang-zh>世界线类型</span><span class="k" data-lang-en>TYPE</span><span class="k" data-lang-ja>種別</span><span class="v" data-lang-zh>官方 · 人类艺术史主线</span><span class="v" data-lang-en>OFFICIAL · HUMAN TIMELINE</span><span class="v" data-lang-ja>公式・人類時間線</span></div>
+      <div class="row"><span class="k" data-lang-zh>所属展厅</span><span class="k" data-lang-en>TIMELINE</span><span class="k" data-lang-ja>展示室</span><span class="v"><a href="timeline-era.html">07 ROMANTICISM 浪漫主义</a></span></div>
+      <div class="row"><span class="k" data-lang-zh>创作年份</span><span class="k" data-lang-en>YEAR</span><span class="k" data-lang-ja>年</span><span class="v">2026</span></div>
+      <div class="row"><span class="k" data-lang-zh>收录日期</span><span class="k" data-lang-en>COLLECTED</span><span class="k" data-lang-ja>収蔵日</span><span class="v">2026.08.15</span></div>
+      <div class="row"><span class="k" data-lang-zh>原始出处</span><span class="k" data-lang-en>SOURCE</span><span class="k" data-lang-ja>出典</span><span class="v"><a href="#">artist-site.example/phoebe-cliff</a></span></div>
+    </div>
+    <div class="about">
+      <h4 data-lang-zh>展签 · ABOUT THIS WORK</h4><h4 data-lang-en>ABOUT THIS WORK</h4><h4 data-lang-ja>この作品について</h4>
+      <p data-lang-zh>她已经在崖边站了三个小时。风很大，心事很小，但浪漫主义不管这些——只要站到崖边，你就是一幅画。本馆提醒：此 pose 已由浪漫主义展厅注册，其他时代展厅引用请注明出处。</p>
+      <p data-lang-en>She has been standing on this cliff for three hours. The wind is strong, her worries are small, but Romanticism does not care — stand on a cliff and you become a painting.</p>
+      <p data-lang-ja>彼女は崖の上で3時間立っている。風は強く、悩みは小さい。でもロマン主義は気にしない。崖に立てば、それはもう絵画である。</p>
+    </div>
+    <div class="tags"><span class="tag">SEA</span><span class="tag">STORM</span><span class="tag">CLIFF</span><span class="tag">指定POSE</span><span class="tag">ROMANTICISM</span></div>
+    <div class="favs">
+      <button class="btn fav-btn" id="fav"><span data-lang-zh>♡ 收入我的博物馆</span><span data-lang-en>♡ ADD TO MY MUSEUM</span><span data-lang-ja>♡ お気に入り</span></button>
+      <a class="btn ghost" href="submit.html"><span data-lang-zh>我也画了一张</span><span data-lang-en>I MADE ONE TOO</span><span data-lang-ja>私も描いた</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec rv">
+  <div class="head">
+    <div>
+      <div class="kicker"><span class="no">RELATED</span><span data-lang-zh>相关馆藏</span><span data-lang-en>RELATED WORKS</span><span data-lang-ja>関連作品</span></div>
+      <h2><span data-lang-zh>同一个作者的</span><span data-lang-en>More </span><span data-lang-ja>同じ作者の</span><em data-lang-zh>菲比</em><em data-lang-en>Phoebes</em><em data-lang-ja>フィービー</em></h2>
+    </div>
+    <a class="alink" href="collection.html"><span data-lang-zh>全部馆藏</span><span data-lang-en>ALL ARTWORKS</span><span data-lang-ja>すべて</span> <span class="arr">→</span></a>
+  </div>
+  <div class="grid3">
+    <a class="frame wob" href="artwork.html"><div class="art"><img src="assets/ukiyoe.png" alt=""></div><div class="cap"><span class="t">冲浪的菲比（江户限定）</span><span class="m"><span class="pm-no">PM-000021</span></span></div></a>
+    <a class="frame wob r" href="artwork.html"><div class="art"><img src="assets/renaissance.png" alt=""></div><div class="cap"><span class="t">坐了一下午的菲比</span><span class="m"><span class="pm-no">PM-000013</span></span></div></a>
+    <a class="frame wob" href="artwork.html"><div class="art"><img src="assets/garden.png" alt=""></div><div class="cap"><span class="t">假装看书的菲比</span><span class="m"><span class="pm-no">PM-000028</span></span></div></a>
+  </div>
+</section>
+
+<div class="prevnext">
+  <a class="pn" href="artwork.html">← <span class="pm-no">PM-000038</span><b>假装看书的菲比</b></a>
+  <a class="pn next" href="artwork.html"><span class="pm-no">PM-000040</span> →<b>机甲整备日志 第7回</b></a>
+</div>
+
+<div class="lightbox" id="lightbox"><img id="lbimg" src="" alt="放大查看"></div>
+
+<footer class="pm-foot">
+  <div class="inner">
+    <div class="brand">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆 · 大概很严肃</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></div>
+    <div class="meta"><span>© 2026 PHOEBE MUSEUM</span><span data-lang-zh>*本馆的严肃程度以实际情况为准</span><span data-lang-en>*SERIOUSNESS MAY VARY</span><span>PM-000001 → ∞</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document;
+var nav=d.getElementById('nav'),btn=d.getElementById('menubtn'),drawer=d.getElementById('drawer');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
+d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
+var els=[].slice.call(d.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06});els.forEach(function(el){io.observe(el)});}else{els.forEach(function(el){el.classList.add('in')})}
+var top=d.createElement('button');top.type='button';top.className='to-top';top.textContent='↑';d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
+/* ---- 用户菜单 ---- */
+var ua=d.getElementById('userArea'),ut=d.getElementById('userTrigger'),um=d.getElementById('userMenu'),lo=d.getElementById('logoutBtn');
+if(ut){ut.addEventListener('click',function(e){e.stopPropagation();ua.classList.toggle('open')})}
+if(um){um.addEventListener('click',function(e){e.stopPropagation()})}
+d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua.contains(e.target)){ua.classList.remove('open')}});
+if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
+var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
+/* 缩略图切换 + 灯箱 */
+var main=d.getElementById('mainimg'),lb=d.getElementById('lightbox'),lbimg=d.getElementById('lbimg');
+d.querySelectorAll('.thumbs button').forEach(function(b){b.addEventListener('click',function(){d.querySelectorAll('.thumbs button').forEach(function(x){x.classList.remove('on')});this.classList.add('on');main.src=this.querySelector('img').src;main.style.filter=this.querySelector('img').style.filter})});
+d.getElementById('mainart').addEventListener('click',function(){lbimg.src=main.src;lbimg.style.filter=main.style.filter;lb.classList.add('open');d.body.style.overflow='hidden'});
+lb.addEventListener('click',function(){lb.classList.remove('open');d.body.style.overflow=''});
+d.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('open');d.body.style.overflow=''}});
+/* 收藏 */
+d.getElementById('fav').addEventListener('click',function(){this.classList.toggle('on');var on=this.classList.contains('on');this.querySelectorAll('span').forEach(function(s){s.textContent=s.textContent.replace(on?'♡':'♥',on?'♥':'♡')})});
+})();
+</script>
+</body>
+</html>

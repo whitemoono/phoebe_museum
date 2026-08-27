@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>上交菲比 · PHOEBE MUSEUM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+/* ============ 投稿页 ============ */
+.submit-wrap{padding:150px 5vw 0;max-width:960px;margin:0 auto}
+.submit-wrap .head{margin-bottom:56px}
+.submit-wrap h1{font-family:var(--serif);font-weight:300;font-size:clamp(42px,5vw,72px);letter-spacing:-.02em;line-height:1.06;margin:22px 0 0}
+.submit-wrap h1 em{font-style:italic;color:var(--seal)}
+.submit-wrap .lead{font-size:13px;line-height:2.2;color:var(--ink-2);max-width:520px;margin:26px 0 0}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:40px 0;margin-bottom:64px}
+.step{position:relative;padding-left:0}
+.step .n{font-family:var(--serif);font-style:italic;font-weight:300;font-size:32px;color:var(--seal);line-height:1}
+.step h4{font-family:var(--serif);font-size:18px;font-weight:500;margin:14px 0 8px}
+.step p{font-size:11px;line-height:1.8;color:var(--ink-2);margin:0}
+
+.form{display:grid;gap:40px}
+.field label{display:block;font-size:9px;letter-spacing:.24em;color:var(--ink-2);text-transform:uppercase;margin-bottom:14px}
+.field label .req{color:var(--seal)}
+.field input[type=text],.field textarea,.field select{
+  width:100%;border:0;border-bottom:1px solid var(--line-dark);background:transparent;
+  padding:12px 0;font-size:15px;font-family:var(--sans);transition:border-color .3s
+}
+.field input[type=text]:focus,.field textarea:focus,.field select:focus{border-color:var(--seal);outline:none}
+.field textarea{min-height:100px;resize:vertical;line-height:1.8}
+.field .hint{font-size:10px;color:var(--ink-3);margin-top:8px;letter-spacing:.06em}
+
+.upload-zone{
+  border:2px dashed var(--line-dark);border-radius:12px;padding:60px 24px;text-align:center;
+  transition:border-color .3s,background-color .3s;cursor:pointer;position:relative
+}
+.upload-zone:hover,.upload-zone.dragover{border-color:var(--seal);background:var(--bg-soft)}
+.upload-zone .icon{font-size:36px;color:var(--ink-3);margin-bottom:16px}
+.upload-zone h4{font-family:var(--serif);font-size:22px;font-weight:400;margin:0 0 8px}
+.upload-zone p{font-size:11px;color:var(--ink-3);margin:0;letter-spacing:.06em}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
+.upload-preview{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+.upload-preview .item{position:relative;aspect-ratio:1;overflow:hidden;border-radius:8px;background:var(--bg-soft)}
+.upload-preview .item img{width:100%;height:100%;object-fit:cover}
+.upload-preview .item .rm{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:rgba(22,21,15,.6);color:#fff;border:0;font-size:10px;cursor:pointer;display:grid;place-items:center;padding:0}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+
+.medium-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.medium-grid label{position:relative;display:block;border:1px solid var(--line-dark);border-radius:12px;padding:18px 16px;cursor:pointer;transition:border-color .25s,background-color .25s;text-align:center}
+.medium-grid label:hover{border-color:var(--ink-2)}
+.medium-grid input{display:none}
+.medium-grid input:checked+span{color:var(--seal)}
+.medium-grid label:has(input:checked){border-color:var(--seal);background:rgba(179,64,42,.04)}
+.medium-grid label .t{font-family:var(--serif);font-size:16px;font-weight:500;display:block}
+.medium-grid label .d{font-size:9px;letter-spacing:.14em;color:var(--ink-3);margin-top:6px}
+
+.timeline-select{display:flex;gap:12px;align-items:center}
+.timeline-select select{flex:1}
+.timeline-select .or{font-size:10px;letter-spacing:.2em;color:var(--ink-3);white-space:nowrap}
+
+.actions{display:flex;gap:16px;justify-content:flex-end;border-top:1px solid var(--line);padding-top:40px;margin-top:20px}
+.agree{display:flex;align-items:flex-start;gap:12px;font-size:11px;line-height:1.8;color:var(--ink-2)}
+.agree input{margin-top:3px;flex-shrink:0}
+
+@media(max-width:760px){
+  .steps{grid-template-columns:1fr 1fr;gap:28px}
+  .field-row{grid-template-columns:1fr;gap:40px}
+  .medium-grid{grid-template-columns:1fr}
+  .upload-preview{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 液态玻璃导航 ================= -->
+<header class="pm-nav" id="nav">
+  <a class="logo" href="index.html">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></a>
+  <nav class="links">
+    <a href="index.html" data-lang-zh>首页</a><a href="index.html" data-lang-en>HOME</a><a href="index.html" data-lang-ja>ホーム</a>
+    <a href="collection.html" data-lang-zh>馆藏</a><a href="collection.html" data-lang-en>COLLECTION</a><a href="collection.html" data-lang-ja>収蔵品</a>
+    <a href="timeline-human.html" data-lang-zh>人类时间线</a><a href="timeline-human.html" data-lang-en>HUMAN TIMELINE</a><a href="timeline-human.html" data-lang-ja>人類の時間線</a>
+    <a href="community.html" data-lang-zh>社区世界线</a><a href="community.html" data-lang-en>COMMUNITY</a><a href="community.html" data-lang-ja>コミュニティ</a>
+    <a href="creators.html" data-lang-zh>创作者</a><a href="creators.html" data-lang-en>CREATORS</a><a href="creators.html" data-lang-ja>クリエイター</a>
+    <a href="archive.html" data-lang-zh>档案馆</a><a href="archive.html" data-lang-en>ARCHIVE</a><a href="archive.html" data-lang-ja>アーカイブ</a>
+    <a href="my.html" data-lang-zh>我的博物馆</a><a href="my.html" data-lang-en>MY MUSEUM</a><a href="my.html" data-lang-ja>マイミュージアム</a>
+  </nav>
+  <div class="right">
+    <div class="lang">
+      <button data-lang="zh" class="active">中</button><button data-lang="en">EN</button><button data-lang="ja">日</button>
+    </div>
+
+    <a class="submit-btn" href="submit.html" style="background:var(--seal)" data-lang-zh>上交菲比</a><a class="submit-btn" href="submit.html" style="background:var(--seal)" data-lang-en>SUBMIT</a><a class="submit-btn" href="submit.html" style="background:var(--seal)" data-lang-ja>投稿する</a>
+    <button class="menu-btn" id="menubtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+<div class="pm-userbar" id="userArea" data-login="false">
+  <a class="login-pill" href="login.html"><span class="dot"></span><span data-lang-zh>登录 / 注册</span><span data-lang-en>LOGIN / SIGN UP</span><span data-lang-ja>ログイン</span></a>
+  <div class="user-trigger" id="userTrigger">
+    <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+    <span class="uname">霓虹笔</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="u-head">
+      <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+      <div class="u-info">
+        <div class="name">霓虹笔</div>
+        <div class="handle">@neon_pen</div>
+      </div>
+    </div>
+    <a href="my.html"><span class="icon">◆</span><span data-lang-zh>我的博物馆</span><span data-lang-en>MY MUSEUM</span><span data-lang-ja>マイミュージアム</span></a>
+    <a href="submit.html"><span class="icon">↑</span><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT</span><span data-lang-ja>投稿する</span></a>
+    <a href="my.html"><span class="icon">♥</span><span data-lang-zh>我的收藏</span><span data-lang-en>COLLECTIONS</span><span data-lang-ja>コレクション</span></a>
+    <div class="u-sep"></div>
+    <button class="u-logout" id="logoutBtn"><span class="icon">⏻</span><span data-lang-zh>退出登录</span><span data-lang-en>SIGN OUT</span><span data-lang-ja>ログアウト</span></button>
+  </div>
+</div>
+<nav class="pm-drawer" id="drawer">
+  <a href="index.html">首页 · HOME</a>
+  <a href="collection.html">馆藏 · COLLECTION</a>
+  <a href="timeline-human.html">人类时间线 · HUMAN TIMELINE</a>
+  <a href="community.html">社区世界线 · COMMUNITY</a>
+  <a href="creators.html">创作者 · CREATORS</a>
+  <a href="archive.html">档案馆 · ARCHIVE</a>
+  <a href="my.html">我的博物馆 · MY MUSEUM</a>
+</nav>
+
+<!-- ================= 投稿区 ================= -->
+<section class="submit-wrap rv">
+  <div class="head">
+    <div class="kicker"><span class="no">SUBMIT</span><span data-lang-zh>上交菲比</span><span data-lang-en>HAND IN A PHOEBE</span><span data-lang-ja>フィービーを提出</span></div>
+    <h1><span data-lang-zh>把你的菲比</span><span data-lang-en>Hand over</span><span data-lang-ja>あなたのフィービーを</span><br><em data-lang-zh>交上来。</em><em data-lang-en>your Phoebe.</em><em data-lang-ja>提出しよう。</em></h1>
+    <p class="lead" data-lang-zh>审核通过后，你将获得永久馆藏编号（PM-0000XX），与人类文明共存亡。审核员很好说话——真的。只要你画的/做的/拍的/生成的确实是菲比，就收。</p>
+    <p class="lead" data-lang-en>Once approved, your work receives a permanent accession number. Our reviewers are easy — as long as it's recognizably Phoebe, it's in.</p>
+    <p class="lead" data-lang-ja>審査通過後、永久収蔵番号が付与されます。審査員は甘めです——フィービーと分かれば何でもOK。</p>
+  </div>
+
+  <!-- 步骤 -->
+  <div class="steps">
+    <div class="step"><div class="n">I.</div><h4>上传作品</h4><p>图片、漫画、视频均可</p></div>
+    <div class="step"><div class="n">II.</div><h4>填写信息</h4><p>标题、描述、创作工具</p></div>
+    <div class="step"><div class="n">III.</div><h4>选择归属</h4><p>放入已有世界线或自创新线</p></div>
+    <div class="step"><div class="n">IV.</div><h4>等待编号</h4><p>审核通过即获 PM 编号</p></div>
+  </div>
+
+  <!-- 表单 -->
+  <form class="form" onsubmit="return false">
+
+    <!-- 上传区 -->
+    <div class="field">
+      <label>作品文件 <span class="req">*</span></label>
+      <div class="upload-zone" id="uploadZone">
+        <div class="icon">⬆</div>
+        <h4>拖拽文件到这里，或点击选择</h4>
+        <p>JPG / PNG / WEBP / MP4 · 单文件 ≤ 50MB · 最多 8 张</p>
+        <input type="file" id="fileInput" accept="image/*,video/*" multiple>
+      </div>
+      <div class="upload-preview" id="uploadPreview"></div>
+    </div>
+
+    <!-- 标题 -->
+    <div class="field">
+      <label>作品标题 <span class="req">*</span></label>
+      <input type="text" placeholder="例：便利店夜班（她看起来很困）" maxlength="60">
+      <div class="hint">60字以内，好的标题有助于审核员笑场</div>
+    </div>
+
+    <!-- 描述 -->
+    <div class="field">
+      <label>作品描述 / 创作说明</label>
+      <textarea placeholder="讲讲这个菲比在干什么？灵感来源？创作过程？——随便写，审核员很好说话。" maxlength="500"></textarea>
+      <div class="hint">500字以内</div>
+    </div>
+
+    <!-- 创作媒介 -->
+    <div class="field">
+      <label>创作媒介 <span class="req">*</span></label>
+      <div class="medium-grid">
+        <label><input type="radio" name="medium" value="illustration" checked><span class="chip illustration" style="margin-bottom:8px">插画</span><span class="t">ILLUSTRATION</span><span class="d">手绘 / 数绘</span></label>
+        <label><input type="radio" name="medium" value="ai"><span class="chip ai" style="margin-bottom:8px">AI</span><span class="t">AI CREATION</span><span class="d">AI 生成 / 辅助</span></label>
+        <label><input type="radio" name="medium" value="comic"><span class="chip comic" style="margin-bottom:8px">漫画</span><span class="t">COMIC</span><span class="d">条漫 / 分镜</span></label>
+        <label><input type="radio" name="medium" value="d3"><span class="chip d3" style="margin-bottom:8px">3D</span><span class="t">3D / MODEL</span><span class="d">3D 建模 / 渲染</span></label>
+        <label><input type="radio" name="medium" value="video"><span class="chip video" style="margin-bottom:8px">视频</span><span class="t">VIDEO</span><span class="d">动画 / 短片</span></label>
+        <label><input type="radio" name="medium" value="sticker"><span class="chip sticker" style="margin-bottom:8px">表情包</span><span class="t">STICKER</span><span class="d">表情 / 贴纸</span></label>
+      </div>
+    </div>
+
+    <!-- 归属选择 -->
+    <div class="field">
+      <label>归属世界线</label>
+      <div class="timeline-select">
+        <select>
+          <option value="">— 选择一条已有世界线 —</option>
+          <option>CYBER PHOEBE · 赛博菲比</option>
+          <option>PIRATE PHOEBE · 海盗菲比</option>
+          <option>PHOEBE OWNS A STORE · 便利店菲比</option>
+          <option>MECHA PHOEBE · 机甲菲比</option>
+          <option>GHOST SHIP PHOEBE · 幽灵船菲比</option>
+        </select>
+        <span class="or">— 或 —</span>
+        <a class="btn ghost" href="create-timeline.html" style="padding:12px 20px"><span data-lang-zh>创建新世界线</span><span data-lang-en>NEW TIMELINE</span><span data-lang-ja>新規世界線</span></a>
+      </div>
+      <div class="hint">不选也可以——系统会自动归入「散件菲比」暂存区</div>
+    </div>
+
+    <!-- 标签 -->
+    <div class="field">
+      <label>标签（有助于被搜索到）</label>
+      <input type="text" placeholder="用逗号分隔，例：赛博朋克, 夜班, 猫, 霓虹">
+    </div>
+
+    <!-- 创作者署名 -->
+    <div class="field-row">
+      <div class="field">
+        <label>创作者署名 <span class="req">*</span></label>
+        <input type="text" placeholder="@yourname" value="@">
+      </div>
+      <div class="field">
+        <label>创作年份</label>
+        <input type="text" value="2026">
+      </div>
+    </div>
+
+    <!-- 同意 -->
+    <div class="field">
+      <label class="agree">
+        <input type="checkbox" required>
+        <span data-lang-zh>我确认此作品中的角色是菲比（同一个人），且我有权提交此作品。提交后作品归菲比博物馆永久馆藏，不可撤回——就像真正的博物馆一样。</span>
+        <span data-lang-en>I confirm the character depicted is Phoebe (the same person), and I have the rights to submit this work. Once accepted, it becomes a permanent museum holding — irretrievable, like a real museum.</span>
+        <span data-lang-ja>この作品のキャラクターはフィービー（同一人物）であり、提出する権利があることを確認します。受理後は永久収蔵となり、撤回できません。</span>
+      </label>
+    </div>
+
+    <!-- 提交 -->
+    <div class="actions">
+      <a class="btn ghost" href="index.html"><span data-lang-zh>算了不交了</span><span data-lang-en>NEVER MIND</span><span data-lang-ja>やめる</span></a>
+      <button class="btn solid" type="submit"><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT PHOEBE</span><span data-lang-ja>提出する</span> →</button>
+    </div>
+  </form>
+</section>
+
+<footer class="pm-foot">
+  <div class="inner">
+    <div class="brand">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆 · 大概很严肃</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></div>
+    <div class="meta"><span>© 2026 PHOEBE MUSEUM</span><span data-lang-zh>*本馆的严肃程度以实际情况为准</span><span data-lang-en>*SERIOUSNESS MAY VARY</span><span>PM-000001 → ∞</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document;
+var nav=d.getElementById('nav'),btn=d.getElementById('menubtn'),drawer=d.getElementById('drawer');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
+d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
+
+var els=[].slice.call(d.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+els.forEach(function(el){io.observe(el)});
+}else{els.forEach(function(el){el.classList.add('in')})}
+
+var top=d.createElement('button');top.type='button';top.className='to-top';top.setAttribute('aria-label','back to top');top.textContent='↑';
+d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
+/* ---- 用户菜单 ---- */
+var ua=d.getElementById('userArea'),ut=d.getElementById('userTrigger'),um=d.getElementById('userMenu'),lo=d.getElementById('logoutBtn');
+if(ut){ut.addEventListener('click',function(e){e.stopPropagation();ua.classList.toggle('open')})}
+if(um){um.addEventListener('click',function(e){e.stopPropagation()})}
+d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua.contains(e.target)){ua.classList.remove('open')}});
+if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
+var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
+
+/* 上传预览 */
+var zone=d.getElementById('uploadZone'),input=d.getElementById('fileInput'),preview=d.getElementById('uploadPreview');
+function handleFiles(files){
+  [].slice.call(files).forEach(function(f){
+    if(!f.type.match(/image|video/))return;
+    var item=d.createElement('div');item.className='item';
+    if(f.type.match('image')){
+      var img=d.createElement('img');img.src=URL.createObjectURL(f);item.appendChild(img);
+    }else{
+      var v=d.createElement('video');v.src=URL.createObjectURL(f);v.controls=true;v.style.width='100%';v.style.height='100%';v.style.objectFit='cover';item.appendChild(v);
+    }
+    var rm=d.createElement('button');rm.className='rm';rm.textContent='✕';rm.type='button';
+    rm.addEventListener('click',function(){item.remove()});
+    item.appendChild(rm);
+    preview.appendChild(item);
+  });
+}
+input.addEventListener('change',function(){handleFiles(this.files)});
+zone.addEventListener('dragover',function(e){e.preventDefault();zone.classList.add('dragover')});
+zone.addEventListener('dragleave',function(){zone.classList.remove('dragover')});
+zone.addEventListener('drop',function(e){e.preventDefault();zone.classList.remove('dragover');handleFiles(e.dataTransfer.files)});
+})();
+</script>
+</body>
+</html>

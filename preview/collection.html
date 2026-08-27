@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>馆藏 COLLECTION | PHOEBE MUSEUM</title>
+<meta name="description" content="菲比博物馆全部馆藏：每一件都是菲比，每一件都有编号。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+.hero{padding:150px 5vw 0;max-width:1560px;margin:0 auto}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(48px,6.4vw,96px);letter-spacing:-.02em;line-height:1;margin:24px 0 0}
+.hero h1 em{font-style:italic;color:var(--seal)}
+.hero p{font-size:13px;line-height:2.2;color:var(--ink-2);max-width:560px;margin:26px 0 0}
+
+/* 筛选条 */
+.filters{position:sticky;top:88px;z-index:40;margin:56px 5vw 0;padding:18px 22px;max-width:1560px;margin-left:auto;margin-right:auto;border-radius:20px;background:rgba(255,255,255,.62);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.7);box-shadow:0 14px 40px -18px rgba(22,21,15,.16);display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.filters .group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.filters .lbl{font-size:8px;letter-spacing:.26em;color:var(--ink-3);margin-right:2px}
+.fchip{border:1px solid var(--line-dark);background:transparent;border-radius:999px;padding:7px 13px;font-size:9px;letter-spacing:.14em;cursor:pointer;color:var(--ink-2);transition:all .25s}
+.fchip:hover{border-color:var(--ink);color:var(--ink)}
+.fchip.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.fchip.c-illustration.on{background:#d8a447;border-color:#d8a447}
+.fchip.c-ai.on{background:#9b7ede;border-color:#9b7ede}
+.fchip.c-comic.on{background:#c96f5a;border-color:#c96f5a}
+.fchip.c-3d.on{background:#4fa3b8;border-color:#4fa3b8}
+.fchip.c-video.on{background:#e08a3c;border-color:#e08a3c}
+.fchip.c-sticker.on{background:#d98ba3;border-color:#d98ba3}
+.filters .search{margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid var(--line-dark);border-radius:999px;padding:7px 15px;min-width:210px;background:rgba(255,255,255,.5)}
+.filters .search input{border:0;background:transparent;outline:none;font-size:11px;letter-spacing:.06em;width:100%}
+.filters .search span{color:var(--ink-3);font-size:12px}
+
+.sec{padding:56px 5vw 0;max-width:1560px;margin:0 auto}
+.count{font-size:10px;letter-spacing:.22em;color:var(--ink-3);margin-bottom:26px}
+.count b{color:var(--seal);font-family:var(--serif);font-style:italic;font-size:15px;font-weight:400}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.frame.hide{display:none}
+.more{display:flex;justify-content:center;margin-top:60px}
+.empty{display:none;text-align:center;padding:80px 0;color:var(--ink-3);font-size:12px;letter-spacing:.14em}
+.empty b{display:block;font-family:var(--serif);font-style:italic;font-size:30px;font-weight:300;color:var(--ink-2);margin-bottom:14px}
+
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.filters{top:78px}}
+@media(max-width:960px){.hero{padding:126px 6vw 0}.sec{padding:44px 6vw 0}.filters{margin:44px 6vw 0}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.filters .search{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+
+<header class="pm-nav" id="nav">
+  <a class="logo" href="index.html">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></a>
+  <nav class="links">
+    <a href="index.html" data-lang-zh>首页</a><a href="index.html" data-lang-en>HOME</a><a href="index.html" data-lang-ja>ホーム</a>
+    <a href="collection.html" class="active" data-lang-zh>馆藏</a><a href="collection.html" class="active" data-lang-en>COLLECTION</a><a href="collection.html" class="active" data-lang-ja>収蔵品</a>
+    <a href="timeline-human.html" data-lang-zh>人类时间线</a><a href="timeline-human.html" data-lang-en>HUMAN TIMELINE</a><a href="timeline-human.html" data-lang-ja>人類の時間線</a>
+    <a href="community.html" data-lang-zh>社区世界线</a><a href="community.html" data-lang-en>COMMUNITY</a><a href="community.html" data-lang-ja>コミュニティ</a>
+    <a href="creators.html" data-lang-zh>创作者</a><a href="creators.html" data-lang-en>CREATORS</a><a href="creators.html" data-lang-ja>クリエイター</a>
+    <a href="archive.html" data-lang-zh>档案馆</a><a href="archive.html" data-lang-en>ARCHIVE</a><a href="archive.html" data-lang-ja>アーカイブ</a>
+    <a href="my.html" data-lang-zh>我的博物馆</a><a href="my.html" data-lang-en>MY MUSEUM</a><a href="my.html" data-lang-ja>マイミュージアム</a>
+  </nav>
+  <div class="right">
+    <div class="lang"><button data-lang="zh" class="active">中</button><button data-lang="en">EN</button><button data-lang="ja">日</button></div>
+
+    <a class="submit-btn" href="submit.html" data-lang-zh>上交菲比</a><a class="submit-btn" href="submit.html" data-lang-en>SUBMIT</a><a class="submit-btn" href="submit.html" data-lang-ja>投稿する</a>
+    <button class="menu-btn" id="menubtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+<div class="pm-userbar" id="userArea" data-login="false">
+  <a class="login-pill" href="login.html"><span class="dot"></span><span data-lang-zh>登录 / 注册</span><span data-lang-en>LOGIN / SIGN UP</span><span data-lang-ja>ログイン</span></a>
+  <div class="user-trigger" id="userTrigger">
+    <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+    <span class="uname">霓虹笔</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="u-head">
+      <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+      <div class="u-info">
+        <div class="name">霓虹笔</div>
+        <div class="handle">@neon_pen</div>
+      </div>
+    </div>
+    <a href="my.html"><span class="icon">◆</span><span data-lang-zh>我的博物馆</span><span data-lang-en>MY MUSEUM</span><span data-lang-ja>マイミュージアム</span></a>
+    <a href="submit.html"><span class="icon">↑</span><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT</span><span data-lang-ja>投稿する</span></a>
+    <a href="my.html"><span class="icon">♥</span><span data-lang-zh>我的收藏</span><span data-lang-en>COLLECTIONS</span><span data-lang-ja>コレクション</span></a>
+    <div class="u-sep"></div>
+    <button class="u-logout" id="logoutBtn"><span class="icon">⏻</span><span data-lang-zh>退出登录</span><span data-lang-en>SIGN OUT</span><span data-lang-ja>ログアウト</span></button>
+  </div>
+</div>
+<nav class="pm-drawer" id="drawer">
+  <a href="index.html">首页 · HOME</a>
+  <a href="collection.html" class="active">馆藏 · COLLECTION</a>
+  <a href="timeline-human.html">人类时间线 · HUMAN TIMELINE</a>
+  <a href="community.html">社区世界线 · COMMUNITY</a>
+  <a href="creators.html">创作者 · CREATORS</a>
+  <a href="archive.html">档案馆 · ARCHIVE</a>
+  <a href="my.html">我的博物馆 · MY MUSEUM</a>
+</nav>
+
+<section class="hero rv">
+  <div class="kicker"><span class="no">COLLECTION</span><span data-lang-zh>全部馆藏 · 一件不落</span><span data-lang-en>EVERY PHOEBE, CATALOGUED</span><span data-lang-ja>全収蔵品</span></div>
+  <h1><span data-lang-zh>全是菲比，</span><span data-lang-en>All Phoebe,</span><span data-lang-ja>全部フィービー、</span><br><em data-lang-zh>都有编号。</em><em data-lang-en>all numbered.</em><em data-lang-ja>全部番号付き。</em></h1>
+  <p data-lang-zh>本馆承诺：这里没有一件作品不是菲比。按媒介、世界线、编号慢慢挑，看上了就点进去——每件作品都有自己的展签。</p>
+  <p data-lang-en>Our promise: nothing here is not Phoebe. Filter by medium, timeline or accession number — every work has its own label.</p>
+  <p data-lang-ja>当館の約束：ここにあるのは全部フィービーです。媒介・世界線・番号で絞り込んで、じっくりご覧ください。</p>
+</section>
+
+<div class="filters rv">
+  <div class="group" id="medium-filter">
+    <span class="lbl" data-lang-zh>媒介</span><span class="lbl" data-lang-en>MEDIUM</span><span class="lbl" data-lang-ja>媒介</span>
+    <button class="fchip on" data-f="all" data-lang-zh>全部</button><button class="fchip on" data-f="all" data-lang-en>ALL</button><button class="fchip on" data-f="all" data-lang-ja>すべて</button>
+    <button class="fchip c-illustration" data-f="illustration" data-lang-zh>插画</button><button class="fchip c-illustration" data-f="illustration" data-lang-en>ILLUST</button><button class="fchip c-illustration" data-f="illustration" data-lang-ja>イラスト</button>
+    <button class="fchip c-ai" data-f="ai" data-lang-zh>AI 创作</button><button class="fchip c-ai" data-f="ai" data-lang-en>AI</button><button class="fchip c-ai" data-f="ai" data-lang-ja>AI</button>
+    <button class="fchip c-comic" data-f="comic" data-lang-zh>漫画</button><button class="fchip c-comic" data-f="comic" data-lang-en>COMIC</button><button class="fchip c-comic" data-f="comic" data-lang-ja>漫画</button>
+    <button class="fchip c-3d" data-f="3d">3D</button>
+    <button class="fchip c-video" data-f="video" data-lang-zh>视频</button><button class="fchip c-video" data-f="video" data-lang-en>VIDEO</button><button class="fchip c-video" data-f="video" data-lang-ja>動画</button>
+    <button class="fchip c-sticker" data-f="sticker" data-lang-zh>表情包</button><button class="fchip c-sticker" data-f="sticker" data-lang-en>STICKER</button><button class="fchip c-sticker" data-f="sticker" data-lang-ja>スタンプ</button>
+  </div>
+  <div class="group" id="method-filter">
+    <span class="lbl" data-lang-zh>方式</span><span class="lbl" data-lang-en>METHOD</span><span class="lbl" data-lang-ja>方法</span>
+    <button class="fchip on" data-m="all" data-lang-zh>不限</button><button class="fchip on" data-m="all" data-lang-en>ALL</button><button class="fchip on" data-m="all" data-lang-ja>すべて</button>
+    <button class="fchip" data-m="manual" data-lang-zh>手工</button><button class="fchip" data-m="manual" data-lang-en>MANUAL</button><button class="fchip" data-m="manual" data-lang-ja>手描き</button>
+    <button class="fchip" data-m="ai" data-lang-zh>AI 生成</button><button class="fchip" data-m="ai" data-lang-en>AI GEN</button><button class="fchip" data-m="ai" data-lang-ja>AI生成</button>
+    <button class="fchip" data-m="mixed" data-lang-zh>混合</button><button class="fchip" data-m="mixed" data-lang-en>MIXED</button><button class="fchip" data-m="mixed" data-lang-ja>混合</button>
+  </div>
+  <label class="search"><span>⌕</span><input id="q" type="text" placeholder="编号 / 标题 / 创作者 / 世界线"></label>
+</div>
+
+<section class="sec rv">
+  <div class="count" id="count">共 <b>12</b> 件菲比在册</div>
+  <div class="grid" id="grid">
+    <a class="frame wob" data-medium="illustration" data-method="manual" data-key="pm-000039 站崖边想心事的菲比 @tempest romanticism" href="artwork.html"><div class="art"><img src="assets/hero-sea.png" alt=""></div><div class="cap"><span class="t">站崖边想心事的菲比</span><span class="m"><span class="chip illustration">插画</span> <span class="pm-no">PM-000039</span></span></div></a>
+    <a class="frame wob r" data-medium="illustration" data-method="manual" data-key="pm-000013 坐了一下午的菲比 @oilhand renaissance" href="artwork.html"><div class="art"><img src="assets/renaissance.png" alt=""></div><div class="cap"><span class="t">坐了一下午的菲比</span><span class="m"><span class="chip illustration">插画</span> <span class="pm-no">PM-000013</span></span></div></a>
+    <a class="frame wob" data-medium="illustration" data-method="manual" data-key="pm-000021 冲浪的菲比 @wave ukiyo-e" href="artwork.html"><div class="art"><img src="assets/ukiyoe.png" alt=""></div><div class="cap"><span class="t">冲浪的菲比（江户限定）</span><span class="m"><span class="chip illustration">插画</span> <span class="pm-no">PM-000021</span></span></div></a>
+    <a class="frame wob r" data-medium="ai" data-method="ai" data-key="pm-000036 加班到霓虹灯亮的菲比 @cyberlab cyber phoebe" href="artwork.html"><div class="art"><img src="assets/neon.png" alt=""></div><div class="cap"><span class="t">加班到霓虹灯亮的菲比</span><span class="m"><span class="chip ai">AI 创作</span> <span class="pm-no">PM-000036</span></span></div></a>
+    <a class="frame wob" data-medium="illustration" data-method="manual" data-key="pm-000028 假装看书的菲比 @garden impressionism" href="artwork.html"><div class="art"><img src="assets/garden.png" alt=""></div><div class="cap"><span class="t">假装看书的菲比</span><span class="m"><span class="chip illustration">插画</span> <span class="pm-no">PM-000028</span></span></div></a>
+    <a class="frame wob r" data-medium="illustration" data-method="manual" data-key="pm-000007 史上最早的表情包 @cavedigger prehistoric" href="artwork.html"><div class="art"><img src="assets/cave.png" alt=""></div><div class="cap"><span class="t">史上最早的表情包</span><span class="m"><span class="chip illustration">插画</span> <span class="pm-no">PM-000007</span></span></div></a>
+    <a class="frame wob" data-medium="comic" data-method="mixed" data-key="pm-000042 便利店夜班 @conveni store" href="artwork.html"><div class="art"><img src="assets/store.png" alt=""></div><div class="cap"><span class="t">便利店夜班</span><span class="m"><span class="chip comic">漫画</span> <span class="pm-no">PM-000042</span></span></div></a>
+    <a class="frame wob r" data-medium="sticker" data-method="mixed" data-key="pm-000041 表情包文物合集 @memelord sticker" href="artwork.html"><div class="art"><img src="assets/stickers.png" alt=""></div><div class="cap"><span class="t">表情包文物合集</span><span class="m"><span class="chip sticker">表情包</span> <span class="pm-no">PM-000041</span></span></div></a>
+    <a class="frame wob" data-medium="illustration" data-method="manual" data-key="pm-000001 一个人就是一支军队 @founder pirate" href="artwork.html"><div class="art"><img src="assets/hero-pop.png" alt=""></div><div class="cap"><span class="t">一个人就是一支军队</span><span class="m"><span class="chip illustration">插画</span> <span class="pm-no">PM-000001</span></span></div></a>
+    <a class="frame wob r extra" style="display:none" data-medium="video" data-method="mixed" data-key="pm-000033 菲比的一天 动态影像 @filmclub unwritten" href="artwork.html"><div class="art"><img src="assets/hero-sea.png" alt="" style="filter:hue-rotate(24deg) saturate(.8)"></div><div class="cap"><span class="t">菲比的一天（影像）</span><span class="m"><span class="chip video">视频</span> <span class="pm-no">PM-000033</span></span></div></a>
+    <a class="frame wob extra" style="display:none" data-medium="3d" data-method="manual" data-key="pm-000030 黏土菲比 手办 @clayworks modern" href="artwork.html"><div class="art"><img src="assets/garden.png" alt="" style="filter:hue-rotate(-30deg) saturate(.85)"></div><div class="cap"><span class="t">黏土菲比（可动）</span><span class="m"><span class="chip d3">3D</span> <span class="pm-no">PM-000030</span></span></div></a>
+    <a class="frame wob r extra" style="display:none" data-medium="ai" data-method="ai" data-key="pm-000025 赛博菲比 2077 @cyberlab cyber" href="artwork.html"><div class="art"><img src="assets/neon.png" alt="" style="filter:hue-rotate(40deg)"></div><div class="cap"><span class="t">赛博菲比 2077</span><span class="m"><span class="chip ai">AI 创作</span> <span class="pm-no">PM-000025</span></span></div></a>
+  </div>
+  <div class="empty" id="empty"><b>一件都没有？</b>不可能，这里全是菲比。换个条件试试。</div>
+  <div class="more"><button class="btn ghost" id="loadmore">再展出 3 件（LOAD MORE）</button></div>
+</section>
+
+<footer class="pm-foot">
+  <div class="inner">
+    <div class="brand">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆 · 大概很严肃</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></div>
+    <div class="meta"><span>© 2026 PHOEBE MUSEUM</span><span data-lang-zh>*本馆的严肃程度以实际情况为准</span><span data-lang-en>*SERIOUSNESS MAY VARY</span><span>PM-000001 → ∞</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document;
+var nav=d.getElementById('nav'),btn=d.getElementById('menubtn'),drawer=d.getElementById('drawer');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
+d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
+var els=[].slice.call(d.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06});els.forEach(function(el){io.observe(el)});}else{els.forEach(function(el){el.classList.add('in')})}
+var top=d.createElement('button');top.type='button';top.className='to-top';top.textContent='↑';d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
+/* ---- 用户菜单 ---- */
+var ua=d.getElementById('userArea'),ut=d.getElementById('userTrigger'),um=d.getElementById('userMenu'),lo=d.getElementById('logoutBtn');
+if(ut){ut.addEventListener('click',function(e){e.stopPropagation();ua.classList.toggle('open')})}
+if(um){um.addEventListener('click',function(e){e.stopPropagation()})}
+d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua.contains(e.target)){ua.classList.remove('open')}});
+if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
+var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
+/* ---- 筛选 ---- */
+var cards=[].slice.call(d.querySelectorAll('#grid .frame'));
+var fMedium='all',fMethod='all',q='';
+var moreBtn=d.getElementById('loadmore'),shown=9;
+function visible(c,i){
+var extra=c.classList.contains('extra');
+if(extra&&i>=shown)return false;
+if(fMedium!=='all'&&c.dataset.medium!==fMedium)return false;
+if(fMethod!=='all'&&c.dataset.method!==fMethod)return false;
+if(q&&c.dataset.key.toLowerCase().indexOf(q)===-1)return false;
+return true;
+}
+function render(){
+var n=0;
+cards.forEach(function(c,i){var v=visible(c,i);c.style.display=v?'':'none';if(v)n++});
+d.getElementById('count').innerHTML='共 <b>'+n+'</b> 件菲比在册';
+d.getElementById('empty').style.display=n?'none':'block';
+var hasMore=cards.some(function(c,i){return c.classList.contains('extra')&&visible(c,999)});
+moreBtn.style.display=(fMedium==='all'&&fMethod==='all'&&!q&&hasMore)?'':'none';
+}
+d.querySelectorAll('#medium-filter .fchip').forEach(function(b){b.addEventListener('click',function(){d.querySelectorAll('#medium-filter .fchip').forEach(function(x){x.classList.remove('on')});d.querySelectorAll('#medium-filter .fchip[data-f="'+this.dataset.f+'"]').forEach(function(x){x.classList.add('on')});fMedium=this.dataset.f;render()})});
+d.querySelectorAll('#method-filter .fchip').forEach(function(b){b.addEventListener('click',function(){d.querySelectorAll('#method-filter .fchip').forEach(function(x){x.classList.remove('on')});d.querySelectorAll('#method-filter .fchip[data-m="'+this.dataset.m+'"]').forEach(function(x){x.classList.add('on')});fMethod=this.dataset.m;render()})});
+d.getElementById('q').addEventListener('input',function(){q=this.value.trim().toLowerCase();render()});
+moreBtn.addEventListener('click',function(){shown=99;render()});
+render();
+})();
+</script>
+</body>
+</html>

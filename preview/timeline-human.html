@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>人类时间线 HUMAN TIMELINE | PHOEBE MUSEUM</title>
+<meta name="description" content="如果菲比存在于人类艺术史中——十三间时代展厅，从史前洞穴到未书写时代。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+.hero{padding:150px 5vw 40px;max-width:1560px;margin:0 auto}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(48px,6.4vw,96px);letter-spacing:-.02em;line-height:1;margin:24px 0 0}
+.hero h1 em{font-style:italic;color:var(--seal)}
+.hero p{font-size:13px;line-height:2.2;color:var(--ink-2);max-width:600px;margin:26px 0 0}
+
+/* 纵向长廊 */
+.gallery{position:relative;max-width:1200px;margin:60px auto 0;padding:0 5vw}
+.gallery::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line-dark)}
+.era{position:relative;display:grid;grid-template-columns:1fr 90px 1fr;align-items:center;gap:0;padding:54px 0}
+.era .dot{grid-column:2;justify-self:center;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--line-dark);transition:all .4s;position:relative;z-index:2}
+.era:hover .dot{border-color:var(--seal);background:var(--seal);transform:scale(1.25)}
+.era .card{grid-column:1;text-align:right;padding-right:8px}
+.era:nth-child(even) .card{grid-column:3;text-align:left;padding-right:0;padding-left:8px}
+.era:nth-child(even) .visual{grid-column:1;grid-row:1}
+.era .visual{grid-column:3;padding-left:8px}
+.era:nth-child(even) .visual{padding-left:0;padding-right:8px}
+.era .n{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(40px,4vw,60px);color:var(--line-dark);line-height:1;transition:color .4s}
+.era:hover .n{color:var(--seal)}
+.era h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.4vw,34px);margin:10px 0 0;letter-spacing:-.01em}
+.era .cn{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.26em;color:var(--ink-2);margin-top:10px}
+.era .kw{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.era:nth-child(odd) .kw{justify-content:flex-end}
+.era .kw span{font-size:8px;letter-spacing:.16em;color:var(--ink-3);border:1px solid var(--line);border-radius:999px;padding:4px 9px}
+.era .cnt{display:inline-block;margin-top:16px;font-size:9px;letter-spacing:.2em;color:var(--ink-3)}
+.era .cnt b{color:var(--seal);font-family:var(--serif);font-style:italic;font-size:15px;font-weight:400}
+.era .go{display:inline-block;margin-top:14px}
+.era .visual .art{aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--bg-soft)}
+.era .visual img{width:100%;height:100%;object-fit:cover;filter:saturate(.9);transition:transform 1s var(--ease)}
+.era:hover .visual img{transform:scale(1.05)}
+.era .visual .ph-txt{height:100%;display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:26px;color:var(--ink-3)}
+.unwritten{background:linear-gradient(135deg,#2b2b33,#16150f);border-radius:6px}
+.unwritten .ph-txt{color:#d9d4c8}
+
+@media(max-width:960px){
+.hero{padding:126px 6vw 30px}
+.gallery::before{left:14px}
+.era{grid-template-columns:28px 1fr;gap:16px;padding:40px 0}
+.era .dot{grid-column:1}
+.era .card,.era:nth-child(even) .card{grid-column:2;text-align:left;padding:0}
+.era .visual,.era:nth-child(even) .visual{grid-column:2;grid-row:2;padding:0;margin-top:18px}
+.era:nth-child(odd) .kw{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header class="pm-nav" id="nav">
+  <a class="logo" href="index.html">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></a>
+  <nav class="links">
+    <a href="index.html" data-lang-zh>首页</a><a href="index.html" data-lang-en>HOME</a><a href="index.html" data-lang-ja>ホーム</a>
+    <a href="collection.html" data-lang-zh>馆藏</a><a href="collection.html" data-lang-en>COLLECTION</a><a href="collection.html" data-lang-ja>収蔵品</a>
+    <a href="timeline-human.html" class="active" data-lang-zh>人类时间线</a><a href="timeline-human.html" class="active" data-lang-en>HUMAN TIMELINE</a><a href="timeline-human.html" class="active" data-lang-ja>人類の時間線</a>
+    <a href="community.html" data-lang-zh>社区世界线</a><a href="community.html" data-lang-en>COMMUNITY</a><a href="community.html" data-lang-ja>コミュニティ</a>
+    <a href="creators.html" data-lang-zh>创作者</a><a href="creators.html" data-lang-en>CREATORS</a><a href="creators.html" data-lang-ja>クリエイター</a>
+    <a href="archive.html" data-lang-zh>档案馆</a><a href="archive.html" data-lang-en>ARCHIVE</a><a href="archive.html" data-lang-ja>アーカイブ</a>
+    <a href="my.html" data-lang-zh>我的博物馆</a><a href="my.html" data-lang-en>MY MUSEUM</a><a href="my.html" data-lang-ja>マイミュージアム</a>
+  </nav>
+  <div class="right">
+    <div class="lang"><button data-lang="zh" class="active">中</button><button data-lang="en">EN</button><button data-lang="ja">日</button></div>
+
+    <a class="submit-btn" href="submit.html" data-lang-zh>上交菲比</a><a class="submit-btn" href="submit.html" data-lang-en>SUBMIT</a><a class="submit-btn" href="submit.html" data-lang-ja>投稿する</a>
+    <button class="menu-btn" id="menubtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+<div class="pm-userbar" id="userArea" data-login="false">
+  <a class="login-pill" href="login.html"><span class="dot"></span><span data-lang-zh>登录 / 注册</span><span data-lang-en>LOGIN / SIGN UP</span><span data-lang-ja>ログイン</span></a>
+  <div class="user-trigger" id="userTrigger">
+    <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+    <span class="uname">霓虹笔</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="u-head">
+      <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+      <div class="u-info">
+        <div class="name">霓虹笔</div>
+        <div class="handle">@neon_pen</div>
+      </div>
+    </div>
+    <a href="my.html"><span class="icon">◆</span><span data-lang-zh>我的博物馆</span><span data-lang-en>MY MUSEUM</span><span data-lang-ja>マイミュージアム</span></a>
+    <a href="submit.html"><span class="icon">↑</span><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT</span><span data-lang-ja>投稿する</span></a>
+    <a href="my.html"><span class="icon">♥</span><span data-lang-zh>我的收藏</span><span data-lang-en>COLLECTIONS</span><span data-lang-ja>コレクション</span></a>
+    <div class="u-sep"></div>
+    <button class="u-logout" id="logoutBtn"><span class="icon">⏻</span><span data-lang-zh>退出登录</span><span data-lang-en>SIGN OUT</span><span data-lang-ja>ログアウト</span></button>
+  </div>
+</div>
+<nav class="pm-drawer" id="drawer">
+  <a href="index.html">首页 · HOME</a>
+  <a href="collection.html">馆藏 · COLLECTION</a>
+  <a href="timeline-human.html" class="active">人类时间线 · HUMAN TIMELINE</a>
+  <a href="community.html">社区世界线 · COMMUNITY</a>
+  <a href="creators.html">创作者 · CREATORS</a>
+  <a href="archive.html">档案馆 · ARCHIVE</a>
+  <a href="my.html">我的博物馆 · MY MUSEUM</a>
+</nav>
+
+<section class="hero rv">
+  <div class="kicker"><span class="no">WING I</span><span data-lang-zh>人类艺术史主线 · 官方固定展厅</span><span data-lang-en>THE OFFICIAL ART-HISTORY CANON</span><span data-lang-ja>人類芸術史の主線</span></div>
+  <h1><span data-lang-zh>菲比穿越</span><span data-lang-en>Phoebe through</span><span data-lang-ja>フィービーの</span><br><em data-lang-zh>一万年。</em><em data-lang-en>human history.</em><em data-lang-ja>一万年穿越。</em></h1>
+  <p data-lang-zh>如果菲比存在于人类艺术史中，她会以什么样的形式被不同文明与时代创造出来？从洞穴壁画到 AI 绘画，十三间时代展厅住满了菲比。请沿长廊慢慢参观，不要惊动展品——它们已经很老了。</p>
+  <p data-lang-en>If Phoebe had existed throughout human art history, how would each age have created her? Thirteen era galleries, from cave walls to the unwritten age. Walk slowly, the exhibits are very old.</p>
+  <p data-lang-ja>もしフィービーが人類の芸術史に存在していたら？洞窟壁画からAI絵画まで、十三の展示室をゆっくりご見学ください。</p>
+</section>
+
+<div class="gallery">
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">01</div><h3>PREHISTORIC<span class="cn">史前 · 最早的菲比</span></h3><div class="kw"><span>CAVE ART</span><span>TOTEM</span><span>OCHRE</span></div><span class="cnt"><b>3</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><img src="assets/cave.png" alt="史前展厅"></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">02</div><h3>CLASSICAL<span class="cn">古典时代 · 大理石菲比</span></h3><div class="kw"><span>GREEK</span><span>MARBLE</span><span>MYTH</span></div><span class="cnt"><b>2</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><div class="ph-txt">ΦΟΙΒΗ</div></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">03</div><h3>MEDIEVAL<span class="cn">中世纪 · 手抄本菲比</span></h3><div class="kw"><span>MANUSCRIPT</span><span>GOTHIC</span><span>KNIGHT</span></div><span class="cnt"><b>2</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><div class="ph-txt">✠ Phoebe ✠</div></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">04</div><h3>RENAISSANCE<span class="cn">文艺复兴 · 她只是坐了一会儿</span></h3><div class="kw"><span>OIL</span><span>PORTRAIT</span><span>HUMANISM</span></div><span class="cnt"><b>5</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><img src="assets/renaissance.png" alt="文艺复兴展厅"></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">05</div><h3>BAROQUE<span class="cn">巴洛克 · 金光闪闪菲比</span></h3><div class="kw"><span>DRAMA</span><span>GOLD</span><span>THEATRE</span></div><span class="cnt"><b>2</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><div class="ph-txt">✦ dramatic ✦</div></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">06</div><h3>REALISM<span class="cn">现实主义 · 打工菲比</span></h3><div class="kw"><span>WORK</span><span>CITY</span><span>DOCUMENT</span></div><span class="cnt"><b>2</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><div class="ph-txt">ordinary</div></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">07</div><h3>ROMANTICISM<span class="cn">浪漫主义 · 指定崖边站位</span></h3><div class="kw"><span>STORM</span><span>RUINS</span><span>SUBLIME</span></div><span class="cnt"><b>4</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><img src="assets/hero-sea.png" alt="浪漫主义展厅"></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">08</div><h3>PRE-RAPHAELITE<span class="cn">前拉斐尔派 · 花海长发菲比</span></h3><div class="kw"><span>FLOWERS</span><span>MYTH</span><span>SYMBOL</span></div><span class="cnt"><b>3</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><div class="ph-txt">✿ flowers ✿</div></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">09</div><h3>UKIYO-E<span class="cn">浮世绘 · 浪花是借的</span></h3><div class="kw"><span>WOODBLOCK</span><span>WAVES</span><span>EDO</span></div><span class="cnt"><b>4</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><img src="assets/ukiyoe.png" alt="浮世绘展厅"></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">10</div><h3>IMPRESSIONISM<span class="cn">印象派 · 光很好，书没翻页</span></h3><div class="kw"><span>LIGHT</span><span>GARDEN</span><span>MOMENT</span></div><span class="cnt"><b>6</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><img src="assets/garden.png" alt="印象派展厅"></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">11</div><h3>POST-IMPRESSIONISM<span class="cn">后印象派 · 颜色开始不对劲</span></h3><div class="kw"><span>COLOR</span><span>EMOTION</span><span>GEOMETRY</span></div><span class="cnt"><b>2</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><div class="ph-txt">■ ▲ ●</div></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">12</div><h3>MODERN<span class="cn">现代 · 看不太懂但有菲比</span></h3><div class="kw"><span>CUBISM</span><span>POP</span><span>ABSTRACT</span></div><span class="cnt"><b>7</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art"><div class="ph-txt">?! modern</div></div></div></a>
+  <a class="era rv" href="timeline-era.html"><span class="dot"></span><div class="card"><div class="n">13</div><h3>THE UNWRITTEN AGE<span class="cn">未书写时代 · AI 也开始画她了</span></h3><div class="kw"><span>AI NATIVE</span><span>FUTURE</span><span>MIXED</span></div><span class="cnt"><b>9</b> WORKS</span><br><span class="alink go">进展厅 <span class="arr">→</span></span></div><div class="visual"><div class="art unwritten"><div class="ph-txt">to be continued…</div></div></div></a>
+</div>
+
+<footer class="pm-foot">
+  <div class="inner">
+    <div class="brand">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆 · 大概很严肃</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></div>
+    <div class="meta"><span>© 2026 PHOEBE MUSEUM</span><span data-lang-zh>*本馆的严肃程度以实际情况为准</span><span data-lang-en>*SERIOUSNESS MAY VARY</span><span>PM-000001 → ∞</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document;
+var nav=d.getElementById('nav'),btn=d.getElementById('menubtn'),drawer=d.getElementById('drawer');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
+d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
+var els=[].slice.call(d.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.08});els.forEach(function(el){io.observe(el)});}else{els.forEach(function(el){el.classList.add('in')})}
+var top=d.createElement('button');top.type='button';top.className='to-top';top.textContent='↑';d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
+/* ---- 用户菜单 ---- */
+var ua=d.getElementById('userArea'),ut=d.getElementById('userTrigger'),um=d.getElementById('userMenu'),lo=d.getElementById('logoutBtn');
+if(ut){ut.addEventListener('click',function(e){e.stopPropagation();ua.classList.toggle('open')})}
+if(um){um.addEventListener('click',function(e){e.stopPropagation()})}
+d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua.contains(e.target)){ua.classList.remove('open')}});
+if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
+var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
+})();
+</script>
+</body>
+</html>

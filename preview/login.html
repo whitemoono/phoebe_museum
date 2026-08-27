@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>入馆登记 · PHOEBE MUSEUM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+/* ============ 登录页 ============ */
+.login-page{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.login-left{position:relative;display:flex;align-items:center;justify-content:center;padding:80px 5vw;background:var(--ink);overflow:hidden}
+.login-left .bg{position:absolute;inset:0;background:url(assets/hero-collection.png) center/cover;opacity:.15;mix-blend-mode:luminosity}
+.login-left .content{position:relative;text-align:center;color:#f4f0e6;max-width:400px}
+.login-left .logo{font-family:var(--serif);font-size:22px;font-weight:300;letter-spacing:.06em;margin-bottom:40px;display:block}
+.login-left h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,4vw,56px);letter-spacing:-.02em;line-height:1.1;margin:0 0 24px}
+.login-left h1 em{font-style:italic;color:var(--gold)}
+.login-left p{font-size:13px;line-height:2;color:rgba(244,240,230,.6);margin:0 0 40px}
+.login-left .quote{font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(244,240,230,.4);line-height:1.8;border-top:1px solid rgba(244,240,230,.1);padding-top:32px;margin-top:32px}
+
+.login-right{display:flex;align-items:center;justify-content:center;padding:80px 5vw}
+.login-form{width:100%;max-width:380px}
+.login-form .head{margin-bottom:48px}
+.login-form .head h2{font-family:var(--serif);font-size:32px;font-weight:400;margin:0 0 10px}
+.login-form .head p{font-size:12px;color:var(--ink-2);margin:0}
+
+.form-field{margin-bottom:28px}
+.form-field label{display:block;font-size:9px;letter-spacing:.24em;color:var(--ink-2);text-transform:uppercase;margin-bottom:12px}
+.form-field input{width:100%;border:0;border-bottom:1px solid var(--line-dark);background:transparent;padding:12px 0;font-size:15px;font-family:var(--sans);transition:border-color .3s}
+.form-field input:focus{border-color:var(--seal);outline:none}
+
+.form-field .pwd-wrap{position:relative}
+.form-field .pwd-toggle{position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:0;font-size:12px;color:var(--ink-3);cursor:pointer;padding:4px}
+.form-field .pwd-toggle:hover{color:var(--seal)}
+
+.form-options{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;font-size:11px}
+.form-options label{display:flex;align-items:center;gap:8px;color:var(--ink-2);cursor:pointer}
+.form-options a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line)}
+.form-options a:hover{color:var(--seal)}
+
+.btn-login{width:100%;padding:16px;font-size:12px;letter-spacing:.2em;border:0;cursor:pointer;font-family:var(--sans);transition:background .25s}
+.btn-login.solid{background:var(--seal);color:#f4f0e6}
+.btn-login.solid:hover{background:var(--seal-d)}
+.btn-login.ghost{background:transparent;color:var(--ink);border:1px solid var(--line-dark);margin-top:12px}
+.btn-login.ghost:hover{border-color:var(--seal);color:var(--seal)}
+
+.divider{text-align:center;margin:32px 0;font-size:10px;letter-spacing:.2em;color:var(--ink-3);position:relative}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:35%;height:1px;background:var(--line)}
+.divider::before{left:0}
+.divider::after{right:0}
+
+.social{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.social button{padding:12px;border:1px solid var(--line-dark);background:transparent;font-size:11px;letter-spacing:.1em;cursor:pointer;font-family:var(--sans);transition:border-color .25s;color:var(--ink-2)}
+.social button:hover{border-color:var(--seal);color:var(--seal)}
+
+.signup{text-align:center;margin-top:40px;font-size:12px;color:var(--ink-2)}
+.signup a{color:var(--seal);text-decoration:none;border-bottom:1px solid var(--seal)}
+
+.back-home{position:absolute;top:24px;left:24px;font-size:11px;letter-spacing:.14em;color:rgba(244,240,230,.5);text-decoration:none;z-index:2}
+.back-home:hover{color:var(--gold)}
+
+@media(max-width:760px){
+  .login-page{grid-template-columns:1fr}
+  .login-left{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="login-page">
+  <!-- 左侧视觉 -->
+  <div class="login-left">
+    <a class="back-home" href="index.html">← PHOEBE MUSEUM</a>
+    <div class="bg"></div>
+    <div class="content">
+      <span class="logo">PHOEBE MUSEUM</span>
+      <h1><span data-lang-zh>欢迎回到</span><span data-lang-en>Welcome back to</span><span data-lang-ja>おかえりなさい</span><br><em data-lang-zh>你的博物馆</em><em data-lang-en>your museum</em><em data-lang-ja>あなたの博物館</em></h1>
+      <p data-lang-zh>登录后即可上交菲比、收藏菲比、创建世界线——成为一个正经的菲比收藏家。</p>
+      <p data-lang-en>Sign in to submit, collect, and create timelines — become a certified Phoebe collector.</p>
+      <div class="quote" data-lang-zh>"从 PM-000001 开始，永远不会结束。"<br>—— 馆长寄语</div>
+    </div>
+  </div>
+
+  <!-- 右侧表单 -->
+  <div class="login-right">
+    <div class="login-form">
+      <div class="head">
+        <h2><span data-lang-zh>入馆登记</span><span data-lang-en>SIGN IN</span><span data-lang-ja>入館登録</span></h2>
+        <p data-lang-zh>已有账号？请登记入馆。</p>
+      </div>
+
+      <form onsubmit="return false">
+        <div class="form-field">
+          <label><span data-lang-zh>邮箱 / 用户名</span><span data-lang-en>EMAIL / USERNAME</span><span data-lang-ja>メール / ユーザー名</span></label>
+          <input type="text" placeholder="phoebe@phoebemuseum.art" autocomplete="username">
+        </div>
+        <div class="form-field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="pwd-wrap">
+            <input type="password" placeholder="••••••••" autocomplete="current-password" id="pwdInput">
+            <button type="button" class="pwd-toggle" id="pwdToggle">显示</button>
+          </div>
+        </div>
+        <div class="form-options">
+          <label><input type="checkbox"> <span data-lang-zh>记住我</span><span data-lang-en>Remember me</span><span data-lang-ja>記憶する</span></label>
+          <a href="#"><span data-lang-zh>忘了密码？</span><span data-lang-en>Forgot?</span><span data-lang-ja>忘れた？</span></a>
+        </div>
+        <button type="submit" class="btn-login solid"><span data-lang-zh>登记入馆</span><span data-lang-en>SIGN IN</span><span data-lang-ja>入館する</span> →</button>
+        <a href="my.html"><button type="button" class="btn-login ghost"><span data-lang-zh>先逛逛再说</span><span data-lang-en>JUST LOOKING</span><span data-lang-ja>とりあえず見学</span></button></a>
+      </form>
+
+      <div class="divider"><span data-lang-zh>或</span><span data-lang-en>OR</span><span data-lang-ja>または</span></div>
+
+      <div class="social">
+        <button><span data-lang-zh>微信登录</span><span data-lang-en>WECHAT</span><span data-lang-ja>WeChat</span></button>
+        <button><span data-lang-zh>GitHub 登录</span><span data-lang-en>GITHUB</span><span data-lang-ja>GitHub</span></button>
+      </div>
+
+      <div class="signup">
+        <span data-lang-zh>第一次来？</span><span data-lang-en>First time?</span><span data-lang-ja>初めて？</span>
+        <a href="#"><span data-lang-zh>申请入馆资格</span><span data-lang-en>REQUEST ACCESS</span><span data-lang-ja>入館申請</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+var d=document;
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;localStorage.setItem('phoebe-lang',l)}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+
+/* 密码显示/隐藏 */
+var pi=d.getElementById('pwdInput'),pt=d.getElementById('pwdToggle');
+pt.addEventListener('click',function(){
+  if(pi.type==='password'){pi.type='text';pt.textContent='隐藏'}
+  else{pi.type='password';pt.textContent='显示'}
+});
+})();
+</script>
+</body>
+</html>

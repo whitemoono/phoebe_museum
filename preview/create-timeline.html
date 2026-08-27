@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>创建世界线 CREATE A TIMELINE | PHOEBE MUSEUM</title>
+<meta name="description" content="创建一条属于你的菲比世界线——可以是一场冒险、一个时代，或者只是一家便利店。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+.wrap{max-width:1240px;margin:0 auto;padding:150px 5vw 0;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:5vw;align-items:start}
+.wrap h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,4.6vw,68px);letter-spacing:-.02em;line-height:1.05;margin:22px 0 0}
+.wrap h1 em{font-style:italic;color:var(--seal)}
+.wrap .lead{font-size:13px;line-height:2.2;color:var(--ink-2);max-width:480px;margin:24px 0 44px}
+
+.form .field{margin-bottom:34px}
+.form label{display:block;font-size:9px;letter-spacing:.3em;color:var(--ink-2);margin-bottom:12px}
+.form label .req{color:var(--seal);margin-left:6px}
+.form input[type=text],.form textarea{width:100%;border:0;border-bottom:1px solid var(--line-dark);background:transparent;padding:10px 2px;font-size:15px;font-family:var(--serif);outline:none;transition:border-color .3s;border-radius:0}
+.form input[type=text]:focus,.form textarea:focus{border-color:var(--ink)}
+.form textarea{min-height:120px;resize:vertical;font-family:var(--sans);font-size:13px;line-height:2}
+.form .hint{font-size:10px;color:var(--ink-3);margin-top:8px;letter-spacing:.06em}
+.upload{border:1.5px dashed var(--line-dark);border-radius:12px;padding:44px 24px;text-align:center;color:var(--ink-3);font-size:11px;letter-spacing:.14em;cursor:pointer;transition:all .3s;background:var(--bg-soft)}
+.upload:hover{border-color:var(--seal);color:var(--seal)}
+.upload b{display:block;font-size:26px;margin-bottom:10px;font-weight:300}
+.taginput{display:flex;gap:8px;flex-wrap:wrap}
+.tagpick{border:1px solid var(--line-dark);border-radius:999px;padding:8px 14px;font-size:9px;letter-spacing:.16em;color:var(--ink-2);cursor:pointer;background:transparent;transition:all .25s}
+.tagpick.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.form .row{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap}
+
+/* 侧栏 */
+.side{position:sticky;top:110px}
+.side .card{border:1px solid var(--line);border-radius:16px;padding:32px;background:var(--bg-soft)}
+.side h4{font-family:var(--serif);font-weight:400;font-size:22px;margin:0 0 20px}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:0}
+.step .n{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--seal)}
+.step b{font-size:11px;letter-spacing:.16em;font-weight:500;display:block}
+.step span{font-size:10.5px;color:var(--ink-2);line-height:1.9;display:block;margin-top:5px}
+.side .warn{margin-top:20px;font-size:10px;line-height:2;color:var(--ink-3);letter-spacing:.04em}
+.side .warn b{color:var(--seal);font-weight:500}
+
+@media(max-width:1100px){.wrap{grid-template-columns:1fr}.side{position:static}}
+@media(max-width:960px){.wrap{padding:126px 6vw 0}}
+</style>
+</head>
+<body>
+
+<header class="pm-nav" id="nav">
+  <a class="logo" href="index.html">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></a>
+  <nav class="links">
+    <a href="index.html" data-lang-zh>首页</a><a href="index.html" data-lang-en>HOME</a><a href="index.html" data-lang-ja>ホーム</a>
+    <a href="collection.html" data-lang-zh>馆藏</a><a href="collection.html" data-lang-en>COLLECTION</a><a href="collection.html" data-lang-ja>収蔵品</a>
+    <a href="timeline-human.html" data-lang-zh>人类时间线</a><a href="timeline-human.html" data-lang-en>HUMAN TIMELINE</a><a href="timeline-human.html" data-lang-ja>人類の時間線</a>
+    <a href="community.html" class="active" data-lang-zh>社区世界线</a><a href="community.html" class="active" data-lang-en>COMMUNITY</a><a href="community.html" class="active" data-lang-ja>コミュニティ</a>
+    <a href="creators.html" data-lang-zh>创作者</a><a href="creators.html" data-lang-en>CREATORS</a><a href="creators.html" data-lang-ja>クリエイター</a>
+    <a href="archive.html" data-lang-zh>档案馆</a><a href="archive.html" data-lang-en>ARCHIVE</a><a href="archive.html" data-lang-ja>アーカイブ</a>
+    <a href="my.html" data-lang-zh>我的博物馆</a><a href="my.html" data-lang-en>MY MUSEUM</a><a href="my.html" data-lang-ja>マイミュージアム</a>
+  </nav>
+  <div class="right">
+    <div class="lang"><button data-lang="zh" class="active">中</button><button data-lang="en">EN</button><button data-lang="ja">日</button></div>
+
+    <a class="submit-btn" href="submit.html" data-lang-zh>上交菲比</a><a class="submit-btn" href="submit.html" data-lang-en>SUBMIT</a><a class="submit-btn" href="submit.html" data-lang-ja>投稿する</a>
+    <button class="menu-btn" id="menubtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+<div class="pm-userbar" id="userArea" data-login="false">
+  <a class="login-pill" href="login.html"><span class="dot"></span><span data-lang-zh>登录 / 注册</span><span data-lang-en>LOGIN / SIGN UP</span><span data-lang-ja>ログイン</span></a>
+  <div class="user-trigger" id="userTrigger">
+    <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+    <span class="uname">霓虹笔</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="u-head">
+      <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+      <div class="u-info">
+        <div class="name">霓虹笔</div>
+        <div class="handle">@neon_pen</div>
+      </div>
+    </div>
+    <a href="my.html"><span class="icon">◆</span><span data-lang-zh>我的博物馆</span><span data-lang-en>MY MUSEUM</span><span data-lang-ja>マイミュージアム</span></a>
+    <a href="submit.html"><span class="icon">↑</span><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT</span><span data-lang-ja>投稿する</span></a>
+    <a href="my.html"><span class="icon">♥</span><span data-lang-zh>我的收藏</span><span data-lang-en>COLLECTIONS</span><span data-lang-ja>コレクション</span></a>
+    <div class="u-sep"></div>
+    <button class="u-logout" id="logoutBtn"><span class="icon">⏻</span><span data-lang-zh>退出登录</span><span data-lang-en>SIGN OUT</span><span data-lang-ja>ログアウト</span></button>
+  </div>
+</div>
+<nav class="pm-drawer" id="drawer">
+  <a href="index.html">首页 · HOME</a>
+  <a href="collection.html">馆藏 · COLLECTION</a>
+  <a href="timeline-human.html">人类时间线 · HUMAN TIMELINE</a>
+  <a href="community.html" class="active">社区世界线 · COMMUNITY</a>
+  <a href="creators.html">创作者 · CREATORS</a>
+  <a href="archive.html">档案馆 · ARCHIVE</a>
+  <a href="my.html">我的博物馆 · MY MUSEUM</a>
+</nav>
+
+<div class="wrap rv">
+  <div class="form">
+    <div class="kicker"><span class="no">NEW TIMELINE</span><span data-lang-zh>自立门户申请</span><span data-lang-en>FOUND YOUR OWN WORLD</span><span data-lang-ja>世界線創設申請</span></div>
+    <h1><span data-lang-zh>创建一条</span><span data-lang-en>Found your own</span><span data-lang-ja>新しい世界線を</span><br><em data-lang-zh>你的世界线。</em><em data-lang-en>timeline.</em><em data-lang-ja>創る。</em></h1>
+    <p class="lead" data-lang-zh>可以是一场冒险、一个时代，或者只是「菲比拥有一家便利店」这样的小小世界。想清楚再填——世界线一旦公开，就会有陌生人往里面投菲比。</p>
+    <p class="lead" data-lang-en>An adventure, an era, or just "Phoebe owns a convenience store". Choose wisely — once public, strangers will start submitting Phoebes into your world.</p>
+    <p class="lead" data-lang-ja>冒険でも、時代でも、「コンビニ店主フィービー」でも。公開すれば、見知らぬ人があなたの世界にフィービーを投稿し始めます。</p>
+
+    <form id="tl-form">
+      <div class="field">
+        <label>TIMELINE NAME · 英文名<span class="req">*</span></label>
+        <input type="text" placeholder="GHOST SHIP PHOEBE" required>
+        <div class="hint">大写更有气势。将作为世界线永久网址：/timeline/community/ghost-ship-phoebe</div>
+      </div>
+      <div class="field">
+        <label>中文名称<span class="req">*</span></label>
+        <input type="text" placeholder="幽灵船菲比" required>
+      </div>
+      <div class="field">
+        <label>DESCRIPTION · 世界线设定<span class="req">*</span></label>
+        <textarea placeholder="在这个世界里，所有菲比都生活在一艘永远无法靠岸的幽灵船上……" required></textarea>
+        <div class="hint">写得越离谱越要想清楚逻辑——审核员会逐字阅读（并且点评）。</div>
+      </div>
+      <div class="field">
+        <label>COVER ART · 封面<span class="req">*</span></label>
+        <div class="upload" id="upload"><b>+</b>拖一张封面图进来，或点击选择<br><span style="font-size:9px">16:9 最佳 · JPG/PNG/WEBP · ≤ 20MB</span></div>
+      </div>
+      <div class="field">
+        <label>TAGS · 标签（选几个气质相符的）</label>
+        <div class="taginput" id="tags">
+          <button type="button" class="tagpick">OCEAN</button>
+          <button type="button" class="tagpick">GHOST</button>
+          <button type="button" class="tagpick">DARK FANTASY</button>
+          <button type="button" class="tagpick">CYBERPUNK</button>
+          <button type="button" class="tagpick">SLICE OF LIFE</button>
+          <button type="button" class="tagpick">COZY</button>
+          <button type="button" class="tagpick">MECHA</button>
+          <button type="button" class="tagpick">RETRO</button>
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" class="btn ghost" id="draft"><span data-lang-zh>存为草稿</span><span data-lang-en>SAVE DRAFT</span><span data-lang-ja>下書き保存</span></button>
+        <button type="submit" class="btn solid"><span data-lang-zh>提交审核，公开我的世界</span><span data-lang-en>SUBMIT FOR REVIEW</span><span data-lang-ja>審査に提出</span> →</button>
+      </div>
+    </form>
+  </div>
+
+  <aside class="side">
+    <div class="card">
+      <h4 data-lang-zh>世界线的一生</h4><h4 data-lang-en>Life of a timeline</h4><h4 data-lang-ja>世界線の一生</h4>
+      <div class="steps">
+        <div class="step"><span class="n">1</span><div><b>DRAFT 草稿</b><span data-lang-zh>只有你自己看得见，随便改。</span><span data-lang-en>Only visible to you.</span><span data-lang-ja>自分だけが見られる。</span></div></div>
+        <div class="step"><span class="n">2</span><div><b>PENDING 审核中</b><span data-lang-zh>审核员逐字阅读你的设定，一般 48 小时内。</span><span data-lang-en>Moderators read every word, usually within 48h.</span><span data-lang-ja>モデレーターが審査。</span></div></div>
+        <div class="step"><span class="n">3</span><div><b>COMMUNITY 公开</b><span data-lang-zh>全世界都能来投稿，脑洞开始增殖。</span><span data-lang-en>Open for submissions from everyone.</span><span data-lang-ja>全世界から投稿可能に。</span></div></div>
+        <div class="step"><span class="n">4</span><div><b>FEATURED 精选</b><span data-lang-zh>足够有趣的世界线会被挂上首页。</span><span data-lang-en>Great ones get featured on the homepage.</span><span data-lang-ja>優れた世界線はトップに。</span></div></div>
+        <div class="step"><span class="n">5</span><div><b>OFFICIAL 官方认证</b><span data-lang-zh>成为博物馆官方认可的世界线，载入史册。</span><span data-lang-en>Becomes an officially canonized world.</span><span data-lang-ja>公式認定の世界線へ。</span></div></div>
+      </div>
+    </div>
+    <p class="warn"><b>注意：</b><span data-lang-zh>世界线网址（slug）全网唯一，「PIRATE PHOEBE」已经有人抢了。近似名称可能被管理员合并，取名请趁早。</span><span data-lang-en>Slugs are unique — "PIRATE PHOEBE" is taken. Similar names may be merged by admins.</span><span data-lang-ja>スラッグは一意です。類似名は統合されることがあります。</span></p>
+  </aside>
+</div>
+
+<footer class="pm-foot">
+  <div class="inner">
+    <div class="brand">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆 · 大概很严肃</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></div>
+    <div class="meta"><span>© 2026 PHOEBE MUSEUM</span><span data-lang-zh>*本馆的严肃程度以实际情况为准</span><span data-lang-en>*SERIOUSNESS MAY VARY</span><span>PM-000001 → ∞</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document;
+var nav=d.getElementById('nav'),btn=d.getElementById('menubtn'),drawer=d.getElementById('drawer');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
+d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
+var els=[].slice.call(d.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06});els.forEach(function(el){io.observe(el)});}else{els.forEach(function(el){el.classList.add('in')})}
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
+/* ---- 用户菜单 ---- */
+var ua=d.getElementById('userArea'),ut=d.getElementById('userTrigger'),um=d.getElementById('userMenu'),lo=d.getElementById('logoutBtn');
+if(ut){ut.addEventListener('click',function(e){e.stopPropagation();ua.classList.toggle('open')})}
+if(um){um.addEventListener('click',function(e){e.stopPropagation()})}
+d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua.contains(e.target)){ua.classList.remove('open')}});
+if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
+var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
+d.querySelectorAll('#tags .tagpick').forEach(function(b){b.addEventListener('click',function(){this.classList.toggle('on')})});
+d.getElementById('upload').addEventListener('click',function(){this.innerHTML='<b>✓</b>cover-ghost-ship.png（假装已上传）'});
+d.getElementById('tl-form').addEventListener('submit',function(e){e.preventDefault();alert('已提交审核！审核员表示很期待（原型演示）')});
+d.getElementById('draft').addEventListener('click',function(){alert('已存为草稿，只有你自己看得见（原型演示）')});
+})();
+</script>
+</body>
+</html>
