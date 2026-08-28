@@ -1,79 +1,188 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { getNavText, t } from "@/lib/i18n"
+import { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { getNavText, t } from "@/lib/i18n";
+
+type Lang = "zh" | "en" | "ja";
 
 const navItems = [
-  { href: "/", key: "home" },
-  { href: "/collection", key: "collection" },
-  { href: "/timeline/human", key: "humanTimeline" },
-  { href: "/timeline/community", key: "community" },
-  { href: "/creators", key: "creators" },
-  { href: "/my", key: "myMuseum" },
-  { href: "/admin", key: "admin" },
-]
+  { key: "home", href: "/" },
+  { key: "collection", href: "/collection" },
+  { key: "humanTimeline", href: "/timeline/human" },
+  { key: "community", href: "/community" },
+  { key: "creators", href: "/creators" },
+  { key: "myMuseum", href: "/my" },
+] as const;
 
-export default function Navbar() {
-  const [lang, setLang] = useState("zh")
-  const [isOpen, setIsOpen] = useState(false)
+export default function Navbar({ lang }: { lang: Lang }) {
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const userbarRef = useRef<HTMLDivElement>(null);
+
+  const nav = getNavText(lang);
 
   useEffect(() => {
-    const saved = localStorage.getItem("phoebe-lang")
-    if (saved && ["zh", "en", "ja"].includes(saved)) {
-      setLang(saved)
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsLoggedIn(localStorage.getItem("phoebe-auth") === "true");
+  }, []);
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (drawerOpen && navRef.current && !navRef.current.contains(e.target as Node)) {
+        setDrawerOpen(false);
+      }
+      if (userMenuOpen && userbarRef.current && !userbarRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, [drawerOpen, userMenuOpen, userbarRef]);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
+
+  const toggleDrawer = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDrawerOpen((v) => !v);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("phoebe-auth");
+    localStorage.removeItem("phoebe-user");
+    setIsLoggedIn(false);
+    setUserMenuOpen(false);
+  };
+
+  // 双击登录pill模拟登录（preview中的开发者快捷方式）
+  const devLogin = (e: React.MouseEvent) => {
+    if (e.detail === 2) {
+      e.preventDefault();
+      setIsLoggedIn(true);
     }
-  }, [])
-
-  const handleLangChange = (newLang: string) => {
-    setLang(newLang)
-    localStorage.setItem("phoebe-lang", newLang)
-    window.dispatchEvent(new Event("langChange"))
-  }
-
-  const navText = getNavText(lang)
-  const logoText = t("菲比博物馆", "PHOEBE MUSEUM", "フィービー博物館", lang)
+  };
 
   return (
-    <header className="nav">
-      <Link href="/" className="logo">
-        {logoText}
-      </Link>
-      <nav className="navlinks">
-        {navItems.map((item) => (
-          <Link key={item.href} href={item.href}>
-            {navText[item.key as keyof typeof navText]}
-          </Link>
-        ))}
-      </nav>
-      <div className="nav-right">
-        <a href="/submit" style={{ background: "rgba(184, 134, 11, 0.85)", color: "#fff", padding: "7px 14px", fontSize: 10, letterSpacing: "0.06em", borderRadius: 20, fontWeight: 600, backdropFilter: "blur(10px)", whiteSpace: "nowrap" }}>
-          {navText.submit}
+    <>
+      <header ref={navRef} className={`pm-nav${scrolled ? " scrolled" : ""}`}>
+        <a className="logo" href="/">
+          PHOEBE MUSEUM
+          <small>{t("菲比博物馆", "VERY SERIOUS MUSEUM*", "フィービー博物館", lang)}</small>
         </a>
-        <div style={{ display: "flex", gap: 1, background: "rgba(255,255,255,0.2)", borderRadius: 20, padding: 2, border: "1px solid rgba(255,255,255,0.3)" }}>
-          {["zh", "en", "ja"].map((l) => (
-            <button
-              key={l}
-              onClick={() => handleLangChange(l)}
-              style={{
-                background: lang === l ? "rgba(0,0,0,0.08)" : "transparent",
-                color: lang === l ? "#2c2c2c" : "#94a2aa",
-                border: "none",
-                padding: "4px 8px",
-                fontSize: 10,
-                cursor: "pointer",
-                borderRadius: 18,
-                fontWeight: lang === l ? 600 : 400,
-              }}
+
+        <nav className="links">
+          {navItems.map(({ key, href }) => (
+            <a
+              key={key}
+              href={href}
+              className={isActive(href) ? "active" : ""}
             >
-              {l === "zh" ? "中" : l === "en" ? "EN" : "日"}
-            </button>
+              {(nav as Record<string, string>)[key]}
+            </a>
           ))}
+        </nav>
+
+        <div className="right">
+          <div className="lang">
+            {(["zh", "en", "ja"] as const).map((l) => (
+              <button
+                key={l}
+                className={lang === l ? "active" : ""}
+                onClick={() => {
+                  localStorage.setItem("phoebe-lang", l);
+                  window.location.reload();
+                }}
+              >
+                {l === "zh" ? "中" : l === "en" ? "EN" : "日"}
+              </button>
+            ))}
+          </div>
+          <a className="submit-btn" href="/submit">
+            {t("上交菲比", "SUBMIT", "投稿する", lang)}
+          </a>
+          <button className="menu-btn" onClick={toggleDrawer} aria-label="菜单">
+            {drawerOpen ? "✕" : "☰"}
+          </button>
+        </div>
+      </header>
+
+      {/* 用户区域 */}
+      <div
+        className={`pm-userbar${userMenuOpen ? " open" : ""}`}
+        data-login={isLoggedIn ? "true" : "false"}
+        ref={userbarRef}
+      >
+        {!isLoggedIn && (
+          <a
+            className="login-pill"
+            href="/login"
+            onClick={(e) => {
+              e.preventDefault();
+              devLogin(e);
+              // 正常流程打开登录弹窗
+              window.dispatchEvent(new CustomEvent("open-auth"));
+            }}
+          >
+            <span className="dot" />
+            <span>{t("登录 / 注册", "LOGIN / SIGN UP", "ログイン", lang)}</span>
+          </a>
+        )}
+        {isLoggedIn && (
+          <div className="user-trigger" onClick={(e) => { e.stopPropagation(); setUserMenuOpen((v) => !v); }}>
+            <div className="avatar">
+              <img src="/assets/avatar-user.png" alt="" />
+            </div>
+            <span className="uname">{t("霓虹笔", "neon_pen", "霓虹筆", lang)}</span>
+            <span className="chevron">▾</span>
+          </div>
+        )}
+        <div className="user-menu">
+          <div className="u-head">
+            <div className="avatar">
+              <img src="/assets/avatar-user.png" alt="" />
+            </div>
+            <div className="u-info">
+              <div className="name">{t("霓虹笔", "neon_pen", "霓虹筆", lang)}</div>
+              <div className="handle">@neon_pen</div>
+            </div>
+          </div>
+          <a href="/my"><span className="icon">◆</span>{t("我的博物馆", "MY MUSEUM", "マイミュージアム", lang)}</a>
+          <a href="/submit"><span className="icon">↑</span>{t("上交菲比", "SUBMIT", "投稿する", lang)}</a>
+          <a href="/my"><span className="icon">♥</span>{t("我的收藏", "COLLECTIONS", "コレクション", lang)}</a>
+          <div className="u-sep" />
+          <button className="u-logout" onClick={logout}>
+            <span className="icon">⏻</span>
+            {t("退出登录", "SIGN OUT", "ログアウト", lang)}
+          </button>
         </div>
       </div>
-      <button className="menu" onClick={() => setIsOpen(!isOpen)} style={{ display: "none", background: "rgba(255,255,255,0.6)", border: "1px solid rgba(0,0,0,0.1)", color: "#2c2c2c", fontSize: 18, width: 40, height: 40, borderRadius: 10 }}>
-        {isOpen ? "✕" : "☰"}
-      </button>
-    </header>
-  )
+
+      {/* 移动端抽屉 */}
+      <nav className={`pm-drawer${drawerOpen ? " open" : ""}`}>
+        {navItems.map(({ key, href }) => (
+          <a
+            key={key}
+            href={href}
+            className={isActive(href) ? "active" : ""}
+            onClick={() => setDrawerOpen(false)}
+          >
+            {`${(nav as Record<string, string>)[key]} · ${getNavText("en")[key as keyof typeof nav]}`}
+          </a>
+        ))}
+      </nav>
+    </>
+  );
 }

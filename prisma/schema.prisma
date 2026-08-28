@@ -1,0 +1,128 @@
+// Phoebe Museum 数据库模型
+// 使用 SQLite 作为开发数据库，后期可切换到 PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// 用户模型
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  displayName String?
+  avatarUrl String?
+  bio       String?
+  role      String   @default("user") // user, admin
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 关联
+  artworks     Artwork[]
+  submissions  Submission[]
+  favorites    Favorite[]
+  timelines    Timeline[]
+
+  @@map("users")
+}
+
+// 作品模型
+model Artwork {
+  id          String   @id @default(uuid())
+  museumId    String   @unique @map("museum_id") // PM-000001 格式
+  title       String
+  titleEn     String?  @map("title_en")
+  titleJa     String?  @map("title_ja")
+  description String?
+  descriptionEn String? @map("description_en")
+  descriptionJa String? @map("description_ja")
+  creatorId   String?  @map("creator_id")
+  creator     User?    @relation(fields: [creatorId], references: [id])
+  medium      String   @default("illustration") // illustration, ai_art, comic, 3d, video, sticker
+  category    String?
+  timelineId  String?  @map("timeline_id")
+  timeline    Timeline? @relation(fields: [timelineId], references: [id])
+  timelineType String  @default("human") @map("timeline_type") // human, community
+  worldLine   String?  @map("world_line")
+  year        String?
+  tags        String   @default("[]") // JSON 数组字符串
+  imageUrl    String   @map("image_url")
+  thumbnailUrl String? @map("thumbnail_url")
+  sourceUrl   String?  @map("source_url")
+  status      String   @default("pending") // pending, approved, rejected
+  collectedAt DateTime? @map("collected_at")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 关联
+  favorites   Favorite[]
+
+  @@map("artworks")
+}
+
+// 时间线模型
+model Timeline {
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  name        String
+  nameEn      String?  @map("name_en")
+  nameJa      String?  @map("name_ja")
+  description String?
+  descriptionEn String? @map("description_en")
+  descriptionJa String? @map("description_ja")
+  type        String   @default("human") // human, community
+  era         String?
+  coverImage  String?  @map("cover_image")
+  creatorId   String?  @map("creator_id")
+  creator     User?    @relation(fields: [creatorId], references: [id])
+  status      String   @default("draft") // draft, pending, approved, featured
+  artworkCount Int     @default(0) @map("artwork_count")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 关联
+  artworks    Artwork[]
+
+  @@map("timelines")
+}
+
+// 投稿模型
+model Submission {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  user        User     @relation(fields: [userId], references: [id])
+  artworkTitle String  @map("artwork_title")
+  artworkTitleEn String? @map("artwork_title_en")
+  creatorName String   @map("creator_name")
+  medium      String
+  timelineId  String?  @map("timeline_id")
+  worldLine   String?  @map("world_line")
+  description String?
+  sourceUrl   String?  @map("source_url")
+  imageUrl    String   @map("image_url")
+  status      String   @default("pending") // pending, approved, rejected
+  adminNotes  String?  @map("admin_notes")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("submissions")
+}
+
+// 收藏模型
+model Favorite {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id])
+  artworkId String   @map("artwork_id")
+  artwork   Artwork  @relation(fields: [artworkId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, artworkId])
+  @@map("favorites")
+}

@@ -16,18 +16,21 @@
 .wrap .lead{font-size:13px;line-height:2.2;color:var(--ink-2);max-width:480px;margin:24px 0 44px}
 
 .form .field{margin-bottom:34px}
-.form label{display:block;font-size:9px;letter-spacing:.3em;color:var(--ink-2);margin-bottom:12px}
+.form label{display:block;font-size:9px;letter-spacing:.24em;color:var(--ink-2);margin-bottom:12px}
 .form label .req{color:var(--seal);margin-left:6px}
-.form input[type=text],.form textarea{width:100%;border:0;border-bottom:1px solid var(--line-dark);background:transparent;padding:10px 2px;font-size:15px;font-family:var(--serif);outline:none;transition:border-color .3s;border-radius:0}
-.form input[type=text]:focus,.form textarea:focus{border-color:var(--ink)}
+.form input[type=text],.form textarea{width:100%;border:0;border-bottom:1px solid var(--line-dark);background:transparent;padding:12px 0;font-size:15px;font-family:var(--sans);outline:none;transition:border-color .3s,box-shadow .3s;border-radius:0}
+.form input[type=text]:focus,.form textarea:focus{border-color:var(--seal);box-shadow:0 2px 0 0 var(--seal)}
 .form textarea{min-height:120px;resize:vertical;font-family:var(--sans);font-size:13px;line-height:2}
 .form .hint{font-size:10px;color:var(--ink-3);margin-top:8px;letter-spacing:.06em}
-.upload{border:1.5px dashed var(--line-dark);border-radius:12px;padding:44px 24px;text-align:center;color:var(--ink-3);font-size:11px;letter-spacing:.14em;cursor:pointer;transition:all .3s;background:var(--bg-soft)}
-.upload:hover{border-color:var(--seal);color:var(--seal)}
+.upload{border:1.5px dashed var(--line-dark);border-radius:12px;padding:44px 24px;text-align:center;color:var(--ink-3);font-size:11px;letter-spacing:.14em;cursor:pointer;transition:border-color .3s,color .3s,transform .3s var(--ease),box-shadow .3s;background:var(--bg-soft)}
+.upload:hover{border-color:var(--seal);color:var(--seal);transform:scale(1.01);box-shadow:0 8px 24px -12px rgba(144,119,114,.15)}
 .upload b{display:block;font-size:26px;margin-bottom:10px;font-weight:300}
 .taginput{display:flex;gap:8px;flex-wrap:wrap}
-.tagpick{border:1px solid var(--line-dark);border-radius:999px;padding:8px 14px;font-size:9px;letter-spacing:.16em;color:var(--ink-2);cursor:pointer;background:transparent;transition:all .25s}
-.tagpick.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.tagpick{border:1px solid var(--line-dark);border-radius:999px;padding:8px 14px;font-size:9px;letter-spacing:.16em;color:var(--ink-2);cursor:pointer;background:transparent;transition:border-color .3s,color .3s,transform .3s var(--ease);position:relative;overflow:hidden}
+.tagpick::before{content:'';position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .3s}
+.tagpick:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-1px)}
+.tagpick:hover::before{opacity:.04}
+.tagpick.on{background:var(--ink);border-color:var(--ink);color:var(--bg);transform:none}
 .form .row{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap}
 
 /* 侧栏 */
@@ -35,9 +38,15 @@
 .side .card{border:1px solid var(--line);border-radius:16px;padding:32px;background:var(--bg-soft)}
 .side h4{font-family:var(--serif);font-weight:400;font-size:22px;margin:0 0 20px}
 .steps{display:flex;flex-direction:column;gap:0}
-.step{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.step{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);animation:step-in .5s var(--ease) both}
+.step:nth-child(2){animation-delay:.08s}
+.step:nth-child(3){animation-delay:.16s}
+.step:nth-child(4){animation-delay:.24s}
+.step:nth-child(5){animation-delay:.32s}
+@keyframes step-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .step:last-child{border-bottom:0}
-.step .n{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--seal)}
+.step .n{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--seal);transition:transform .3s var(--ease)}
+.step:hover .n{transform:scale(1.15)}
 .step b{font-size:11px;letter-spacing:.16em;font-weight:500;display:block}
 .step span{font-size:10.5px;color:var(--ink-2);line-height:1.9;display:block;margin-top:5px}
 .side .warn{margin-top:20px;font-size:10px;line-height:2;color:var(--ink-3);letter-spacing:.04em}
@@ -45,6 +54,23 @@
 
 @media(max-width:1100px){.wrap{grid-template-columns:1fr}.side{position:static}}
 @media(max-width:960px){.wrap{padding:126px 6vw 0}}
+@media(max-width:600px){
+  .wrap{padding:100px16px0;gap:32px}
+  .side{position:static;order:-1}
+  .side h2{font-size:clamp(22px,5vw,32px)}
+  .side .sub{font-size:11px}
+  .side .s1{font-size:12px;line-height:2}
+  .side .s2{font-size:12px;line-height:2}
+  .form{margin-top:0}
+  .form .section{padding:24px0}
+  .form .section h3{font-size:15px}
+  .form .section p{font-size:10px}
+  .form .section .step{padding:16px0}
+  .form .section .step .n{font-size:17px}
+  .form .section .step b{font-size:10px}
+  .form .section .step span{font-size:10px}
+  .side .warn{font-size:9px}
+}
 </style>
 </head>
 <body>
@@ -110,16 +136,16 @@
     <form id="tl-form">
       <div class="field">
         <label>TIMELINE NAME · 英文名<span class="req">*</span></label>
-        <input type="text" placeholder="GHOST SHIP PHOEBE" required>
+        <input type="text" data-placeholder-zh="GHOST SHIP PHOEBE" data-placeholder-en="GHOST SHIP PHOEBE" data-placeholder-ja="GHOST SHIP PHOEBE" placeholder="GHOST SHIP PHOEBE" required>
         <div class="hint">大写更有气势。将作为世界线永久网址：/timeline/community/ghost-ship-phoebe</div>
       </div>
       <div class="field">
         <label>中文名称<span class="req">*</span></label>
-        <input type="text" placeholder="幽灵船菲比" required>
+        <input type="text" data-placeholder-zh="幽灵船菲比" data-placeholder-en="Ghost Ship Phoebe" data-placeholder-ja="幽霊船フィービー" placeholder="幽灵船菲比" required>
       </div>
       <div class="field">
         <label>DESCRIPTION · 世界线设定<span class="req">*</span></label>
-        <textarea placeholder="在这个世界里，所有菲比都生活在一艘永远无法靠岸的幽灵船上……" required></textarea>
+        <textarea data-placeholder-zh="在这个世界里，所有菲比都生活在一艘永远无法靠岸的幽灵船上……" data-placeholder-en="In this world, all Phoebes live on a ghost ship that can never dock..." data-placeholder-ja="この世界では、全てのフィービーは永遠に接岸できない幽霊船に暮らしています……" placeholder="在这个世界里，所有菲比都生活在一艘永远无法靠岸的幽灵船上……" required></textarea>
         <div class="hint">写得越离谱越要想清楚逻辑——审核员会逐字阅读（并且点评）。</div>
       </div>
       <div class="field">
@@ -176,8 +202,8 @@ window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',wind
 btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
 d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
 var els=[].slice.call(d.querySelectorAll('.rv'));
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06});els.forEach(function(el){io.observe(el)});}else{els.forEach(function(el){el.classList.add('in')})}
-function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){io.observe(el)});}else{els.forEach(function(el){el.classList.add('in')})}
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)});d.querySelectorAll('[data-placeholder-'+l+']').forEach(function(el){el.placeholder=el.getAttribute('data-placeholder-'+l)});d.querySelectorAll('[data-lang-zh],[data-lang-en],[data-lang-ja]').forEach(function(el){var lang=el.getAttribute('data-lang-zh')?'zh':el.getAttribute('data-lang-en')?'en':'ja';el.style.display=lang===l?'':'none'})}
 apply(localStorage.getItem('phoebe-lang')||'zh');
 d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
 /* ---- 用户菜单 ---- */
@@ -191,6 +217,91 @@ d.querySelectorAll('#tags .tagpick').forEach(function(b){b.addEventListener('cli
 d.getElementById('upload').addEventListener('click',function(){this.innerHTML='<b>✓</b>cover-ghost-ship.png（假装已上传）'});
 d.getElementById('tl-form').addEventListener('submit',function(e){e.preventDefault();alert('已提交审核！审核员表示很期待（原型演示）')});
 d.getElementById('draft').addEventListener('click',function(){alert('已存为草稿，只有你自己看得见（原型演示）')});
+})();
+</script>
+
+<!-- 登录/注册弹窗 -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-header">
+      <div class="logo">PHOEBE MUSEUM<em>幽灵船菲比</em></div>
+      <div class="auth-tabs">
+        <button class="active" data-tab="login"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+        <button data-tab="register"><span data-lang-zh>注册</span><span data-lang-en>SIGN UP</span><span data-lang-ja>新規登録</span></button>
+        <div class="indicator" data-tab="login"></div>
+      </div>
+    </div>
+    <div class="auth-body">
+      <div class="auth-form active" id="loginForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <input type="email" id="loginEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="loginBtn"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+      </div>
+      <div class="auth-form" id="registerForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <input type="email" id="regEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>创作者代号</span><span data-lang-en>CREATOR CODE</span><span data-lang-ja>クリエイターコード</span></label>
+          <input type="text" id="regCode" placeholder="phoebe_sailor" autocomplete="username">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="registerBtn"><span data-lang-zh>登船</span><span data-lang-en>BOARD</span><span data-lang-ja>乗船</span></button>
+      </div>
+      <div class="auth-success" id="authSuccess">
+        <div class="icon">⛵</div>
+        <h3><span data-lang-zh>欢迎登船</span><span data-lang-en>WELCOME ABOARD</span><span data-lang-ja>乗船歓迎</span></h3>
+        <p><span data-lang-zh>菲比博物馆已记录你的存在。</span></p>
+<p><span data-lang-en>Phoebe Museum has recorded your presence.</span></p>
+<p><span data-lang-ja>フィービー博物館があなたの存在を記録しました。</span></p>
+        <button class="btn-primary" id="authSuccessBtn"><span data-lang-zh>继续浏览</span><span data-lang-en>CONTINUE</span><span data-lang-ja>続ける</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var o=document.getElementById('authOverlay');
+  var cb=document.getElementById('authClose');
+  var tb=o.querySelectorAll('.auth-tabs button');
+  var ind=o.querySelector('.auth-tabs .indicator');
+  var lf=document.getElementById('loginForm');
+  var rf=document.getElementById('registerForm');
+  var sc=document.getElementById('authSuccess');
+  function openAuth(t){o.classList.add('active');document.body.style.overflow='hidden';sw(t||'login')}
+  function closeAuth(){o.classList.remove('active');document.body.style.overflow=''}
+  function sw(t){tb.forEach(function(b){b.classList.toggle('active',b.dataset.tab===t)});ind.dataset.tab=t;lf.classList.toggle('active',t==='login');rf.classList.toggle('active',t==='register');sc.classList.remove('active')}
+  function showS(){lf.classList.remove('active');rf.classList.remove('active');sc.classList.add('active')}
+  function ve(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+  cb.addEventListener('click',closeAuth);
+  o.addEventListener('click',function(e){if(e.target===o)closeAuth()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&o.classList.contains('active'))closeAuth()});
+  tb.forEach(function(t){t.addEventListener('click',function(){sw(this.dataset.tab)})});
+  o.querySelectorAll('.password-toggle').forEach(function(b){b.addEventListener('click',function(){var i=this.previousElementSibling;i.type=i.type==='password'?'text':'password'})});
+  document.getElementById('loginBtn').addEventListener('click',function(){var e=document.getElementById('loginEmail');var p=document.getElementById('loginPassword');if(ve(e.value)&&p.value){localStorage.setItem('phoebe-auth','true');showS()}});
+  document.getElementById('registerBtn').addEventListener('click',function(){var e=document.getElementById('regEmail');var c=document.getElementById('regCode');var p=document.getElementById('regPassword');if(ve(e.value)&&/^[a-zA-Z0-9_]{3,20}$/.test(c.value)&&p.value.length>=6){localStorage.setItem('phoebe-auth','true');showS()}});
+  document.getElementById('authSuccessBtn').addEventListener('click',function(){closeAuth();window.location.reload()});
+  document.querySelectorAll('a[href="login.html"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openAuth('login')})});
+  window.openAuth=openAuth;window.closeAuth=closeAuth;
+  if(localStorage.getItem('phoebe-auth')==='true'){var ua=document.getElementById('userArea');if(ua)ua.setAttribute('data-login','true')}
 })();
 </script>
 </body>

@@ -19,31 +19,63 @@
 .filters{position:sticky;top:88px;z-index:40;margin:56px 5vw 0;padding:18px 22px;max-width:1560px;margin-left:auto;margin-right:auto;border-radius:20px;background:rgba(255,255,255,.62);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.7);box-shadow:0 14px 40px -18px rgba(22,21,15,.16);display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .filters .group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .filters .lbl{font-size:8px;letter-spacing:.26em;color:var(--ink-3);margin-right:2px}
-.fchip{border:1px solid var(--line-dark);background:transparent;border-radius:999px;padding:7px 13px;font-size:9px;letter-spacing:.14em;cursor:pointer;color:var(--ink-2);transition:all .25s}
-.fchip:hover{border-color:var(--ink);color:var(--ink)}
-.fchip.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.fchip{border:1px solid var(--line-dark);background:transparent;border-radius:999px;padding:7px 13px;font-size:9px;letter-spacing:.14em;cursor:pointer;color:var(--ink-2);transition:all .3s var(--ease);position:relative;overflow:hidden}
+.fchip::before{content:'';position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .3s}
+.fchip:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-1px)}
+.fchip:hover::before{opacity:.04}
+.fchip.on{background:var(--ink);border-color:var(--ink);color:var(--bg);transform:none}
 .fchip.c-illustration.on{background:#d8a447;border-color:#d8a447}
 .fchip.c-ai.on{background:#9b7ede;border-color:#9b7ede}
 .fchip.c-comic.on{background:#c96f5a;border-color:#c96f5a}
 .fchip.c-3d.on{background:#4fa3b8;border-color:#4fa3b8}
 .fchip.c-video.on{background:#e08a3c;border-color:#e08a3c}
 .fchip.c-sticker.on{background:#d98ba3;border-color:#d98ba3}
-.filters .search{margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid var(--line-dark);border-radius:999px;padding:7px 15px;min-width:210px;background:rgba(255,255,255,.5)}
+.filters .search{margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid var(--line-dark);border-radius:999px;padding:7px 15px;min-width:210px;background:rgba(255,255,255,.5);transition:border-color .3s,box-shadow .3s}
+.filters .search:focus-within{border-color:var(--seal);box-shadow:0 0 0 3px rgba(144,119,114,.1)}
 .filters .search input{border:0;background:transparent;outline:none;font-size:11px;letter-spacing:.06em;width:100%}
-.filters .search span{color:var(--ink-3);font-size:12px}
+.filters .search span{color:var(--ink-3);font-size:12px;transition:color .3s}
+.filters .search:focus-within span{color:var(--seal)}
 
 .sec{padding:56px 5vw 0;max-width:1560px;margin:0 auto}
-.count{font-size:10px;letter-spacing:.22em;color:var(--ink-3);margin-bottom:26px}
-.count b{color:var(--seal);font-family:var(--serif);font-style:italic;font-size:15px;font-weight:400}
+.count{font-size:10px;letter-spacing:.22em;color:var(--ink-3);margin-bottom:26px;transition:opacity .3s}
+.count b{color:var(--seal);font-family:var(--serif);font-style:italic;font-size:15px;font-weight:400;transition:transform .3s var(--ease);display:inline-block}
+.count.animated b{animation:count-pulse .4s var(--ease)}
+@keyframes count-pulse{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.grid .frame{animation:card-in .5s var(--ease) both}
+.grid .frame:nth-child(2){animation-delay:.08s}
+.grid .frame:nth-child(3){animation-delay:.16s}
+.grid .frame:nth-child(4){animation-delay:.24s}
+.grid .frame:nth-child(5){animation-delay:.32s}
+.grid .frame:nth-child(6){animation-delay:.4s}
+@keyframes card-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .frame.hide{display:none}
-.more{display:flex;justify-content:center;margin-top:60px}
+.more{display:flex;justify-content:center;margin-top:60px;opacity:0;animation:fade-in .4s var(--ease) .6s forwards}
+@keyframes fade-in{to{opacity:1}}
 .empty{display:none;text-align:center;padding:80px 0;color:var(--ink-3);font-size:12px;letter-spacing:.14em}
 .empty b{display:block;font-family:var(--serif);font-style:italic;font-size:30px;font-weight:300;color:var(--ink-2);margin-bottom:14px}
 
 @media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.filters{top:78px}}
 @media(max-width:960px){.hero{padding:126px 6vw 0}.sec{padding:44px 6vw 0}.filters{margin:44px 6vw 0}}
-@media(max-width:600px){.grid{grid-template-columns:1fr}.filters .search{margin-left:0;width:100%}}
+@media(max-width:600px){
+  .hero{padding:100px16px0}
+  .hero h1{font-size:clamp(28px,8vw,48px)}
+  .hero p{font-size:12px}
+  .sec{padding:40px16px0}
+  .filters{margin:32px16px0;padding:16px;flex-direction:column;gap:12px}
+  .filters .tags{gap:8px}
+  .filters .tags span{font-size:9px;padding:5px12px}
+  .filters .search{margin-left:0;width:100%}
+  .filters .search input{padding:10px16px;font-size:12px}
+  .filters .search button{padding:10px18px;font-size:10px}
+  .grid{grid-template-columns:1fr;gap:16px}
+  .frame .meta h3{font-size:15px}
+  .frame .meta p{font-size:10px}
+  .frame .meta .year{font-size:8px}
+  .more{margin-top:40px}
+  .empty{padding:60px0;font-size:11px}
+  .empty b{font-size:24px}
+}
 </style>
 </head>
 <body>
@@ -124,7 +156,7 @@
     <button class="fchip" data-m="ai" data-lang-zh>AI 生成</button><button class="fchip" data-m="ai" data-lang-en>AI GEN</button><button class="fchip" data-m="ai" data-lang-ja>AI生成</button>
     <button class="fchip" data-m="mixed" data-lang-zh>混合</button><button class="fchip" data-m="mixed" data-lang-en>MIXED</button><button class="fchip" data-m="mixed" data-lang-ja>混合</button>
   </div>
-  <label class="search"><span>⌕</span><input id="q" type="text" placeholder="编号 / 标题 / 创作者 / 世界线"></label>
+  <label class="search"><span>⌕</span><input id="q" type="text" data-placeholder-zh="编号 / 标题 / 创作者 / 世界线" data-placeholder-en="No. / Title / Creator / Timeline" data-placeholder-ja="番号・タイトル・作者・世界線" placeholder="编号 / 标题 / 创作者 / 世界线"></label>
 </div>
 
 <section class="sec rv">
@@ -166,7 +198,7 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 var top=d.createElement('button');top.type='button';top.className='to-top';top.textContent='↑';d.body.appendChild(top);
 top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
 window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
-function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)});d.querySelectorAll('[data-placeholder-'+l+']').forEach(function(el){el.placeholder=el.getAttribute('data-placeholder-'+l)});d.querySelectorAll('[data-lang-zh],[data-lang-en],[data-lang-ja]').forEach(function(el){var lang=el.getAttribute('data-lang-zh')?'zh':el.getAttribute('data-lang-en')?'en':'ja';el.style.display=lang===l?'':'none'})}
 apply(localStorage.getItem('phoebe-lang')||'zh');
 d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
 /* ---- 用户菜单 ---- */
@@ -201,6 +233,91 @@ d.querySelectorAll('#method-filter .fchip').forEach(function(b){b.addEventListen
 d.getElementById('q').addEventListener('input',function(){q=this.value.trim().toLowerCase();render()});
 moreBtn.addEventListener('click',function(){shown=99;render()});
 render();
+})();
+</script>
+
+<!-- 登录/注册弹窗 -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-header">
+      <div class="logo">PHOEBE MUSEUM<em>幽灵船菲比</em></div>
+      <div class="auth-tabs">
+        <button class="active" data-tab="login"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+        <button data-tab="register"><span data-lang-zh>注册</span><span data-lang-en>SIGN UP</span><span data-lang-ja>新規登録</span></button>
+        <div class="indicator" data-tab="login"></div>
+      </div>
+    </div>
+    <div class="auth-body">
+      <div class="auth-form active" id="loginForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <input type="email" id="loginEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="loginBtn"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+      </div>
+      <div class="auth-form" id="registerForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <input type="email" id="regEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>创作者代号</span><span data-lang-en>CREATOR CODE</span><span data-lang-ja>クリエイターコード</span></label>
+          <input type="text" id="regCode" placeholder="phoebe_sailor" autocomplete="username">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="registerBtn"><span data-lang-zh>登船</span><span data-lang-en>BOARD</span><span data-lang-ja>乗船</span></button>
+      </div>
+      <div class="auth-success" id="authSuccess">
+        <div class="icon">⛵</div>
+        <h3><span data-lang-zh>欢迎登船</span><span data-lang-en>WELCOME ABOARD</span><span data-lang-ja>乗船歓迎</span></h3>
+        <p><span data-lang-zh>菲比博物馆已记录你的存在。</span></p>
+<p><span data-lang-en>Phoebe Museum has recorded your presence.</span></p>
+<p><span data-lang-ja>フィービー博物館があなたの存在を記録しました。</span></p>
+        <button class="btn-primary" id="authSuccessBtn"><span data-lang-zh>继续浏览</span><span data-lang-en>CONTINUE</span><span data-lang-ja>続ける</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var o=document.getElementById('authOverlay');
+  var cb=document.getElementById('authClose');
+  var tb=o.querySelectorAll('.auth-tabs button');
+  var ind=o.querySelector('.auth-tabs .indicator');
+  var lf=document.getElementById('loginForm');
+  var rf=document.getElementById('registerForm');
+  var sc=document.getElementById('authSuccess');
+  function openAuth(t){o.classList.add('active');document.body.style.overflow='hidden';sw(t||'login')}
+  function closeAuth(){o.classList.remove('active');document.body.style.overflow=''}
+  function sw(t){tb.forEach(function(b){b.classList.toggle('active',b.dataset.tab===t)});ind.dataset.tab=t;lf.classList.toggle('active',t==='login');rf.classList.toggle('active',t==='register');sc.classList.remove('active')}
+  function showS(){lf.classList.remove('active');rf.classList.remove('active');sc.classList.add('active')}
+  function ve(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+  cb.addEventListener('click',closeAuth);
+  o.addEventListener('click',function(e){if(e.target===o)closeAuth()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&o.classList.contains('active'))closeAuth()});
+  tb.forEach(function(t){t.addEventListener('click',function(){sw(this.dataset.tab)})});
+  o.querySelectorAll('.password-toggle').forEach(function(b){b.addEventListener('click',function(){var i=this.previousElementSibling;i.type=i.type==='password'?'text':'password'})});
+  document.getElementById('loginBtn').addEventListener('click',function(){var e=document.getElementById('loginEmail');var p=document.getElementById('loginPassword');if(ve(e.value)&&p.value){localStorage.setItem('phoebe-auth','true');showS()}});
+  document.getElementById('registerBtn').addEventListener('click',function(){var e=document.getElementById('regEmail');var c=document.getElementById('regCode');var p=document.getElementById('regPassword');if(ve(e.value)&&/^[a-zA-Z0-9_]{3,20}$/.test(c.value)&&p.value.length>=6){localStorage.setItem('phoebe-auth','true');showS()}});
+  document.getElementById('authSuccessBtn').addEventListener('click',function(){closeAuth();window.location.reload()});
+  document.querySelectorAll('a[href="login.html"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openAuth('login')})});
+  window.openAuth=openAuth;window.closeAuth=closeAuth;
+  if(localStorage.getItem('phoebe-auth')==='true'){var ua=document.getElementById('userArea');if(ua)ua.setAttribute('data-login','true')}
 })();
 </script>
 </body>

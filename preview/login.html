@@ -13,7 +13,7 @@
 .login-page{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
 .login-left{position:relative;display:flex;align-items:center;justify-content:center;padding:80px 5vw;background:var(--ink);overflow:hidden}
 .login-left .bg{position:absolute;inset:0;background:url(assets/hero-collection.png) center/cover;opacity:.15;mix-blend-mode:luminosity}
-.login-left .content{position:relative;text-align:center;color:#f4f0e6;max-width:400px}
+.login-left .content{position:relative;text-align:center;color:var(--ink);max-width:400px}
 .login-left .logo{font-family:var(--serif);font-size:22px;font-weight:300;letter-spacing:.06em;margin-bottom:40px;display:block}
 .login-left h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,4vw,56px);letter-spacing:-.02em;line-height:1.1;margin:0 0 24px}
 .login-left h1 em{font-style:italic;color:var(--gold)}
@@ -28,8 +28,8 @@
 
 .form-field{margin-bottom:28px}
 .form-field label{display:block;font-size:9px;letter-spacing:.24em;color:var(--ink-2);text-transform:uppercase;margin-bottom:12px}
-.form-field input{width:100%;border:0;border-bottom:1px solid var(--line-dark);background:transparent;padding:12px 0;font-size:15px;font-family:var(--sans);transition:border-color .3s}
-.form-field input:focus{border-color:var(--seal);outline:none}
+.form-field input{width:100%;border:0;border-bottom:1px solid var(--line-dark);background:transparent;padding:12px 0;font-size:15px;font-family:var(--sans);transition:border-color .3s,box-shadow .3s}
+.form-field input:focus{border-color:var(--seal);outline:none;box-shadow:0 2px 0 0 var(--seal)}
 
 .form-field .pwd-wrap{position:relative}
 .form-field .pwd-toggle{position:absolute;right:0;top:50%;transform:translateY(-50%);background:none;border:0;font-size:12px;color:var(--ink-3);cursor:pointer;padding:4px}
@@ -40,9 +40,9 @@
 .form-options a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line)}
 .form-options a:hover{color:var(--seal)}
 
-.btn-login{width:100%;padding:16px;font-size:12px;letter-spacing:.2em;border:0;cursor:pointer;font-family:var(--sans);transition:background .25s}
-.btn-login.solid{background:var(--seal);color:#f4f0e6}
-.btn-login.solid:hover{background:var(--seal-d)}
+.btn-login{width:100%;padding:16px;font-size:12px;letter-spacing:.2em;border:0;cursor:pointer;font-family:var(--sans);transition:background .3s,transform .3s var(--ease),box-shadow .3s}
+.btn-login.solid{background:var(--seal);color:var(--ink)}
+.btn-login.solid:hover{background:var(--seal-d);transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(144,119,114,.35)}
 .btn-login.ghost{background:transparent;color:var(--ink);border:1px solid var(--line-dark);margin-top:12px}
 .btn-login.ghost:hover{border-color:var(--seal);color:var(--seal)}
 
@@ -52,18 +52,29 @@
 .divider::after{right:0}
 
 .social{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.social button{padding:12px;border:1px solid var(--line-dark);background:transparent;font-size:11px;letter-spacing:.1em;cursor:pointer;font-family:var(--sans);transition:border-color .25s;color:var(--ink-2)}
-.social button:hover{border-color:var(--seal);color:var(--seal)}
+.social button{padding:12px;border:1px solid var(--line-dark);background:transparent;font-size:11px;letter-spacing:.1em;cursor:pointer;font-family:var(--sans);transition:border-color .3s,color .3s,transform .3s var(--ease),box-shadow .3s;color:var(--ink-2)}
+.social button:hover{border-color:var(--seal);color:var(--seal);transform:translateY(-2px);box-shadow:0 8px 24px -12px rgba(144,119,114,.2)}
 
 .signup{text-align:center;margin-top:40px;font-size:12px;color:var(--ink-2)}
 .signup a{color:var(--seal);text-decoration:none;border-bottom:1px solid var(--seal)}
 
-.back-home{position:absolute;top:24px;left:24px;font-size:11px;letter-spacing:.14em;color:rgba(244,240,230,.5);text-decoration:none;z-index:2}
-.back-home:hover{color:var(--gold)}
+.back-home{position:absolute;top:24px;left:24px;font-size:11px;letter-spacing:.14em;color:rgba(244,240,230,.5);text-decoration:none;z-index:2;transition:color .3s,transform .3s var(--ease)}
+.back-home:hover{color:var(--gold);transform:translateX(-4px)}
 
 @media(max-width:760px){
   .login-page{grid-template-columns:1fr}
   .login-left{display:none}
+}
+@media(max-width:600px){
+  .login-right{padding:40px24px}
+  .login-right h2{font-size:clamp(22px,5vw,32px)}
+  .login-right p{font-size:12px}
+  .btn-login{padding:12px;font-size:11px}
+  .btn-login.outline{padding:11px;font-size:11px}
+  .divider{margin:24px0;font-size:9px}
+  .social{gap:10px}
+  .social button{padding:10px;font-size:10px}
+  .signup{margin-top:28px;font-size:11px}
 }
 </style>
 </head>
@@ -94,12 +105,12 @@
       <form onsubmit="return false">
         <div class="form-field">
           <label><span data-lang-zh>邮箱 / 用户名</span><span data-lang-en>EMAIL / USERNAME</span><span data-lang-ja>メール / ユーザー名</span></label>
-          <input type="text" placeholder="phoebe@phoebemuseum.art" autocomplete="username">
+          <input type="text" data-placeholder-zh="phoebe@phoebemuseum.art" data-placeholder-en="phoebe@phoebemuseum.art" data-placeholder-ja="phoebe@phoebemuseum.art" placeholder="phoebe@phoebemuseum.art" autocomplete="username">
         </div>
         <div class="form-field">
           <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
           <div class="pwd-wrap">
-            <input type="password" placeholder="••••••••" autocomplete="current-password" id="pwdInput">
+            <input type="password" data-placeholder-zh="••••••••" data-placeholder-en="••••••••" data-placeholder-ja="••••••••" placeholder="••••••••" autocomplete="current-password" id="pwdInput">
             <button type="button" class="pwd-toggle" id="pwdToggle">显示</button>
           </div>
         </div>
@@ -129,7 +140,7 @@
 <script>
 (function(){
 var d=document;
-function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;localStorage.setItem('phoebe-lang',l)}
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;localStorage.setItem('phoebe-lang',l);d.querySelectorAll('[data-placeholder-'+l+']').forEach(function(el){el.placeholder=el.getAttribute('data-placeholder-'+l)});d.querySelectorAll('[data-lang-zh],[data-lang-en],[data-lang-ja]').forEach(function(el){var lang=el.getAttribute('data-lang-zh')?'zh':el.getAttribute('data-lang-en')?'en':'ja';el.style.display=lang===l?'':'none'})}
 apply(localStorage.getItem('phoebe-lang')||'zh');
 
 /* 密码显示/隐藏 */

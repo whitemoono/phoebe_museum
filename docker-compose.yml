@@ -1,0 +1,89 @@
+services:
+  phoebe-museum:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: phoebe-museum
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/prisma/dev.db
+      - JWT_SECRET=${JWT_SECRET:-your-jwt-secret-key-change-in-production}
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      - NEXT_PUBLIC_APP_NAME=Phoebe Museum
+      - UPLOAD_DIR=/app/public/uploads
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@phoebe-museum.com}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin123456}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+    volumes:
+      # 持久化数据库
+      - phoebe-data:/app/prisma
+      # 持久化上传文件
+      - phoebe-uploads:/app/public/uploads
+      # 持久化日志
+      - phoebe-logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - phoebe-network
+
+  # 可选：PostgreSQL 数据库（生产环境推荐）
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: phoebe-postgres
+  #   environment:
+  #     - POSTGRES_USER=phoebe
+  #     - POSTGRES_PASSWORD=phoebe_password
+  #     - POSTGRES_DB=phoebe_museum
+  #   volumes:
+  #     - postgres-data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   restart: unless-stopped
+  #   networks:
+  #     - phoebe-network
+
+  # 可选：Nginx 反向代理（生产环境）
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: phoebe-nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  #     - ./nginx/ssl:/etc/nginx/ssl
+  #     - phoebe-uploads:/usr/share/nginx/html/uploads
+  #   depends_on:
+  #     - phoebe-museum
+  #   restart: unless-stopped
+  #   networks:
+  #     - phoebe-network
+
+volumes:
+  phoebe-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./data
+      o: bind
+  phoebe-uploads:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./uploads
+      o: bind
+  phoebe-logs:
+    driver: local
+  # postgres-data:
+  #   driver: local
+
+networks:
+  phoebe-network:
+    driver: bridge

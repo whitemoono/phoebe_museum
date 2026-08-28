@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>帮助 · PHOEBE MUSEUM</title>
+<meta name="description" content="菲比博物馆帮助中心——常见问题与联系方式。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pm.css">
+<style>
+.help-hero{padding:160px 5vw 60px;max-width:1200px;margin:0 auto;text-align:center}
+.help-hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5vw,64px);letter-spacing:-.02em;line-height:1.1;margin:0 0 16px}
+.help-hero .lead{font-size:14px;color:var(--ink-2);max-width:480px;margin:0 auto;line-height:1.7}
+.help-search{max-width:600px;margin:0 auto;padding:0 5vw 60px}
+.help-search input{width:100%;padding:16px 20px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:var(--bg);color:var(--ink);transition:border-color .3s}
+.help-search input:focus{outline:none;border-color:var(--ink)}
+.help-faq{max-width:800px;margin:0 auto;padding:0 5vw 100px}
+.help-faq .category{margin-bottom:48px}
+.help-faq .category-title{font-family:var(--serif);font-size:24px;font-weight:400;margin:0 0 24px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.help-faq .faq-item{border:1px solid var(--line);border-radius:8px;margin-bottom:12px;overflow:hidden;transition:border-color .3s}
+.help-faq .faq-item:hover{border-color:var(--ink-3)}
+.help-faq .faq-question{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;font-size:14px;font-weight:500;color:var(--ink);background:var(--bg);transition:background-color .3s}
+.help-faq .faq-question:hover{background:var(--bg-soft)}
+.help-faq .faq-question::after{content:'+';font-size:18px;color:var(--ink-3);transition:transform .3s}
+.help-faq .faq-item.active .faq-question::after{transform:rotate(45deg)}
+.help-faq .faq-answer{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .4s var(--ease),padding .4s var(--ease)}
+.help-faq .faq-item.active .faq-answer{max-height:500px;padding:0 20px 20px}
+.help-faq .faq-answer p{font-size:13px;line-height:1.8;color:var(--ink-2);margin:0}
+.help-contact{padding:80px 5vw;background:var(--bg-soft);text-align:center}
+.help-contact h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.5vw,44px);margin:0 0 16px}
+.help-contact p{font-size:14px;color:var(--ink-2);margin:0 0 24px}
+.help-contact a{color:var(--seal);text-decoration:none;border-bottom:1px solid var(--seal)}
+</style>
+</head>
+<body>
+
+<!-- ================= 液态玻璃导航 ================= -->
+<header class="pm-nav" id="nav">
+  <a class="logo" href="index.html">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></a>
+  <nav class="links">
+    <a href="index.html" data-lang-zh>首页</a><a href="index.html" data-lang-en>HOME</a><a href="index.html" data-lang-ja>ホーム</a>
+    <a href="collection.html" data-lang-zh>馆藏</a><a href="collection.html" data-lang-en>COLLECTION</a><a href="collection.html" data-lang-ja>収蔵品</a>
+    <a href="timeline-human.html" data-lang-zh>人类时间线</a><a href="timeline-human.html" data-lang-en>HUMAN TIMELINE</a><a href="timeline-human.html" data-lang-ja>人類の時間線</a>
+    <a href="community.html" data-lang-zh>社区世界线</a><a href="community.html" data-lang-en>COMMUNITY</a><a href="community.html" data-lang-ja>コミュニティ</a>
+    <a href="creators.html" data-lang-zh>创作者</a><a href="creators.html" data-lang-en>CREATORS</a><a href="creators.html" data-lang-ja>クリエイター</a>
+    <a href="archive.html" data-lang-zh>档案馆</a><a href="archive.html" data-lang-en>ARCHIVE</a><a href="archive.html" data-lang-ja>アーカイブ</a>
+    <a href="my.html" data-lang-zh>我的博物馆</a><a href="my.html" data-lang-en>MY MUSEUM</a><a href="my.html" data-lang-ja>マイミュージアム</a>
+  </nav>
+  <div class="right">
+    <div class="lang">
+      <button data-lang="zh" class="active">中</button><button data-lang="en">EN</button><button data-lang="ja">日</button>
+    </div>
+    <a class="submit-btn" href="submit.html" data-lang-zh>上交菲比</a><a class="submit-btn" href="submit.html" data-lang-en>SUBMIT</a><a class="submit-btn" href="submit.html" data-lang-ja>投稿する</a>
+    <button class="menu-btn" id="menubtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+<div class="pm-userbar" id="userArea" data-login="false">
+  <a class="login-pill" href="login.html"><span class="dot"></span><span data-lang-zh>登录 / 注册</span><span data-lang-en>LOGIN / SIGN UP</span><span data-lang-ja>ログイン</span></a>
+  <div class="user-trigger" id="userTrigger">
+    <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+    <span class="uname">霓虹笔</span>
+    <span class="chevron">▾</span>
+  </div>
+  <div class="user-menu" id="userMenu">
+    <div class="u-head">
+      <div class="avatar"><img src="assets/avatar-user.png" alt=""></div>
+      <div class="u-info">
+        <div class="name">霓虹笔</div>
+        <div class="handle">@neon_pen</div>
+      </div>
+    </div>
+    <a href="my.html"><span class="icon">◆</span><span data-lang-zh>我的博物馆</span><span data-lang-en>MY MUSEUM</span><span data-lang-ja>マイミュージアム</span></a>
+    <a href="submit.html"><span class="icon">↑</span><span data-lang-zh>上交菲比</span><span data-lang-en>SUBMIT</span><span data-lang-ja>投稿する</span></a>
+    <a href="my.html"><span class="icon">♥</span><span data-lang-zh>我的收藏</span><span data-lang-en>COLLECTIONS</span><span data-lang-ja>コレクション</span></a>
+    <div class="u-sep"></div>
+    <button class="u-logout" id="logoutBtn"><span class="icon">⏻</span><span data-lang-zh>退出登录</span><span data-lang-en>SIGN OUT</span><span data-lang-ja>ログアウト</span></button>
+  </div>
+</div>
+<nav class="pm-drawer" id="drawer">
+  <a href="index.html">首页 · HOME</a>
+  <a href="collection.html">馆藏 · COLLECTION</a>
+  <a href="timeline-human.html">人类时间线 · HUMAN TIMELINE</a>
+  <a href="community.html">社区世界线 · COMMUNITY</a>
+  <a href="creators.html">创作者 · CREATORS</a>
+  <a href="archive.html">档案馆 · ARCHIVE</a>
+  <a href="my.html">我的博物馆 · MY MUSEUM</a>
+</nav>
+
+<!-- ================= Hero ================= -->
+<section class="help-hero rv page-enter">
+  <h1><span data-lang-zh>帮助中心</span><span data-lang-en>Help Center</span><span data-lang-ja>ヘルプセンター</span></h1>
+  <p class="lead"><span data-lang-zh>有疑问？这里可能有答案。</span><span data-lang-en>Got questions? You might find answers here.</span><span data-lang-ja>質問がありますか？ここで答えが見つかるかもしれません。</span></p>
+</section>
+
+<!-- ================= 搜索 ================= -->
+<div class="help-search rv">
+  <input type="text" id="faqSearch" placeholder="搜索问题...">
+</div>
+
+<!-- ================= FAQ ================= -->
+<section class="help-faq">
+  <div class="category rv">
+    <h2 class="category-title"><span data-lang-zh>关于博物馆</span><span data-lang-en>About the Museum</span><span data-lang-ja>博物館について</span></h2>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>菲比博物馆是什么？</span><span data-lang-en>What is Phoebe Museum?</span><span data-lang-ja>フィービー博物館とは？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>菲比博物馆是一座数字时代的民间博物馆，专门收藏、展示、研究围绕"菲比"这一角色的二次创作作品。我们给每件作品编号、存档、展示，就像真正的博物馆对待馆藏一样。</span><span data-lang-en>Phoebe Museum is a digital-age folk museum dedicated to collecting, exhibiting, and researching fan art of the character "Phoebe." We number, archive, and exhibit each piece, just like a real museum treats its collection.</span><span data-lang-ja>フィービー博物館は、デジタル時代の民間博物館で、「フィービー」のキャラクターの二次創作作品の収集、展示、研究を専門としています。</span></p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>这里收藏什么样的作品？</span><span data-lang-en>What kind of works do you collect?</span><span data-lang-ja>どのような作品を収蔵していますか？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>我们收藏一切围绕"菲比"角色的二次创作作品，无论风格、技法、题材。绘画、小说、音乐、视频、3D 模型、手工制品……只要主角是菲比，我们都收。</span><span data-lang-en>We collect all fan art of the "Phoebe" character, regardless of style, technique, or subject. Paintings, novels, music, videos, 3D models, crafts... as long as the protagonist is Phoebe, we take it.</span><span data-lang-ja>「フィービー」キャラクターのすべての二次創作作品を収蔵しています。絵画、小説、音楽、動画、3Dモデル、手工艺品...主役がフィービーであれば何でも収蔵します。</span></p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>菲比博物馆是官方的吗？</span><span data-lang-en>Is Phoebe Museum official?</span><span data-lang-ja>フィービー博物館は公式ですか？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>不是。菲比博物馆是一座民间博物馆，由爱好者社区运营，不隶属于任何官方机构。我们只是想给这些二创作品一个正式的家。</span><span data-lang-en>No. Phoebe Museum is a folk museum operated by a fan community, not affiliated with any official organization. We just want to give these fan works a proper home.</span><span data-lang-ja>いいえ。フィービー博物館はファンコミュニティが運営する民間博物館で、いかなる公式機関にも所属しません。</span></p></div>
+    </div>
+  </div>
+  <div class="category rv">
+    <h2 class="category-title"><span data-lang-zh>创作者相关</span><span data-lang-en>For Creators</span><span data-lang-ja>クリエイター向け</span></h2>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>如何上交作品？</span><span data-lang-en>How do I submit a work?</span><span data-lang-ja>作品を提出するには？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>注册账户后，点击导航栏的「上交菲比」按钮，填写作品信息后提交。审核通过后，你的作品将获得正式的馆藏编号。</span><span data-lang-en>After registering, click "Submit Phoebe" in the navigation bar, fill in your work info and submit. Once approved, your work gets an official collection number.</span><span data-lang-ja>登録後、ナビゲーションバーの「フィービーを提出」をクリックし、作品情報を入力して提出します。審査通過後、公式収蔵番号が付与されます。</span></p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>我的版权归谁？</span><span data-lang-en>Who owns my copyright?</span><span data-lang-ja>著作権は誰のもの？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>你。创作者保留作品的完整著作权。菲比博物馆仅获得展示、存档的权利。你可以随时要求撤回作品。</span><span data-lang-en>You. Creators retain full copyright. We only obtain display and archive rights. You can withdraw anytime.</span><span data-lang-ja>あなたです。クリエイターは完全な著作権を保持します。いつでも作品の撤回を求めることができます。</span></p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>作品审核要多久？</span><span data-lang-en>How long does review take?</span><span data-lang-ja>審査にはどのくらい時間がかかりますか？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>通常 1-3 个工作日。高峰期可能更久。审核结果会通过邮件通知。</span><span data-lang-en>Usually 1-3 business days. May be longer during peak periods. Results are notified by email.</span><span data-lang-ja>通常1〜3営業日です。繁忙期はさらに時間がかかる場合があります。結果はメールで通知されます。</span></p></div>
+    </div>
+  </div>
+  <div class="category rv">
+    <h2 class="category-title"><span data-lang-zh>账户相关</span><span data-lang-en>Account</span><span data-lang-ja>アカウント</span></h2>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>如何注册账户？</span><span data-lang-en>How do I register?</span><span data-lang-ja>アカウントを登録するには？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>点击右上角的「登录 / 注册」按钮，切换到注册页面，填写邮箱、创作者代号和密码即可。</span><span data-lang-en>Click "Login / Register" in the top right, switch to register, fill in email, creator code and password.</span><span data-lang-ja>右上の「ログイン / 新規登録」ボタンをクリックし、登録ページに切り替えて、メール、クリエイターコード、パスワードを入力します。</span></p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>忘记密码怎么办？</span><span data-lang-en>Forgot password?</span><span data-lang-ja>パスワードを忘れた場合は？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>请联系管理员重置密码：phoebe@phoebemuseum.art</span><span data-lang-en>Contact admin to reset: phoebe@phoebemuseum.art</span><span data-lang-ja>管理者に連絡してパスワードをリセットしてください：phoebe@phoebemuseum.art</span></p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question"><span data-lang-zh>如何删除账户？</span><span data-lang-en>How do I delete my account?</span><span data-lang-ja>アカウントを削除するには？</span></div>
+      <div class="faq-answer"><p><span data-lang-zh>请联系管理员：phoebe@phoebemuseum.art。删除后作品将保留为馆藏，但个人信息会被删除。</span><span data-lang-en>Contact admin: phoebe@phoebemuseum.art. Works are retained as collection items, but personal info is deleted.</span><span data-lang-ja>管理者に連絡してください：phoebe@phoebemuseum.art。削除後、作品は収蔵品として残りますが、個人情報は削除されます。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 联系我们 ================= -->
+<section class="help-contact rv">
+  <h2><span data-lang-zh>还有问题？</span><span data-lang-en>Still have questions?</span><span data-lang-ja>まだ質問がありますか？</span></h2>
+  <p><span data-lang-zh>联系我们：</span><span data-lang-en>Contact us:</span><span data-lang-ja>お問い合わせ：</span><a href="mailto:phoebe@phoebemuseum.art">phoebe@phoebemuseum.art</a></p>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="pm-foot">
+  <div class="inner">
+    <div class="brand">PHOEBE MUSEUM<small data-lang-zh>菲比博物馆 · 大概很严肃</small><small data-lang-en>VERY SERIOUS MUSEUM*</small><small data-lang-ja>フィービー博物館</small></div>
+    <div class="meta"><span>© 2026 PHOEBE MUSEUM</span><span data-lang-zh>*本馆的严肃程度以实际情况为准</span><span data-lang-en>*SERIOUSNESS MAY VARY</span><span>PM-000001 → ∞</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var d=document;
+var nav=d.getElementById('nav'),btn=d.getElementById('menubtn'),drawer=d.getElementById('drawer');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>24)},{passive:true});
+btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
+d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
+var els=[].slice.call(d.querySelectorAll('.rv'));
+if('IntersectionObserver' in window){
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+els.forEach(function(el){io.observe(el)});
+}else{els.forEach(function(el){el.classList.add('in')})}
+var top=d.createElement('button');top.type='button';top.className='to-top';top.setAttribute('aria-label','back to top');top.textContent='↑';
+d.body.appendChild(top);
+top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
+function apply(l){
+  d.documentElement.lang=l==='zh'?'zh-CN':l;
+  d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)});
+  d.querySelectorAll('[data-placeholder-'+l+']').forEach(function(el){el.placeholder=el.getAttribute('data-placeholder-'+l)});
+  d.querySelectorAll('[data-lang-zh],[data-lang-en],[data-lang-ja]').forEach(function(el){
+    var lang=el.getAttribute('data-lang-zh')?'zh':el.getAttribute('data-lang-en')?'en':'ja';
+    el.style.display=lang===l?'':'none';
+  });
+  /* 搜索框 placeholder 多语言 */
+  var search=d.getElementById('faqSearch');
+  if(search){
+    var ph={zh:'搜索问题...',en:'Search questions...',ja:'質問を検索...'};
+    search.setAttribute('placeholder',ph[l]||ph.zh);
+  }
+}
+apply(localStorage.getItem('phoebe-lang')||'zh');
+d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
+/* ---- 用户菜单 ---- */
+var ua=d.getElementById('userArea'),ut=d.getElementById('userTrigger'),um=d.getElementById('userMenu'),lo=d.getElementById('logoutBtn');
+if(ut){ut.addEventListener('click',function(e){e.stopPropagation();ua.classList.toggle('open')})}
+if(um){um.addEventListener('click',function(e){e.stopPropagation()})}
+d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua.contains(e.target)){ua.classList.remove('open')}});
+if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
+var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
+})();
+</script>
+
+<!-- 登录/注册弹窗 -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-header">
+      <div class="logo">PHOEBE MUSEUM<em>菲比博物馆</em></div>
+      <div class="auth-tabs">
+        <button class="active" data-tab="login"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+        <button data-tab="register"><span data-lang-zh>注册</span><span data-lang-en>SIGN UP</span><span data-lang-ja>新規登録</span></button>
+        <div class="indicator" data-tab="login"></div>
+      </div>
+    </div>
+    <div class="auth-body">
+      <div class="auth-form active" id="loginForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <div class="email-input-wrapper">
+            <input type="email" id="loginEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+            <div class="email-suggestions" id="loginEmailSuggestions"></div>
+          </div>
+          <div class="error-msg"><span data-lang-zh>请输入有效的邮箱地址</span><span data-lang-en>Please enter a valid email</span><span data-lang-ja>有効なメールアドレスを入力してください</span></div>
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+          <div class="error-msg"><span data-lang-zh>密码不能为空</span><span data-lang-en>Password cannot be empty</span><span data-lang-ja>パスワードを入力してください</span></div>
+        </div>
+        <div class="forgot"><a href="#"><span data-lang-zh>忘记密码？</span><span data-lang-en>Forgot password?</span><span data-lang-ja>パスワードをお忘れですか？</span></a></div>
+        <button class="btn-primary" id="loginBtn"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+        <div class="divider"><span data-lang-zh>或</span><span data-lang-en>OR</span><span data-lang-ja>または</span></div>
+        <div class="social-btns">
+          <button title="Google">G</button>
+          <button title="GitHub">⌘</button>
+          <button title="微信">微</button>
+        </div>
+        <p class="agreement" data-lang-zh>登录即表示同意《<a href="#" onclick="openCharter();return false;">菲比博物馆章程</a>》和《<a href="#" onclick="openPact();return false;">数据公约</a>》</p>
+<p class="agreement" data-lang-en>By signing in, you agree to the <a href="#" onclick="openCharter();return false;">Phoebe Museum Charter</a> and <a href="#" onclick="openPact();return false;">Data Pact</a></p>
+<p class="agreement" data-lang-ja>ログインにより、<a href="#" onclick="openCharter();return false;">フィービー博物館定款</a>と<a href="#" onclick="openPact();return false;">データ公约</a>に同意したものとみなします</p>
+      </div>
+      <div class="auth-form" id="registerForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <div class="email-input-wrapper">
+            <input type="email" id="regEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+            <div class="email-suggestions" id="regEmailSuggestions"></div>
+          </div>
+          <div class="hint"><span data-lang-zh>用于登录和接收作品通知</span><span data-lang-en>For login and artwork notifications</span><span data-lang-ja>ログインと作品通知に使用</span></div>
+          <div class="error-msg"><span data-lang-zh>请输入有效的邮箱地址</span><span data-lang-en>Please enter a valid email</span><span data-lang-ja>有効なメールアドレスを入力してください</span></div>
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>创作者代号</span><span data-lang-en>CREATOR CODE</span><span data-lang-ja>クリエイターコード</span></label>
+          <input type="text" id="regCode" placeholder="phoebe_sailor" autocomplete="username">
+          <div class="hint"><span data-lang-zh>你的创作者代号</span><span data-lang-en>Your creator code</span><span data-lang-ja>あなたのクリエイターコード</span></div>
+          <div class="error-msg"><span data-lang-zh>只能用英文、数字、下划线</span><span data-lang-en>Only English, numbers, underscores</span><span data-lang-ja>英数字とアンダースコアのみ</span></div>
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+          <div class="password-strength">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+          <div class="password-strength-text"></div>
+          <div class="hint"><span data-lang-zh>至少 6 个字符</span><span data-lang-en>At least 6 characters</span><span data-lang-ja>6文字以上</span></div>
+          <div class="error-msg"><span data-lang-zh>密码至少 6 个字符</span><span data-lang-en>Password must be at least 6 characters</span><span data-lang-ja>パスワードは6文字以上</span></div>
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>个性签名</span><span data-lang-en>BIO</span><span data-lang-ja>自己紹介</span></label>
+          <input type="text" id="regSlogan" placeholder="第一次见到菲比时，她正在便利店打瞌睡。">
+          <div class="hint"><span data-lang-zh>用一句话介绍自己（选填）</span><span data-lang-en>Introduce yourself in one sentence (optional)</span><span data-lang-ja>一言で自己紹介（任意）</span></div>
+        </div>
+        <button class="btn-primary" id="registerBtn"><span data-lang-zh>注册</span><span data-lang-en>REGISTER</span><span data-lang-ja>登録</span></button>
+        <p class="agreement" data-lang-zh>点击「注册」即表示同意《<a href="#" onclick="openCharter();return false;">菲比博物馆章程</a>》和《<a href="#" onclick="openPact();return false;">数据公约</a>》</p>
+<p class="agreement" data-lang-en>By clicking "Register", you agree to the <a href="#" onclick="openCharter();return false;">Phoebe Museum Charter</a> and <a href="#" onclick="openPact();return false;">Data Pact</a></p>
+<p class="agreement" data-lang-ja>「登録」をクリックにより、<a href="#" onclick="openCharter();return false;">フィービー博物館定款</a>と<a href="#" onclick="openPact();return false;">データ公约</a>に同意したものとみなします</p>
+      </div>
+      <div class="auth-success" id="authSuccess">
+        <div class="icon">⛵</div>
+        <h3><span data-lang-zh>欢迎加入</span><span data-lang-en>WELCOME</span><span data-lang-ja>ようこそ</span></h3>
+        <p><span data-lang-zh>欢迎来到菲比博物馆<br>在这里，你不再只是观众。</span></p>
+<p><span data-lang-en>Welcome to Phoebe Museum<br>Here, you are no longer just a viewer.</span></p>
+<p><span data-lang-ja>フィービー博物館へようこそ<br>ここであなたはもはや観客ではありません。</span></p>
+        <button class="btn-primary" id="authSuccessBtn"><span data-lang-zh>进入档案馆</span><span data-lang-en>ENTER ARCHIVE</span><span data-lang-ja>アーカイブに入る</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast 通知 -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- 菲比博物馆章程模态框 -->
+<div class="doc-overlay" id="charterOverlay">
+  <div class="doc-modal">
+    <button class="doc-close" id="charterClose">✕</button>
+    <div class="doc-content">
+      <h2><span data-lang-zh>菲比博物馆章程</span><span data-lang-en>Phoebe Museum Charter</span><span data-lang-ja>フィービー博物館定款</span></h2>
+      <div class="doc-body">
+        <p data-lang-zh>欢迎来到菲比博物馆。本章程规定了博物馆的基本原则和运营规范。</p>
+        <p data-lang-en>Welcome to Phoebe Museum. This charter establishes the fundamental principles and operational guidelines of the museum.</p>
+        <p data-lang-ja>フィービー博物館へようこそ。本定款は、博物館の基本原則と運営規程を定めています。</p>
+        <h3 data-lang-zh>第一条 性质与宗旨</h3>
+        <h3 data-lang-en>Article 1: Nature and Purpose</h3>
+        <h3 data-lang-ja>第一条：性質と目的</h3>
+        <p data-lang-zh>菲比博物馆是一个专注于幽灵船菲比这一虚构角色的数字艺术博物馆。我们致力于收集、保存和展示与菲比相关的二创作品，构建一个充满想象力的艺术社区。</p>
+        <p data-lang-en>Phoebe Museum is a digital art museum dedicated to the fictional character Ghost Ship Phoebe. We are committed to collecting, preserving, and displaying fan-created works related to Phoebe, building an imaginative art community.</p>
+        <p data-lang-ja>フィービー博物館は、幽霊船フィービーという架空のキャラクターに特化したデジタル美術博物館です。フィービーに関連するファン創作作品の収集、保存、展示に努め、想像力に富んだアートコミュニティを構築します。</p>
+        <h3 data-lang-zh>第二条 创作者权利</h3>
+        <h3 data-lang-en>Article 2: Creator Rights</h3>
+        <h3 data-lang-ja>第二条：クリエイターの権利</h3>
+        <p data-lang-zh>所有创作者对其提交的作品保留完整的著作权。博物馆仅获得在本平台展示作品的非独占性授权。</p>
+        <p data-lang-en>All creators retain full copyright ownership of their submitted works. The museum only receives a non-exclusive license to display works on this platform.</p>
+        <p data-lang-ja>すべてのクリエイターは、提出した作品の完全な著作権を保持します。博物館は本プラットフォームでの作品展示に関する非独占的ライセンスのみを取得します。</p>
+        <h3 data-lang-zh>第三条 社区准则</h3>
+        <h3 data-lang-en>Article 3: Community Guidelines</h3>
+        <h3 data-lang-ja>第三条：コミュニティガイドライン</h3>
+        <p data-lang-zh>我们鼓励创意表达和艺术探索，但禁止任何形式的骚扰、歧视或侵权行为。所有成员应相互尊重，共同维护社区的友好氛围。</p>
+        <p data-lang-en>We encourage creative expression and artistic exploration, but prohibit any form of harassment, discrimination, or copyright infringement. All members should respect each other and jointly maintain a friendly community atmosphere.</p>
+        <p data-lang-ja>創造的な表現と芸術的な探求を奨励しますが、いかなる形のハラスメント、差別、著作権侵害も禁止します。すべてのメンバーは相互に尊重し、コミュニティの友好的な雰囲気を共同で維持してください。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 数据公约模态框 -->
+<div class="doc-overlay" id="pactOverlay">
+  <div class="doc-modal">
+    <button class="doc-close" id="pactClose">✕</button>
+    <div class="doc-content">
+      <h2><span data-lang-zh>数据公约</span><span data-lang-en>Data Pact</span><span data-lang-ja>データ公约</span></h2>
+      <div class="doc-body">
+        <p data-lang-zh>本公约规定了菲比博物馆的数据处理原则和用户隐私保护措施。</p>
+        <p data-lang-en>This pact establishes the data processing principles and user privacy protection measures of Phoebe Museum.</p>
+        <p data-lang-ja>本公约は、フィービー博物館のデータ処理原則とユーザーのプライバシー保護措置を定めています。</p>
+        <h3 data-lang-zh>第一条 数据收集</h3>
+        <h3 data-lang-en>Article 1: Data Collection</h3>
+        <h3 data-lang-ja>第一条：データ収集</h3>
+        <p data-lang-zh>我们仅收集提供服务所必需的最少数据，包括：邮箱地址、创作者代号、密码（加密存储）和您主动提交的作品信息。</p>
+        <p data-lang-en>We collect only the minimum data necessary to provide our services, including: email address, creator code, password (encrypted storage), and artwork information you voluntarily submit.</p>
+        <p data-lang-ja>サービス提供に必要な最小限のデータのみを収集します。これには：メールアドレス、クリエイターコード、パスワード（暗号化保存）、および自主的に提出する作品情報が含まれます。</p>
+        <h3 data-lang-zh>第二条 数据使用</h3>
+        <h3 data-lang-en>Article 2: Data Usage</h3>
+        <h3 data-lang-ja>第二条：データの使用</h3>
+        <p data-lang-zh>您的数据仅用于：账户管理、作品展示、社区功能和必要的服务通知。我们绝不会将您的个人信息出售给第三方。</p>
+        <p data-lang-en>Your data is used only for: account management, artwork display, community features, and necessary service notifications. We will never sell your personal information to third parties.</p>
+        <p data-lang-ja>お客様のデータは：アカウント管理、作品展示、コミュニティ機能、および必要なサービス通知にのみ使用されます。個人情報を第三者に販売することは一切ありません。</p>
+        <h3 data-lang-zh>第三条 数据安全</h3>
+        <h3 data-lang-en>Article 3: Data Security</h3>
+        <h3 data-lang-ja>第三条：データセキュリティ</h3>
+        <p data-lang-zh>我们采用行业标准的安全措施保护您的数据，包括加密传输、安全存储和定期安全审计。</p>
+        <p data-lang-en>We employ industry-standard security measures to protect your data, including encrypted transmission, secure storage, and regular security audits.</p>
+        <p data-lang-ja>業界標準のセキュリティ対策を採用してデータを保護します。これには暗号化通信、安全な保管、定期的なセキュリティ監査が含まれます。</p>
+        <h3 data-lang-zh>第四条 用户权利</h3>
+        <h3 data-lang-en>Article 4: User Rights</h3>
+        <h3 data-lang-ja>第四条：ユーザーの権利</h3>
+        <p data-lang-zh>您有权随时访问、修改或删除您的个人数据。如需行使相关权利，请通过指定渠道联系我们。</p>
+        <p data-lang-en>You have the right to access, modify, or delete your personal data at any time. To exercise these rights, please contact us through the designated channels.</p>
+        <p data-lang-ja>いつでも個人データにアクセス、修正、または削除する権利があります。これらの権利を行使するには、指定されたチャネルからお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var overlay=document.getElementById('authOverlay');
+  var closeBtn=document.getElementById('authClose');
+  var tabs=overlay.querySelectorAll('.auth-tabs button');
+  var indicator=overlay.querySelector('.auth-tabs .indicator');
+  var loginForm=document.getElementById('loginForm');
+  var registerForm=document.getElementById('registerForm');
+  var success=document.getElementById('authSuccess');
+  var loginBtn=document.getElementById('loginBtn');
+  var registerBtn=document.getElementById('registerBtn');
+  var successBtn=document.getElementById('authSuccessBtn');
+
+  function openAuth(tab){
+    overlay.classList.add('active');
+    document.body.style.overflow='hidden';
+    switchTab(tab||'login');
+  }
+  function closeAuth(){
+    overlay.classList.remove('active');
+    document.body.style.overflow='';
+    resetForms();
+  }
+  function switchTab(tab){
+    tabs.forEach(function(t){t.classList.toggle('active',t.dataset.tab===tab)});
+    indicator.dataset.tab=tab;
+    loginForm.classList.toggle('active',tab==='login');
+    registerForm.classList.toggle('active',tab==='register');
+    success.classList.remove('active');
+  }
+  function resetForms(){
+    loginForm.querySelectorAll('input').forEach(function(i){i.value=''});
+    registerForm.querySelectorAll('input').forEach(function(i){i.value=''});
+    overlay.querySelectorAll('.field').forEach(function(f){f.classList.remove('error')});
+  }
+  function showSuccess(){
+    loginForm.classList.remove('active');
+    registerForm.classList.remove('active');
+    success.classList.add('active');
+  }
+  function validateEmail(email){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
+  function validateCode(code){return/^[a-zA-Z0-9_]{3,20}$/.test(code)}
+  function getPasswordStrength(pwd){
+    if(!pwd)return 0;
+    var score=0;
+    if(pwd.length>=6)score++;
+    if(pwd.length>=10)score++;
+    if(/[a-z]/.test(pwd)&&/[A-Z]/.test(pwd))score++;
+    if(/\d/.test(pwd))score++;
+    if(/[^a-zA-Z0-9]/.test(pwd))score++;
+    return Math.min(score,3);
+  }
+  function updatePasswordStrength(input){
+    var field=input.closest('.field');
+    var strength=getPasswordStrength(input.value);
+    var strengthEl=field.querySelector('.password-strength');
+    var textEl=field.querySelector('.password-strength-text');
+    if(!strengthEl)return;
+    strengthEl.className='password-strength';
+    if(input.value.length===0){
+      if(textEl)textEl.textContent='';
+    }else if(strength===1){
+      strengthEl.classList.add('weak');
+      if(textEl)textEl.textContent='弱';
+    }else if(strength===2){
+      strengthEl.classList.add('medium');
+      if(textEl)textEl.textContent='中';
+    }else{
+      strengthEl.classList.add('strong');
+      if(textEl)textEl.textContent='强';
+    }
+  }
+
+  closeBtn.addEventListener('click',closeAuth);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeAuth()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('active'))closeAuth()});
+
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){switchTab(this.dataset.tab)});
+  });
+
+  overlay.querySelectorAll('.password-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var input=this.previousElementSibling;
+      input.type=input.type==='password'?'text':'password';
+    });
+  });
+
+  var regPassword=document.getElementById('regPassword');
+  if(regPassword){
+    regPassword.addEventListener('input',function(){updatePasswordStrength(this)});
+  }
+
+  var emailSuffixes=['@gmail.com','@qq.com','@163.com','@126.com','@outlook.com','@hotmail.com','@yahoo.com','@foxmail.com','@icloud.com','@139.com'];
+  function showEmailSuggestions(input,suggestionsEl){
+    var value=input.value.trim();
+    var atIndex=value.indexOf('@');
+    if(atIndex===-1){
+      suggestionsEl.classList.remove('active');
+      return;
+    }
+    var prefix=value.substring(0,atIndex);
+    var typedSuffix=value.substring(atIndex);
+    var matches=emailSuffixes.filter(function(suffix){
+      return suffix.toLowerCase().startsWith(typedSuffix.toLowerCase());
+    });
+    if(matches.length===0||typedSuffix.length===0){
+      suggestionsEl.classList.remove('active');
+      return;
+    }
+    suggestionsEl.innerHTML=matches.map(function(suffix){
+      return '<div class="email-suggestion-item" data-email="'+prefix+suffix+'">'+
+        '<span class="prefix">'+prefix+'</span>'+
+        '<span class="suffix">'+suffix+'</span>'+
+        '</div>';
+    }).join('');
+    suggestionsEl.classList.add('active');
+    suggestionsEl.querySelectorAll('.email-suggestion-item').forEach(function(item){
+      item.addEventListener('mousedown',function(e){
+        e.preventDefault();
+        input.value=this.getAttribute('data-email');
+        suggestionsEl.classList.remove('active');
+        input.focus();
+      });
+    });
+  }
+  function hideEmailSuggestions(suggestionsEl){
+    setTimeout(function(){suggestionsEl.classList.remove('active')},200);
+  }
+
+  var loginEmail=document.getElementById('loginEmail');
+  var loginEmailSuggestions=document.getElementById('loginEmailSuggestions');
+  var regEmail=document.getElementById('regEmail');
+  var regEmailSuggestions=document.getElementById('regEmailSuggestions');
+
+  if(loginEmail&&loginEmailSuggestions){
+    loginEmail.addEventListener('input',function(){showEmailSuggestions(this,loginEmailSuggestions)});
+    loginEmail.addEventListener('blur',function(){hideEmailSuggestions(loginEmailSuggestions)});
+  }
+  if(regEmail&&regEmailSuggestions){
+    regEmail.addEventListener('input',function(){showEmailSuggestions(this,regEmailSuggestions)});
+    regEmail.addEventListener('blur',function(){hideEmailSuggestions(regEmailSuggestions)});
+  }
+
+  loginBtn.addEventListener('click',function(){
+    var email=document.getElementById('loginEmail');
+    var pwd=document.getElementById('loginPassword');
+    var valid=true;
+    if(!validateEmail(email.value)){
+      email.closest('.field').classList.add('error');
+      Toast.error('邮箱格式错误','请输入有效的邮箱地址');
+      valid=false;
+    }else{
+      email.closest('.field').classList.remove('error');
+    }
+    if(!pwd.value){
+      pwd.closest('.field').classList.add('error');
+      Toast.error('请输入密码','密码不能为空');
+      valid=false;
+    }else{
+      pwd.closest('.field').classList.remove('error');
+    }
+    if(valid){
+      loginBtn.classList.add('loading');
+      setTimeout(function(){
+        loginBtn.classList.remove('loading');
+        localStorage.setItem('phoebe-auth','true');
+        localStorage.setItem('phoebe-user',JSON.stringify({email:email.value,code:email.value.split('@')[0]}));
+        Toast.success('登录成功','欢迎回到菲比博物馆');
+        showSuccess();
+      },800);
+    }
+  });
+
+  registerBtn.addEventListener('click',function(){
+    var email=document.getElementById('regEmail');
+    var code=document.getElementById('regCode');
+    var pwd=document.getElementById('regPassword');
+    var valid=true;
+    if(!validateEmail(email.value)){
+      email.closest('.field').classList.add('error');
+      Toast.error('邮箱格式错误','请输入有效的邮箱地址');
+      valid=false;
+    }else{
+      email.closest('.field').classList.remove('error');
+    }
+    if(!validateCode(code.value)){
+      code.closest('.field').classList.add('error');
+      Toast.error('创作者代号无效','3-20位字母、数字或下划线');
+      valid=false;
+    }else{
+      code.closest('.field').classList.remove('error');
+    }
+    if(pwd.value.length<6){
+      pwd.closest('.field').classList.add('error');
+      Toast.error('密码太短','密码至少需要6个字符');
+      valid=false;
+    }else{
+      pwd.closest('.field').classList.remove('error');
+    }
+    if(valid){
+      registerBtn.classList.add('loading');
+      setTimeout(function(){
+        registerBtn.classList.remove('loading');
+        localStorage.setItem('phoebe-auth','true');
+        localStorage.setItem('phoebe-user',JSON.stringify({email:email.value,code:code.value}));
+        Toast.success('注册成功','欢迎加入菲比博物馆');
+        showSuccess();
+      },1000);
+    }
+  });
+
+  successBtn.addEventListener('click',function(){
+    closeAuth();
+    window.location.reload();
+  });
+
+  document.querySelectorAll('a[href="login.html"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      openAuth('login');
+    });
+  });
+
+  window.openAuth=openAuth;
+  window.closeAuth=closeAuth;
+
+  if(localStorage.getItem('phoebe-auth')==='true'){
+    var ua=document.getElementById('userArea');
+    if(ua)ua.setAttribute('data-login','true');
+  }
+})();
+
+/* 文档模态框 */
+(function(){
+  var charterOverlay=document.getElementById('charterOverlay');
+  var pactOverlay=document.getElementById('pactOverlay');
+  var charterClose=document.getElementById('charterClose');
+  var pactClose=document.getElementById('pactClose');
+
+  function openCharter(){
+    charterOverlay.classList.add('active');
+    document.body.style.overflow='hidden';
+  }
+  function openPact(){
+    pactOverlay.classList.add('active');
+    document.body.style.overflow='hidden';
+  }
+  function closeDocs(){
+    charterOverlay.classList.remove('active');
+    pactOverlay.classList.remove('active');
+    document.body.style.overflow='';
+  }
+
+  charterClose.addEventListener('click',closeDocs);
+  pactClose.addEventListener('click',closeDocs);
+
+  charterOverlay.addEventListener('click',function(e){
+    if(e.target===charterOverlay)closeDocs();
+  });
+  pactOverlay.addEventListener('click',function(e){
+    if(e.target===pactOverlay)closeDocs();
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape')closeDocs();
+  });
+
+  window.openCharter=openCharter;
+  window.openPact=openPact;
+})();
+
+/* Toast 通知系统 */
+var Toast={
+  container:null,
+  init:function(){
+    this.container=document.getElementById('toastContainer');
+  },
+  show:function(options){
+    if(!this.container)this.init();
+    var type=options.type||'info';
+    var icon=options.icon||this.getIcon(type);
+    var toast=document.createElement('div');
+    toast.className='toast '+type;
+    toast.innerHTML='<span class="toast-icon">'+icon+'</span>'+
+      '<div class="toast-content">'+
+      '<div class="toast-title">'+options.title+'</div>'+
+      (options.message?'<div class="toast-message">'+options.message+'</div>':'')+
+      '</div>'+
+      '<button class="toast-close" onclick="this.parentElement.classList.add(\'removing\');setTimeout(function(){this.parentElement.remove()}.bind(this),300)">✕</button>';
+    this.container.appendChild(toast);
+    if(options.duration!==0){
+      setTimeout(function(){
+        if(toast.parentElement){
+          toast.classList.add('removing');
+          setTimeout(function(){toast.remove()},300);
+        }
+      },options.duration||3000);
+    }
+    return toast;
+  },
+  getIcon:function(type){
+    var icons={success:'✓',error:'✕',warning:'⚠',info:'ℹ'};
+    return icons[type]||icons.info;
+  },
+  success:function(title,message,duration){
+    return this.show({type:'success',title:title,message:message,duration:duration});
+  },
+  error:function(title,message,duration){
+    return this.show({type:'error',title:title,message:message,duration:duration});
+  },
+  warning:function(title,message,duration){
+    return this.show({type:'warning',title:title,message:message,duration:duration});
+  },
+  info:function(title,message,duration){
+    return this.show({type:'info',title:title,message:message,duration:duration});
+  }
+};
+
+/* FAQ 手风琴 */
+document.querySelectorAll('.faq-question').forEach(function(q){
+  q.addEventListener('click',function(){
+    var item=this.parentElement;
+    var wasActive=item.classList.contains('active');
+    item.parentElement.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('active')});
+    if(!wasActive)item.classList.add('active');
+  });
+});
+
+/* FAQ 搜索 */
+var searchInput=document.getElementById('faqSearch');
+if(searchInput){
+  searchInput.addEventListener('input',function(){
+    var query=this.value.toLowerCase();
+    document.querySelectorAll('.faq-item').forEach(function(item){
+      var text=item.textContent.toLowerCase();
+      item.style.display=query&&!text.includes(query)?'none':'';
+    });
+  });
+}
+</script>
+</body>
+</html>

@@ -35,3 +35,12 @@ yarn-error.log*
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Database and uploads (local development)
+prisma/dev.db
+prisma/dev.db-journal
+data/
+uploads/
+
+# Docker volumes (local)
+.docker/

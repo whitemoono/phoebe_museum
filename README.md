@@ -180,13 +180,16 @@ phoebe-museum/
 
 ## 技术实现
 
-- 纯前端实现，无需后端依赖
-- HTML5 + CSS3 + Vanilla JavaScript
+- Next.js 16 + React 19 + TypeScript
+- Prisma ORM + SQLite 数据库
+- JWT 认证 + bcrypt 密码加密
+- 本地图片上传 + 文件系统存储
 - CSS 变量主题系统
 - Intersection Observer 滚动动画
 - 三语切换系统（中文/English/日本語）
 - 液态玻璃悬浮导航栏
 - 响应式设计，适配各种设备
+- Docker 容器化部署
 
 ## 参与贡献
 
@@ -229,13 +232,17 @@ phoebe-museum/
 
 ## 未来规划
 
-- [ ] 接入 Supabase 数据库
-- [ ] 用户注册登录系统
-- [ ] 真实投稿审核流程
-- [ ] 自动 PM 编号系统
+- [x] 本地数据库集成（Prisma + SQLite）
+- [x] 用户注册登录系统
+- [x] 真实投稿审核流程
+- [x] 自动 PM 编号系统
+- [x] 本地图片上传
+- [x] Docker 容器化部署
 - [ ] 作品搜索和筛选
 - [ ] 创作者个人主页
 - [ ] 社区世界线创建和管理
+- [ ] 对象存储集成（S3/MinIO）
+- [ ] PostgreSQL 生产环境支持
 - [ ] 移动端 App
 
 ## 关于菲比
@@ -247,6 +254,43 @@ phoebe-museum/
 这个博物馆，就是为了记录这一切。
 
 从 PM-000001 开始，永远不会结束。
+
+## 快速开始
+
+### 本地开发
+
+1. 安装依赖：
+```bash
+npm install
+```
+
+2. 初始化数据库：
+```bash
+npm run db:push
+npm run db:seed
+```
+
+3. 启动开发服务器：
+```bash
+npm run dev
+```
+
+4. 访问 http://localhost:3000
+
+### Docker 部署
+
+1. 构建并启动：
+```bash
+docker-compose up -d
+```
+
+2. 访问 http://localhost:3000
+
+3. 管理员账户：
+   - 邮箱: admin@phoebe-museum.com
+   - 密码: admin123456
+
+详细部署说明请查看 [DOCKER.md](./DOCKER.md)
 
 ## License
 

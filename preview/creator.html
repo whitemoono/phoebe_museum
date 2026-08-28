@@ -16,7 +16,7 @@
 .cr-hero .inner{position:relative;max-width:1400px;margin:0 auto;padding:0 5vw;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:48px}
 .cr-hero .avatar{width:96px;height:96px;border-radius:50%;overflow:hidden;background:var(--bg-soft);margin-bottom:24px;border:3px solid rgba(244,240,230,.2)}
 .cr-hero .avatar img{width:100%;height:100%;object-fit:cover}
-.cr-hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5vw,64px);letter-spacing:-.02em;line-height:1;color:#f4f0e6;margin:0}
+.cr-hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5vw,64px);letter-spacing:-.02em;line-height:1;color:var(--ink);margin:0}
 .cr-hero h1 em{font-style:italic;color:var(--gold)}
 .cr-hero .bio{font-size:13px;line-height:2;color:rgba(244,240,230,.6);max-width:520px;margin:20px 0 0}
 .cr-hero .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
@@ -25,19 +25,29 @@
 .cr-actions{max-width:1400px;margin:0 auto;padding:24px 5vw;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
 .cr-stats{display:flex;gap:32px}
 .cr-stats .s{}
-.cr-stats .s .n{font-family:var(--serif);font-style:italic;font-size:28px;color:var(--seal);line-height:1}
+.cr-stats .s .n{font-family:var(--serif);font-style:italic;font-size:28px;color:var(--seal);line-height:1;transition:transform .3s var(--ease)}
+.cr-stats:hover .n{transform:scale(1.08)}
 .cr-stats .s .l{font-size:9px;letter-spacing:.2em;color:var(--ink-3);margin-top:6px;text-transform:uppercase}
 .cr-actions .btns{display:flex;gap:12px}
 
-.cr-tabs{max-width:1400px;margin:0 auto;padding:0 5vw;display:flex;border-bottom:1px solid var(--line)}
-.cr-tabs button{background:none;border:0;padding:16px 24px;font-size:12px;letter-spacing:.14em;color:var(--ink-2);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .25s,border-color .25s;font-family:var(--sans)}
+.cr-tabs{max-width:1400px;margin:0 auto;padding:0 5vw;display:flex;border-bottom:1px solid var(--line);position:relative;--tab-left:0;--tab-width:0}
+.cr-tabs::after{content:'';position:absolute;bottom:-1px;left:var(--tab-left);height:2px;background:var(--seal);transition:left .35s var(--ease),width .35s var(--ease);width:var(--tab-width);border-radius:1px}
+.cr-tabs button{background:none;border:0;padding:16px 24px;font-size:12px;letter-spacing:.14em;color:var(--ink-2);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .25s;font-family:var(--sans)}
 .cr-tabs button:hover{color:var(--ink)}
-.cr-tabs button.active{color:var(--seal);border-bottom-color:var(--seal)}
+.cr-tabs button.active{color:var(--seal);border-bottom-color:transparent}
 
 .cr-body{max-width:1400px;margin:0 auto;padding:48px 5vw 0}
 
 .cr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:80px}
-.cr-grid .item{position:relative;overflow:hidden;border-radius:4px;cursor:pointer}
+.cr-grid .item{position:relative;overflow:hidden;border-radius:4px;cursor:pointer;animation:item-in .5s var(--ease) both}
+.cr-grid .item:nth-child(2){animation-delay:.06s}
+.cr-grid .item:nth-child(3){animation-delay:.12s}
+.cr-grid .item:nth-child(4){animation-delay:.18s}
+.cr-grid .item:nth-child(5){animation-delay:.24s}
+.cr-grid .item:nth-child(6){animation-delay:.3s}
+.cr-grid .item:nth-child(7){animation-delay:.36s}
+.cr-grid .item:nth-child(8){animation-delay:.42s}
+@keyframes item-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .cr-grid .item .img{aspect-ratio:3/4;overflow:hidden;background:var(--bg-soft)}
 .cr-grid .item .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .5s}
 .cr-grid .item:hover .img img{transform:scale(1.06);filter:brightness(1.05)}
@@ -48,12 +58,14 @@
 .cr-grid .item .chip{position:absolute;top:10px;left:10px;font-size:8px;padding:2px 6px;z-index:2}
 
 .cr-section{margin-bottom:80px}
-.cr-section h3{font-family:var(--serif);font-size:22px;font-weight:500;margin:0 0 28px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.cr-section h3{font-family:var(--serif);font-size:22px;font-weight:400;margin:0 0 28px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 .cr-section h3 small{font-family:var(--sans);font-size:11px;font-weight:400;color:var(--ink-3);letter-spacing:.1em;margin-left:8px}
 
 .cr-timelines{display:grid;gap:16px}
-.cr-timelines .row{display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:background .25s}
-.cr-timelines .row:hover{background:var(--bg-soft)}
+.cr-timelines .row{display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:background .25s,padding-left .4s var(--ease);position:relative}
+.cr-timelines .row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--seal);transform:scaleY(0);transition:transform .4s var(--ease);transform-origin:center}
+.cr-timelines .row:hover{background:var(--bg-soft);padding-left:8px}
+.cr-timelines .row:hover::before{transform:scaleY(1)}
 .cr-timelines .row .thumb{width:120px;height:68px;border-radius:4px;overflow:hidden;background:var(--bg-soft)}
 .cr-timelines .row .thumb img{width:100%;height:100%;object-fit:cover}
 .cr-timelines .row .info h4{font-family:var(--serif);font-size:18px;font-weight:500;margin:0 0 6px}
@@ -76,6 +88,39 @@
   .cr-about{grid-template-columns:1fr;gap:24px}
   .cr-stats{gap:20px}
   .cr-stats .s .n{font-size:22px}
+}
+@media(max-width:600px){
+  .cr-hero{min-height:320px;height:auto;padding:100px16px40px}
+  .cr-hero h1{font-size:clamp(28px,8vw,48px)}
+  .cr-hero h1 em{font-size:clamp(32px,9vw,56px)}
+  .cr-hero .handle{font-size:11px}
+  .cr-hero .handle .id{font-size:9px}
+  .cr-hero .bio{font-size:12px;line-height:1.9}
+  .cr-hero .tags{gap:6px}
+  .cr-hero .tags span{font-size:8px;padding:3px8px}
+  .cr-actions{padding:16px;flex-direction:column;gap:16px;align-items:flex-start}
+  .cr-stats{gap:16px}
+  .cr-stats .s .n{font-size:20px}
+  .cr-stats .s .l{font-size:8px}
+  .cr-actions .btns{gap:8px}
+  .cr-actions .btns .btn{padding:8px14px;font-size:9px}
+  .cr-tabs{padding:016px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cr-tabs button{padding:14px16px;font-size:11px}
+  .cr-section{padding:40px16px}
+  .cr-section h3{font-size:18px;margin-bottom:20px}
+  .cr-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .cr-grid .item .overlay{padding:10px}
+  .cr-grid .item .overlay .t{font-size:11px}
+  .cr-grid .item .overlay .m{font-size:9px}
+  .cr-timelines .row{grid-template-columns:60px1fr;gap:10px}
+  .cr-timelines .row .thumb{width:60px;height:34px}
+  .cr-timelines .row .info h4{font-size:14px}
+  .cr-timelines .row .info p{font-size:10px}
+  .cr-about{gap:20px}
+  .cr-about .bio-text{font-size:13px;line-height:1.9}
+  .cr-about .side h4{font-size:13px}
+  .cr-about .side dl dt{font-size:8px;letter-spacing:.2em}
+  .cr-about .side dl dd{font-size:12px}
 }
 </style>
 </head>
@@ -307,7 +352,7 @@ d.body.appendChild(top);
 top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
 window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
 
-function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)});d.querySelectorAll('[data-placeholder-'+l+']').forEach(function(el){el.placeholder=el.getAttribute('data-placeholder-'+l)});d.querySelectorAll('[data-lang-zh],[data-lang-en],[data-lang-ja]').forEach(function(el){var lang=el.getAttribute('data-lang-zh')?'zh':el.getAttribute('data-lang-en')?'en':'ja';el.style.display=lang===l?'':'none'})}
 apply(localStorage.getItem('phoebe-lang')||'zh');
 d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
 /* ---- 用户菜单 ---- */
@@ -318,15 +363,113 @@ d.addEventListener('click',function(e){if(ua&&ua.classList.contains('open')&&!ua
 if(lo){lo.addEventListener('click',function(e){e.preventDefault();ua.setAttribute('data-login','false');ua.classList.remove('open')})}
 var lp=d.querySelector('.login-pill');if(lp){lp.addEventListener('dblclick',function(e){e.preventDefault();ua.setAttribute('data-login','true')})}
 
-/* Tab */
-d.querySelectorAll('.cr-tabs button').forEach(function(b){
+/* Tab with sliding indicator */
+var tabsContainer=d.querySelector('.cr-tabs');
+var tabBtns=d.querySelectorAll('.cr-tabs button');
+function updateTabIndicator(btn){
+  if(!tabsContainer||!btn)return;
+  var rect=btn.getBoundingClientRect();
+  var containerRect=tabsContainer.getBoundingClientRect();
+  tabsContainer.style.setProperty('--tab-left',(rect.left-containerRect.left)+'px');
+  tabsContainer.style.setProperty('--tab-width',rect.width+'px');
+}
+tabBtns.forEach(function(b){
   b.addEventListener('click',function(){
-    d.querySelectorAll('.cr-tabs button').forEach(function(x){x.classList.remove('active')});
+    tabBtns.forEach(function(x){x.classList.remove('active')});
     this.classList.add('active');
+    updateTabIndicator(this);
     var tab=this.dataset.tab;
     d.querySelectorAll('.tab-panel').forEach(function(p){p.style.display=p.dataset.panel===tab?'':'none'});
   });
 });
+/* init indicator on first active tab */
+var initTab=d.querySelector('.cr-tabs button.active');
+if(initTab)setTimeout(function(){updateTabIndicator(initTab)},50);
+})();
+</script>
+
+<!-- 登录/注册弹窗 -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-header">
+      <div class="logo">PHOEBE MUSEUM<em>幽灵船菲比</em></div>
+      <div class="auth-tabs">
+        <button class="active" data-tab="login"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+        <button data-tab="register"><span data-lang-zh>注册</span><span data-lang-en>SIGN UP</span><span data-lang-ja>新規登録</span></button>
+        <div class="indicator" data-tab="login"></div>
+      </div>
+    </div>
+    <div class="auth-body">
+      <div class="auth-form active" id="loginForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <input type="email" id="loginEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="loginBtn"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+      </div>
+      <div class="auth-form" id="registerForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <input type="email" id="regEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>创作者代号</span><span data-lang-en>CREATOR CODE</span><span data-lang-ja>クリエイターコード</span></label>
+          <input type="text" id="regCode" placeholder="phoebe_sailor" autocomplete="username">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="registerBtn"><span data-lang-zh>登船</span><span data-lang-en>BOARD</span><span data-lang-ja>乗船</span></button>
+      </div>
+      <div class="auth-success" id="authSuccess">
+        <div class="icon">⛵</div>
+        <h3><span data-lang-zh>欢迎登船</span><span data-lang-en>WELCOME ABOARD</span><span data-lang-ja>乗船歓迎</span></h3>
+        <p><span data-lang-zh>菲比博物馆已记录你的存在。</span></p>
+<p><span data-lang-en>Phoebe Museum has recorded your presence.</span></p>
+<p><span data-lang-ja>フィービー博物館があなたの存在を記録しました。</span></p>
+        <button class="btn-primary" id="authSuccessBtn"><span data-lang-zh>继续浏览</span><span data-lang-en>CONTINUE</span><span data-lang-ja>続ける</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var o=document.getElementById('authOverlay');
+  var cb=document.getElementById('authClose');
+  var tb=o.querySelectorAll('.auth-tabs button');
+  var ind=o.querySelector('.auth-tabs .indicator');
+  var lf=document.getElementById('loginForm');
+  var rf=document.getElementById('registerForm');
+  var sc=document.getElementById('authSuccess');
+  function openAuth(t){o.classList.add('active');document.body.style.overflow='hidden';sw(t||'login')}
+  function closeAuth(){o.classList.remove('active');document.body.style.overflow=''}
+  function sw(t){tb.forEach(function(b){b.classList.toggle('active',b.dataset.tab===t)});ind.dataset.tab=t;lf.classList.toggle('active',t==='login');rf.classList.toggle('active',t==='register');sc.classList.remove('active')}
+  function showS(){lf.classList.remove('active');rf.classList.remove('active');sc.classList.add('active')}
+  function ve(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+  cb.addEventListener('click',closeAuth);
+  o.addEventListener('click',function(e){if(e.target===o)closeAuth()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&o.classList.contains('active'))closeAuth()});
+  tb.forEach(function(t){t.addEventListener('click',function(){sw(this.dataset.tab)})});
+  o.querySelectorAll('.password-toggle').forEach(function(b){b.addEventListener('click',function(){var i=this.previousElementSibling;i.type=i.type==='password'?'text':'password'})});
+  document.getElementById('loginBtn').addEventListener('click',function(){var e=document.getElementById('loginEmail');var p=document.getElementById('loginPassword');if(ve(e.value)&&p.value){localStorage.setItem('phoebe-auth','true');showS()}});
+  document.getElementById('registerBtn').addEventListener('click',function(){var e=document.getElementById('regEmail');var c=document.getElementById('regCode');var p=document.getElementById('regPassword');if(ve(e.value)&&/^[a-zA-Z0-9_]{3,20}$/.test(c.value)&&p.value.length>=6){localStorage.setItem('phoebe-auth','true');showS()}});
+  document.getElementById('authSuccessBtn').addEventListener('click',function(){closeAuth();window.location.reload()});
+  document.querySelectorAll('a[href="login.html"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openAuth('login')})});
+  window.openAuth=openAuth;window.closeAuth=closeAuth;
+  if(localStorage.getItem('phoebe-auth')==='true'){var ua=document.getElementById('userArea');if(ua)ua.setAttribute('data-login','true')}
 })();
 </script>
 </body>

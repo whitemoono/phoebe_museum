@@ -11,13 +11,15 @@
 <link rel="stylesheet" href="pm.css">
 <style>
 .crumb{padding:118px 5vw 0;max-width:1560px;margin:0 auto;font-size:9px;letter-spacing:.26em;color:var(--ink-3)}
-.crumb a:hover{color:var(--seal)}
+.crumb a{transition:color .3s,border-color .3s}
+.crumb a:hover{color:var(--seal);border-bottom:1px solid var(--seal)}
 .work{padding:34px 5vw 0;max-width:1560px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:4.5vw;align-items:start}
 .work .art{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:var(--bg-soft);box-shadow:0 34px 80px -36px rgba(22,21,15,.4);cursor:zoom-in}
 .work .art img{width:100%;height:100%;object-fit:cover}
 .work .thumbs{display:flex;gap:12px;margin-top:14px}
-.work .thumbs button{width:86px;aspect-ratio:16/9;border:1px solid var(--line);border-radius:4px;overflow:hidden;padding:0;cursor:pointer;background:var(--bg-soft);opacity:.55;transition:opacity .3s,border-color .3s}
-.work .thumbs button.on,.work .thumbs button:hover{opacity:1;border-color:var(--ink)}
+.work .thumbs button{width:86px;aspect-ratio:16/9;border:1px solid var(--line);border-radius:4px;overflow:hidden;padding:0;cursor:pointer;background:var(--bg-soft);opacity:.55;transition:opacity .3s,border-color .3s,transform .3s var(--ease)}
+.work .thumbs button:hover{opacity:1;border-color:var(--ink);transform:translateY(-2px)}
+.work .thumbs button.on{opacity:1;border-color:var(--ink)}
 .work .thumbs img{width:100%;height:100%;object-fit:cover}
 .work .stamp{top:18px;left:-14px}
 
@@ -26,7 +28,10 @@
 .panel h1 .en{display:block;font-size:.42em;font-style:italic;color:var(--ink-2);letter-spacing:.04em;margin-top:12px}
 .panel .chips{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap}
 .meta{margin-top:30px;border-top:1px solid var(--line)}
-.meta .row{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 2px;border-bottom:1px solid var(--line);font-size:11px;align-items:baseline}
+.meta .row{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 2px;border-bottom:1px solid var(--line);font-size:11px;align-items:baseline;position:relative;transition:padding-left .4s var(--ease)}
+.meta .row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--seal);transform:scaleY(0);transition:transform .4s var(--ease);transform-origin:center}
+.meta .row:hover{padding-left:10px}
+.meta .row:hover::before{transform:scaleY(1)}
 .meta .k{font-size:8px;letter-spacing:.3em;color:var(--ink-3)}
 .meta .v a{border-bottom:1px solid var(--line-dark)}
 .meta .v a:hover{color:var(--seal);border-color:var(--seal)}
@@ -34,21 +39,31 @@
 .about h4{font-size:9px;letter-spacing:.3em;color:var(--ink-3);margin:0 0 12px;font-weight:400}
 .about p{font-size:12.5px;line-height:2.2;color:var(--ink-2);margin:0}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
-.tag{border:1px solid var(--line-dark);border-radius:999px;padding:6px 12px;font-size:8px;letter-spacing:.18em;color:var(--ink-2)}
+.tag{border:1px solid var(--line-dark);border-radius:999px;padding:6px 12px;font-size:9px;letter-spacing:.18em;color:var(--ink-2);transition:transform .3s var(--ease),border-color .3s}
+.tag:hover{transform:translateY(-1px);border-color:var(--seal)}
 .favs{display:flex;gap:12px;margin-top:34px}
-.fav-btn{transition:all .3s}
+.fav-btn{transition:all .3s;position:relative}
 .fav-btn.on{background:var(--seal);border-color:var(--seal);color:#fff}
+.fav-btn.on::after{content:'';position:absolute;inset:-4px;border-radius:inherit;border:2px solid var(--seal);opacity:0;animation:fav-pulse .6s var(--ease)}
+@keyframes fav-pulse{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(1.12)}}
 
 .sec{padding:110px 5vw 0;max-width:1560px;margin:0 auto}
 .sec .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
 .sec h2{font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.4vw,46px);letter-spacing:-.01em;margin:18px 0 0}
 .sec h2 em{font-style:italic}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.grid3 .frame{animation:frame-in .5s var(--ease) both}
+.grid3 .frame:nth-child(2){animation-delay:.1s}
+.grid3 .frame:nth-child(3){animation-delay:.2s}
+@keyframes frame-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .prevnext{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);margin-top:110px}
-.pn{padding:44px 5vw;font-size:10px;letter-spacing:.2em;color:var(--ink-2);transition:background-color .3s}
-.pn:hover{background:var(--bg-soft)}
-.pn b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;color:var(--ink);margin-top:10px;letter-spacing:0}
+.pn{padding:44px 5vw;font-size:10px;letter-spacing:.2em;color:var(--ink-2);transition:background-color .3s,padding-left .4s var(--ease),padding-right .4s var(--ease)}
+.pn:hover{background:var(--bg-soft);padding-left:calc(5vw + 8px)}
+.pn b{display:block;font-family:var(--serif);font-weight:400;font-size:24px;color:var(--ink);margin-top:10px;letter-spacing:0;transition:transform .3s var(--ease)}
+.pn:hover b{transform:translateX(4px)}
 .pn.next{text-align:right;border-left:1px solid var(--line)}
+.pn.next:hover{padding-left:5vw;padding-right:calc(5vw + 8px)}
+.pn.next:hover b{transform:translateX(-4px)}
 
 .lightbox{position:fixed;inset:0;z-index:120;background:rgba(22,21,15,.72);backdrop-filter:blur(18px);display:none;align-items:center;justify-content:center;cursor:zoom-out;padding:4vw}
 .lightbox.open{display:flex}
@@ -56,6 +71,29 @@
 
 @media(max-width:1100px){.work{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
 @media(max-width:960px){.crumb{padding:110px 6vw 0}.work,.sec{padding-left:6vw;padding-right:6vw}.prevnext{grid-template-columns:1fr}.pn.next{border-left:0;border-top:1px solid var(--line);text-align:left}}
+@media(max-width:600px){
+  .crumb{padding:100px16px0;font-size:8px}
+  .work{padding:20px16px0;gap:24px}
+  .work .art{border-radius:6px}
+  .work .thumbs{gap:8px}
+  .work .thumbs button{width:60px}
+  .panel .no{font-size:clamp(24px,6vw,36px)}
+  .panel h1{font-size:clamp(28px,7vw,44px)}
+  .panel h1 .en{font-size:.38em;margin-top:8px}
+  .panel .chips{gap:6px;margin-top:16px}
+  .meta .row{grid-template-columns:100px1fr;gap:12px;padding:12px2px;font-size:10px}
+  .meta .k{font-size:7px;letter-spacing:.2em}
+  .about p{font-size:12px;line-height:2}
+  .tags{gap:6px;margin-top:20px}
+  .tag{padding:5px10px;font-size:8px}
+  .sec{padding:60px16px0}
+  .sec .head{margin-bottom:32px}
+  .sec h2{font-size:clamp(24px,5vw,36px)}
+  .grid3{gap:20px}
+  .pn{padding:30px16px;font-size:9px}
+  .pn b{font-size:20px}
+  .prevnext{margin-top:60px}
+}
 </style>
 </head>
 <body>
@@ -185,11 +223,11 @@ window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',wind
 btn.addEventListener('click',function(e){e.stopPropagation();var o=drawer.classList.toggle('open');btn.textContent=o?'✕':'☰'});
 d.addEventListener('click',function(e){if(drawer.classList.contains('open')&&!drawer.contains(e.target)&&e.target!==btn){drawer.classList.remove('open');btn.textContent='☰'}});
 var els=[].slice.call(d.querySelectorAll('.rv'));
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06});els.forEach(function(el){io.observe(el)});}else{els.forEach(function(el){el.classList.add('in')})}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.06,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){io.observe(el)});}else{els.forEach(function(el){el.classList.add('in')})}
 var top=d.createElement('button');top.type='button';top.className='to-top';top.textContent='↑';d.body.appendChild(top);
 top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
 window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>600)},{passive:true});
-function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)})}
+function apply(l){d.documentElement.lang=l==='zh'?'zh-CN':l;d.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===l)});d.querySelectorAll('[data-placeholder-'+l+']').forEach(function(el){el.placeholder=el.getAttribute('data-placeholder-'+l)});d.querySelectorAll('[data-lang-zh],[data-lang-en],[data-lang-ja]').forEach(function(el){var lang=el.getAttribute('data-lang-zh')?'zh':el.getAttribute('data-lang-en')?'en':'ja';el.style.display=lang===l?'':'none'})}
 apply(localStorage.getItem('phoebe-lang')||'zh');
 d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){localStorage.setItem('phoebe-lang',this.dataset.lang);apply(this.dataset.lang)})});
 /* ---- 用户菜单 ---- */
@@ -207,6 +245,91 @@ lb.addEventListener('click',function(){lb.classList.remove('open');d.body.style.
 d.addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('open');d.body.style.overflow=''}});
 /* 收藏 */
 d.getElementById('fav').addEventListener('click',function(){this.classList.toggle('on');var on=this.classList.contains('on');this.querySelectorAll('span').forEach(function(s){s.textContent=s.textContent.replace(on?'♡':'♥',on?'♥':'♡')})});
+})();
+</script>
+
+<!-- 登录/注册弹窗 -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-header">
+      <div class="logo">PHOEBE MUSEUM<em>幽灵船菲比</em></div>
+      <div class="auth-tabs">
+        <button class="active" data-tab="login"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+        <button data-tab="register"><span data-lang-zh>注册</span><span data-lang-en>SIGN UP</span><span data-lang-ja>新規登録</span></button>
+        <div class="indicator" data-tab="login"></div>
+      </div>
+    </div>
+    <div class="auth-body">
+      <div class="auth-form active" id="loginForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <input type="email" id="loginEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="loginBtn"><span data-lang-zh>登录</span><span data-lang-en>SIGN IN</span><span data-lang-ja>ログイン</span></button>
+      </div>
+      <div class="auth-form" id="registerForm">
+        <div class="field">
+          <label><span data-lang-zh>邮箱</span><span data-lang-en>EMAIL</span><span data-lang-ja>メール</span></label>
+          <input type="email" id="regEmail" placeholder="phoebe@phoebemuseum.art" autocomplete="email">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>创作者代号</span><span data-lang-en>CREATOR CODE</span><span data-lang-ja>クリエイターコード</span></label>
+          <input type="text" id="regCode" placeholder="phoebe_sailor" autocomplete="username">
+        </div>
+        <div class="field">
+          <label><span data-lang-zh>密码</span><span data-lang-en>PASSWORD</span><span data-lang-ja>パスワード</span></label>
+          <div class="password-field">
+            <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password">
+            <button class="password-toggle" type="button">ᕦ(ò_óˇ)ᕤ</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="registerBtn"><span data-lang-zh>登船</span><span data-lang-en>BOARD</span><span data-lang-ja>乗船</span></button>
+      </div>
+      <div class="auth-success" id="authSuccess">
+        <div class="icon">⛵</div>
+        <h3><span data-lang-zh>欢迎登船</span><span data-lang-en>WELCOME ABOARD</span><span data-lang-ja>乗船歓迎</span></h3>
+        <p><span data-lang-zh>菲比博物馆已记录你的存在。</span></p>
+<p><span data-lang-en>Phoebe Museum has recorded your presence.</span></p>
+<p><span data-lang-ja>フィービー博物館があなたの存在を記録しました。</span></p>
+        <button class="btn-primary" id="authSuccessBtn"><span data-lang-zh>继续浏览</span><span data-lang-en>CONTINUE</span><span data-lang-ja>続ける</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var o=document.getElementById('authOverlay');
+  var cb=document.getElementById('authClose');
+  var tb=o.querySelectorAll('.auth-tabs button');
+  var ind=o.querySelector('.auth-tabs .indicator');
+  var lf=document.getElementById('loginForm');
+  var rf=document.getElementById('registerForm');
+  var sc=document.getElementById('authSuccess');
+  function openAuth(t){o.classList.add('active');document.body.style.overflow='hidden';sw(t||'login')}
+  function closeAuth(){o.classList.remove('active');document.body.style.overflow=''}
+  function sw(t){tb.forEach(function(b){b.classList.toggle('active',b.dataset.tab===t)});ind.dataset.tab=t;lf.classList.toggle('active',t==='login');rf.classList.toggle('active',t==='register');sc.classList.remove('active')}
+  function showS(){lf.classList.remove('active');rf.classList.remove('active');sc.classList.add('active')}
+  function ve(e){return/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)}
+  cb.addEventListener('click',closeAuth);
+  o.addEventListener('click',function(e){if(e.target===o)closeAuth()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&o.classList.contains('active'))closeAuth()});
+  tb.forEach(function(t){t.addEventListener('click',function(){sw(this.dataset.tab)})});
+  o.querySelectorAll('.password-toggle').forEach(function(b){b.addEventListener('click',function(){var i=this.previousElementSibling;i.type=i.type==='password'?'text':'password'})});
+  document.getElementById('loginBtn').addEventListener('click',function(){var e=document.getElementById('loginEmail');var p=document.getElementById('loginPassword');if(ve(e.value)&&p.value){localStorage.setItem('phoebe-auth','true');showS()}});
+  document.getElementById('registerBtn').addEventListener('click',function(){var e=document.getElementById('regEmail');var c=document.getElementById('regCode');var p=document.getElementById('regPassword');if(ve(e.value)&&/^[a-zA-Z0-9_]{3,20}$/.test(c.value)&&p.value.length>=6){localStorage.setItem('phoebe-auth','true');showS()}});
+  document.getElementById('authSuccessBtn').addEventListener('click',function(){closeAuth();window.location.reload()});
+  document.querySelectorAll('a[href="login.html"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openAuth('login')})});
+  window.openAuth=openAuth;window.closeAuth=closeAuth;
+  if(localStorage.getItem('phoebe-auth')==='true'){var ua=document.getElementById('userArea');if(ua)ua.setAttribute('data-login','true')}
 })();
 </script>
 </body>
